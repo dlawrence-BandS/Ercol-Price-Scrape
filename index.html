@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Price Comparison — Barker and Stonehouse</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#1A2A49; --teal:#3d8b85; --teal-l:#e8f4f3; --teal-m:#b2d8d5;
+    --sand:#f7f5f0; --white:#ffffff; --border:#e2ddd6; --muted:#7a7670;
+    --text:#1a1a1a; --red:#c0392b; --green:#2e7d5e; --amber:#b8860b;
+    --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  }
+  body { background:var(--sand); color:var(--text); font-family:var(--sans); font-size:14px; min-height:100vh; }
+
+  /* Header */
+  .site-header { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; align-items:center; height:64px; }
+  .page-title { font-family:var(--serif); font-size:1.1rem; font-weight:400; color:var(--navy); }
+  .logo-wrap { margin-left:auto; }
+  .logo-wrap img { height:28px; display:block; }
+  #meta-bar { background:var(--teal); color:rgba(255,255,255,0.9); font-size:0.72rem; padding:6px 2rem; display:flex; gap:2rem; }
+
+  .main { padding:1.5rem 2rem; max-width:1500px; margin:0 auto; }
+
+  /* Stats */
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+  .stat-card { background:var(--white); border:1px solid var(--border); border-top:3px solid var(--teal); border-radius:3px; padding:0.9rem 1.1rem; }
+  .stat-card .label { font-size:0.62rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:0.4rem; }
+  .stat-card .value { font-family:var(--serif); font-size:1.4rem; font-weight:600; color:var(--navy); }
+  .stat-card .value.green { color:var(--green); }
+  .stat-card .value.red   { color:var(--red); }
+
+  /* Brand tabs */
+  .brand-nav-outer { background:var(--white); border-bottom:2px solid var(--border); position:relative; }
+  .brand-nav-inner { display:flex; align-items:center; padding:0 2rem; gap:0; overflow-x:auto; scroll-behavior:smooth; scrollbar-width:none; }
+  .brand-nav-inner::-webkit-scrollbar { display:none; }
+  /* All tab */
+  .brand-tab-all { display:flex; align-items:center; gap:8px; padding:0.7rem 1.1rem 0.7rem 0; border-bottom:2px solid transparent; margin-bottom:-2px; cursor:pointer; flex-shrink:0; border-right:1px solid var(--border); margin-right:4px; padding-right:1.1rem; }
+  .brand-tab-all .all-label { font-size:0.8rem; font-weight:600; color:var(--muted); letter-spacing:0.04em; text-transform:uppercase; }
+  .brand-tab-all .all-count { font-size:0.7rem; background:var(--navy); color:white; border-radius:20px; padding:2px 8px; font-weight:600; }
+  .brand-tab-all.active .all-label { color:var(--navy); }
+  .brand-tab-all.active { border-bottom-color:var(--navy); }
+  /* Brand tabs */
+  .brand-tab { display:flex; align-items:center; gap:6px; padding:0.7rem 0.75rem; border-bottom:2px solid transparent; margin-bottom:-2px; cursor:pointer; white-space:nowrap; flex-shrink:0; transition:all 0.12s; }
+  .brand-tab:hover { background:var(--sand); }
+  .brand-tab .tab-name { font-size:0.78rem; font-weight:500; color:var(--muted); }
+  .brand-tab .tab-count { font-size:0.62rem; background:var(--sand); color:var(--muted); border-radius:20px; padding:1px 6px; border:1px solid var(--border); min-width:18px; text-align:center; }
+  .brand-tab.active { border-bottom-color:var(--teal); }
+  .brand-tab.active .tab-name { color:var(--navy); font-weight:600; }
+  .brand-tab.active .tab-count { background:var(--teal-l); color:var(--teal); border-color:var(--teal-m); font-weight:600; }
+  /* competitor count dot */
+  .comp-dot { width:6px; height:6px; border-radius:50%; background:var(--teal); flex-shrink:0; opacity:0; }
+  .brand-tab.has-comp .comp-dot { opacity:1; }
+  /* scroll buttons */
+  .scroll-btn-l, .scroll-btn-r { position:absolute; top:0; bottom:0; width:36px; display:flex; align-items:center; justify-content:center; z-index:4; cursor:pointer; border:none; background:none; color:var(--navy); font-size:1.1rem; opacity:0; pointer-events:none; transition:opacity 0.15s; }
+  .scroll-btn-l { left:0; background:linear-gradient(to right, var(--white) 50%, transparent); padding-left:4px; }
+  .scroll-btn-r { right:0; background:linear-gradient(to left, var(--white) 50%, transparent); padding-right:4px; }
+  .scroll-btn-l.show, .scroll-btn-r.show { opacity:1; pointer-events:all; }
+  .scroll-btn-l:hover, .scroll-btn-r:hover { color:var(--teal); }
+  .brand-tab { font-size:0.75rem; font-weight:500; padding:0.55rem 1.1rem; cursor:pointer; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-2px; letter-spacing:0.03em; white-space:nowrap; transition:all 0.15s; flex-shrink:0; }
+  .brand-tab:hover { color:var(--navy); }
+  .brand-tab.active { color:var(--teal); border-bottom-color:var(--teal); font-weight:600; }
+  .brand-tab .tab-count { font-size:0.62rem; background:var(--teal-l); color:var(--teal); border-radius:10px; padding:1px 6px; margin-left:4px; }
+  .brand-tab.active .tab-count { background:var(--teal); color:white; }
+
+  /* View tabs (products / ranges) */
+  .view-tabs { display:flex; border-bottom:1px solid var(--border); background:var(--white); border-left:1px solid var(--border); border-right:1px solid var(--border); }
+  .view-tab { font-size:0.72rem; font-weight:500; padding:0.45rem 1rem; cursor:pointer; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px; text-transform:uppercase; letter-spacing:0.04em; transition:all 0.15s; }
+  .view-tab:hover { color:var(--navy); }
+  .view-tab.active { color:var(--teal); border-bottom-color:var(--teal); }
+
+  /* Controls */
+  .controls { background:var(--white); border:1px solid var(--border); border-top:none; padding:0.65rem 1rem; display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center; }
+  .controls input, .controls select { background:var(--sand); border:1px solid var(--border); color:var(--text); font-family:var(--sans); font-size:0.76rem; padding:0.38rem 0.7rem; border-radius:3px; outline:none; transition:border-color 0.15s; }
+  .controls input:focus, .controls select:focus { border-color:var(--teal); }
+  .controls input { width:190px; }
+  .ctrl-count { margin-left:auto; font-size:0.7rem; color:var(--muted); }
+  label.inline-check { display:flex; align-items:center; gap:5px; font-size:0.73rem; color:var(--muted); cursor:pointer; }
+  label.inline-check input { width:auto; }
+
+  /* Table */
+  .table-wrap { overflow-x:auto; background:var(--white); border:1px solid var(--border); border-top:none; }
+  table { width:100%; border-collapse:collapse; font-size:0.79rem; }
+  thead th { background:var(--navy); color:rgba(255,255,255,0.75); padding:0.6rem 0.9rem; text-align:left; font-size:0.63rem; font-weight:500; text-transform:uppercase; letter-spacing:0.08em; cursor:pointer; white-space:nowrap; user-select:none; }
+  thead th:nth-child(1) { width:90px; }   /* Range */
+  thead th:nth-child(2) { min-width:180px; max-width:240px; } /* Product */
+  thead th:nth-child(3) { width:130px; }  /* Retailer */
+  thead th:nth-child(4) { width:90px; }   /* Price */
+  thead th:nth-child(5) { width:80px; }   /* Delivery cost */
+  thead th:nth-child(6) { width:90px; }   /* Lead time */
+  thead th:nth-child(7) { width:80px; }   /* Total */
+  thead th:nth-child(8) { width:110px; }  /* vs Us */
+  thead th:hover { color:white; }
+  thead th.sorted { color:var(--teal-m); }
+  tbody tr { border-bottom:1px solid var(--border); transition:background 0.1s; }
+  tbody tr:hover { background:var(--teal-l); }
+  tbody tr.us-row { border-left:3px solid var(--teal); }
+  tbody tr.oos-row { opacity:0.6; }
+  td { padding:0.55rem 0.9rem; vertical-align:middle; }
+  td.name-cell { max-width:260px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  td.name-cell a { color:var(--navy); text-decoration:none; font-weight:500; }
+  td.name-cell a:hover { color:var(--teal); text-decoration:underline; }
+  .range-badge { font-size:0.62rem; padding:2px 7px; border-radius:2px; background:var(--teal-l); color:var(--teal); white-space:nowrap; font-weight:500; border:1px solid var(--teal-m); }
+  .site-badge { font-size:0.62rem; padding:2px 7px; border-radius:2px; border:1px solid; white-space:nowrap; font-weight:500; }
+  td.price-cell { font-weight:600; color:var(--navy); white-space:nowrap; }
+  .was-price { font-size:0.72rem; color:var(--muted); text-decoration:line-through; margin-right:5px; font-weight:400; }
+  .free-badge { background:var(--teal-l); color:var(--teal); font-size:0.62rem; padding:2px 7px; border-radius:2px; font-weight:600; border:1px solid var(--teal-m); }
+  .total-pill { background:var(--navy); color:white; font-size:0.72rem; padding:2px 9px; border-radius:2px; font-weight:500; }
+  .cheaper { color:var(--green); font-weight:600; font-size:0.76rem; }
+  .pricier { color:var(--red); font-weight:600; font-size:0.76rem; }
+  .same    { color:var(--muted); font-size:0.76rem; }
+  .cheapest-tag { background:var(--green); color:white; font-size:0.56rem; padding:1px 5px; border-radius:2px; margin-left:4px; vertical-align:middle; font-weight:600; text-transform:uppercase; }
+  .oos-badge { background:#fff3cd; color:var(--amber); font-size:0.56rem; padding:1px 5px; border-radius:2px; margin-left:4px; vertical-align:middle; font-weight:600; text-transform:uppercase; border:1px solid #ffd04a; }
+  .us-star { color:var(--teal); }
+  .empty { text-align:center; padding:3rem; color:var(--muted); font-size:0.85rem; }
+
+  /* Range view */
+  #range-view { display:none; }
+  .range-group { background:var(--white); border:1px solid var(--border); border-top:none; overflow:hidden; }
+  .range-header { padding:0.75rem 1rem; display:flex; align-items:center; gap:1rem; cursor:pointer; user-select:none; border-bottom:1px solid var(--border); background:var(--sand); transition:background 0.1s; }
+  .range-header:hover { background:var(--teal-l); }
+  .range-name { font-family:var(--serif); font-size:0.95rem; font-weight:600; color:var(--navy); }
+  .range-meta { font-size:0.65rem; color:var(--muted); }
+  .multi-badge { font-size:0.58rem; padding:2px 6px; border-radius:2px; background:var(--teal-l); color:var(--teal); border:1px solid var(--teal-m); font-weight:600; text-transform:uppercase; }
+  .range-chevron { margin-left:auto; color:var(--muted); font-size:0.7rem; transition:transform 0.2s; }
+  .range-group.collapsed .range-chevron { transform:rotate(-90deg); }
+  .range-group.collapsed .range-body { display:none; }
+  .range-site-row { display:flex; align-items:flex-start; border-bottom:1px solid var(--border); }
+  .range-site-row:last-child { border-bottom:none; }
+  .range-site-label { font-size:0.7rem; font-weight:600; padding:0.6rem 1rem; min-width:180px; border-right:1px solid var(--border); color:var(--navy); background:var(--sand); }
+  .range-products { display:flex; flex-wrap:wrap; gap:0.4rem; padding:0.5rem 0.9rem; flex:1; align-items:center; }
+  .range-product-chip { background:var(--sand); border:1px solid var(--border); border-radius:3px; padding:0.3rem 0.7rem; font-size:0.73rem; display:flex; align-items:center; gap:0.5rem; transition:background 0.1s; }
+  .range-product-chip:hover { background:var(--teal-l); border-color:var(--teal-m); }
+  .range-product-chip a { color:var(--navy); text-decoration:none; font-weight:500; }
+  .range-product-chip a:hover { color:var(--teal); }
+  .chip-price { font-weight:600; color:var(--navy); }
+  .chip-was   { font-size:0.65rem; color:var(--muted); text-decoration:line-through; }
+  .chip-vs    { font-size:0.68rem; }
+
+  /* Load panel */
+  #load-panel { max-width:500px; margin:4rem auto; background:var(--white); border:1px solid var(--border); border-radius:4px; padding:3rem; text-align:center; }
+  #load-panel .load-logo { margin:0 auto 1.5rem; display:block; height:30px; }
+  #load-panel h2 { font-family:var(--serif); font-size:1.3rem; color:var(--navy); margin-bottom:0.75rem; }
+  #load-panel p { color:var(--muted); font-size:0.85rem; margin-bottom:1.5rem; line-height:1.6; }
+  #load-panel label { display:inline-block; background:var(--teal); color:white; font-weight:600; font-size:0.82rem; padding:0.65rem 1.8rem; border-radius:3px; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em; transition:background 0.15s; }
+  #load-panel label:hover { background:#2d6e69; }
+  #file-input { display:none; }
+
+  /* ── AI Overview ─────────────────────────────────────────────────────────── */
+  #ai-fab {
+    position:fixed; bottom:28px; right:28px; z-index:1000;
+    width:52px; height:52px; border-radius:50%; border:none; cursor:pointer;
+    background:var(--navy); color:white; font-size:1.3rem;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 16px rgba(26,42,73,0.35);
+    transition:background 0.18s, transform 0.18s;
+  }
+  #ai-fab:hover { background:var(--teal); transform:scale(1.07); }
+  #ai-fab .fab-badge {
+    position:absolute; top:-3px; right:-3px; width:14px; height:14px;
+    border-radius:50%; background:var(--teal); border:2px solid white;
+    display:none;
+  }
+  #ai-fab .fab-badge.show { display:block; }
+
+  #ai-panel {
+    position:fixed; bottom:92px; right:28px; z-index:999;
+    width:420px; max-height:78vh;
+    background:var(--white); border:1px solid var(--border);
+    border-radius:6px; box-shadow:0 8px 40px rgba(26,42,73,0.18);
+    display:none; flex-direction:column; overflow:hidden;
+  }
+  #ai-panel.open { display:flex; }
+
+  .ai-panel-head {
+    background:var(--navy); color:white;
+    padding:0.85rem 1.1rem; display:flex; align-items:center; gap:0.6rem;
+    flex-shrink:0;
+  }
+  .ai-panel-head .ai-icon { font-size:1rem; opacity:0.85; }
+  .ai-panel-head .ai-title { font-family:var(--serif); font-size:0.95rem; font-weight:400; flex:1; }
+  .ai-panel-head .ai-close {
+    background:none; border:none; color:rgba(255,255,255,0.6);
+    cursor:pointer; font-size:1.1rem; padding:0 2px; line-height:1;
+    transition:color 0.15s;
+  }
+  .ai-panel-head .ai-close:hover { color:white; }
+  .ai-panel-head .ai-refresh {
+    background:none; border:none; color:rgba(255,255,255,0.6);
+    cursor:pointer; font-size:0.85rem; padding:0 4px; line-height:1;
+    transition:color 0.15s; margin-right:2px;
+  }
+  .ai-panel-head .ai-refresh:hover { color:white; }
+
+  #ai-body {
+    overflow-y:auto; padding:1rem 1.1rem; flex:1;
+    font-size:0.82rem; line-height:1.65; color:var(--text);
+  }
+  #ai-body::-webkit-scrollbar { width:4px; }
+  #ai-body::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+  .ai-loading {
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:center; gap:0.9rem; padding:2.5rem 1rem; color:var(--muted);
+    font-size:0.8rem;
+  }
+  .ai-spinner {
+    width:28px; height:28px; border:3px solid var(--border);
+    border-top-color:var(--teal); border-radius:50%;
+    animation:ai-spin 0.8s linear infinite;
+  }
+  @keyframes ai-spin { to { transform:rotate(360deg); } }
+
+  .ai-section { margin-bottom:1.1rem; }
+  .ai-section:last-child { margin-bottom:0; }
+  .ai-section-title {
+    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--teal); font-weight:600; margin-bottom:0.45rem;
+    display:flex; align-items:center; gap:5px;
+  }
+  .ai-section-title .dot {
+    width:6px; height:6px; border-radius:50%; background:var(--teal); flex-shrink:0;
+  }
+  .ai-insight { margin-bottom:0.45rem; padding-left:0.9rem; position:relative; }
+  .ai-insight::before {
+    content:''; position:absolute; left:0; top:7px;
+    width:4px; height:4px; border-radius:50%;
+    background:var(--border);
+  }
+  .ai-insight.flag::before { background:var(--red); }
+  .ai-insight.good::before { background:var(--green); }
+  .ai-insight.warn::before { background:var(--amber); }
+
+  .ai-footer {
+    border-top:1px solid var(--border); padding:0.55rem 1.1rem;
+    font-size:0.68rem; color:var(--muted); flex-shrink:0;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .ai-error {
+    color:var(--red); font-size:0.8rem; text-align:center;
+    padding:1.5rem 1rem;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="page-title">Brand Price Comparison Dashboard</div>
+  <div class="logo-wrap"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTYwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMjE1NF8yNzkzKSI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMV8yMTU0XzI3OTMpIj4KPHBhdGggZD0iTTEwLjQxNzQgOS41MTkxNlY5LjQ1MjkxQzExLjE1MzEgOS4wMzI2NiAxMS43NTkyIDguNDE4MzEgMTIuMTY5NSA3LjY3Njk2QzEyLjU3OTggNi45MzU2MSAxMi43Nzg0IDYuMDk1NzYgMTIuNzQzNyA1LjI0OTE2QzEyLjc0MzcgMi41OTE0NSAxMC44ODg1IDAuMDk1NzAzMSA2Ljc4NzgzIDAuMDk1NzAzMUgxLjE4NTNWMjAuNDU5Mkg3LjMxMDU2QzExLjcyNzggMjAuNDU5MiAxNC4wMjQ4IDE3LjU4OCAxNC4wMjQ4IDE0LjQzN0MxNC4wNzY3IDEzLjMyODMgMTMuNzQ2OSAxMi4yMzUzIDEzLjA5MDUgMTEuMzQwNEMxMi40MzQgMTAuNDQ1NCAxMS40OTA1IDkuODAyNTkgMTAuNDE3NCA5LjUxOTE2Wk00LjY2NzU1IDMuMTUwOTdINi4yOTQ1OUM4LjM4NTQyIDMuMTUwOTcgOS4yOTA5MyA0LjM1ODM1IDkuMjkwOTMgNS44Njc1OEM5LjI5MDkzIDcuMzc2OCA4LjI2NzYxIDguNTkxNTUgNi4zNDYxIDguNTkxNTVINC42ODk2NEw0LjY2NzU1IDMuMTUwOTdaTTYuODc2MTcgMTcuMzk2Nkg0LjY2NzU1VjExLjY0NjhINy4yODExQzkuMjMyMDUgMTEuNjQ2OCAxMC40NzYyIDEyLjY5OTYgMTAuNDc2MiAxNC40Mjk3QzEwLjQ5ODMgMTYuNDk4NCA5LjIzMjA0IDE3LjM5NjYgNi45MDU2MyAxNy4zOTY2SDYuODc2MTdaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0yMC4zMTE5IDE1LjM1NzNIMjcuMTM2NkwyOC45OTkyIDIwLjQ1MThIMzIuNjgwMkwyNS4wMDg5IDBIMjIuMzM2NUwxNC45MTU1IDIwLjQ1MThIMTguNDkzNUwyMC4zMTE5IDE1LjM1NzNaTTIyLjcyNjcgOC4zMTE3OEMyMy4yNDk0IDYuNzM2MjkgMjMuNTM2NSA1LjgzODEzIDIzLjcxMzIgNS4xMzEzN0gyMy43NUMyMy45MjY3IDUuODA4NjggMjQuMTg0NCA2LjczNjMgMjQuNzA3MSA4LjI4MjM0TDI2LjA0NyAxMi4zMjQxSDIxLjMwNThMMjIuNzI2NyA4LjMxMTc4WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNDUuNzQwNiAxNC41MThDNDQuNzI0NyAxMi42NzAxIDQzLjk0NDMgMTEuNTczMiA0My4zNjI3IDExLjIxMjRWMTEuMTUzNUM0NC40ODE2IDEwLjgxNjYgNDUuNDU2OCAxMC4xMTc1IDQ2LjEzNTEgOS4xNjZDNDYuODEzNCA4LjIxNDUxIDQ3LjE1NjMgNy4wNjQ2MSA0Ny4xMSA1Ljg5NzAyQzQ3LjE3MjIgNC44ODA5NyA0Ni45MzU2IDMuODY4OTUgNDYuNDI5MiAyLjk4NTg1QzQ1LjkyMjkgMi4xMDI3NSA0NS4xNjkxIDEuMzg3MjQgNDQuMjYwOCAwLjkyNzYxNUM0Mi45ODU5IDAuMzE2NDI0IDQxLjU4MDEgMC4wMjgyMDAxIDQwLjE2NzUgMC4wODgzMzg3SDM0LjkzMzFWMjAuNDUxOEgzOC40MjI3VjEyLjUxNTVINDAuMDc5MkM0MC41NDMgMTIuNjMzMyA0MS4yNDI0IDEzLjQ3MjYgNDIuMTcgMTUuMjkxTDQ0LjkzMDggMjAuNDQ0NUg0OC45MzU4TDQ1Ljc0MDYgMTQuNTE4Wk00Mi4xMTExIDguOTU5NjRDNDEuNDY2OSA5LjMyODAxIDQwLjczMjUgOS41MDkwNSAzOS45OTA4IDkuNDgyMzRIMzguNDIyN1YzLjExNDE1SDQwLjAyMDNDNDAuNzgxNCAzLjA2NTgyIDQxLjUzNzEgMy4yNzAyOCA0Mi4xNyAzLjY5NTc1QzQyLjU4MzcgMy45Nzk5OSA0Mi45MTc4IDQuMzY1MjUgNDMuMTQwNyA0LjgxNDk0QzQzLjM2MzYgNS4yNjQ2MiA0My40Njc5IDUuNzYzODEgNDMuNDQzNyA2LjI2NTEyQzQzLjQ3OTMgNi43OTE5MiA0My4zNzQ4IDcuMzE4NzkgNDMuMTQwOCA3Ljc5MjA4QzQyLjkwNjcgOC4yNjUzOCA0Mi41NTE0IDguNjY4MjMgNDIuMTExMSA4Ljk1OTY0WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNjUuNTgxNCAwLjA5NTcwMzFINjEuNTE3NUw1NC45OCA4Ljc3NTU5SDU0Ljg5MTdWMC4wOTU3MDMxSDUxLjQwOTRWMjAuNDU5Mkg1NC44OTE3VjExLjUyOUg1NC45OEw2MS43NDU4IDIwLjQ1OTJINjYuMDE1OEw1Ny44ODggOS45ODI5N0w2NS41ODE0IDAuMDk1NzAzMVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTcxLjg0NjYgMTEuNTg3OUg3Ny45NzE4VjguNTYyMDlINzEuODQ2NlYzLjEyMTUySDc4LjAwMTNMNzguOTM2MiAwLjA5NTcwMzFINjguMzU2OVYyMC40NTkySDc4Ljk1ODNWMTcuNDI2SDcxLjg0NjZWMTEuNTg3OVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTkwLjg1NTMgMTEuMjEyNFYxMS4xNTM1QzkxLjk3NTYgMTAuODE4OSA5Mi45NTIzIDEwLjEyMDMgOTMuNjMxIDkuMTY4MjlDOTQuMzA5NiA4LjIxNjI3IDk0LjY1MTUgNy4wNjUxNiA5NC42MDI2IDUuODk3MDJDOTQuNjY2NSA0Ljg4MTYxIDk0LjQzMTMgMy44Njk3NiA5My45MjYzIDIuOTg2NTZDOTMuNDIxMiAyLjEwMzM2IDkyLjY2ODQgMS4zODc1NSA5MS43NjA5IDAuOTI3NjE3QzkwLjQ4MzMgMC4zMTYzOTEgODkuMDc1MiAwLjAyODE5NjYgODcuNjYwMiAwLjA4ODM0MDZIODIuNDMzMVYyMC40NTE4SDg1LjkxNTRWMTIuNTE1NUg4Ny41NzE4Qzg4LjA0MyAxMi42MzMzIDg4LjczNSAxMy40NzI2IDg5LjY2MjcgMTUuMjkxTDkyLjQyMzQgMjAuNDQ0NUg5Ni40MzU4TDkzLjI0MDcgMTQuNTEwNkM5Mi4yMTczIDEyLjY4NDggOTEuNDM2OSAxMS41NTg1IDkwLjg1NTMgMTEuMjEyNFpNODkuNjExMSA4Ljk1OTY0Qzg4Ljk2NjkgOS4zMjgwMSA4OC4yMzI1IDkuNTA5MDUgODcuNDkwOCA5LjQ4MjM0SDg1LjkxNTRWMy4xMTQxNUg4Ny41MTI5Qzg4LjI3NDEgMy4wNjQ3MSA4OS4wMzAyIDMuMjY5MjYgODkuNjYyNyAzLjY5NTc1QzkwLjA3NzcgMy45NzkxNCA5MC40MTMzIDQuMzY0MDIgOTAuNjM3NSA0LjgxMzc2QzkwLjg2MTcgNS4yNjM1IDkwLjk2NzEgNS43NjMxMyA5MC45NDM3IDYuMjY1MTJDOTAuOTc5MyA2Ljc5MTkzIDkwLjg3NDggNy4zMTg3OSA5MC42NDA4IDcuNzkyMDlDOTAuNDA2NyA4LjI2NTM5IDkwLjA1MTQgOC42NjgyMyA4OS42MTExIDguOTU5NjRaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMTMuMTkyIDAuMDI5NDQ5NUgxMTEuNDAzTDEwNC4yNCAyMC40NTE5SDEwNi44ODNMMTA4LjY3OSAxNS4xMDdIMTE1LjkyM0wxMTcuNzcxIDIwLjQ1MTlIMTIwLjQ3M0wxMTMuMTkyIDAuMDI5NDQ5NVpNMTA5LjQ0NCAxMi44NTQyTDExMS4yMDQgNy41NjgyMkMxMTEuNzcxIDUuODM4MTMgMTEyLjA4NyA0Ljg4MTA2IDExMi4yODYgNC4xMzc0OUgxMTIuMzQ1QzExMi41NjYgNC44NzM3IDExMi44NTMgNS44MDg2OCAxMTMuMzk4IDcuNTM4NzZMMTE1LjE1NyAxMi44NTQySDEwOS40NDRaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMjYuMjIzIDcuNzIyODJDMTI2LjIyMyA2LjI1MDQgMTI2LjIyMyA1LjI3ODYxIDEyNi4xNDIgNC4zMjE1NEgxMjYuMTkzQzEyNi44NDkgNS4zNDQ4NyAxMjcuNjE0IDYuNTMwMTYgMTI4LjY2NyA4LjAwMjU4TDEzNy40NTcgMjAuNDUxOUgxMzkuNjY2VjAuMDg4MzQ4NEgxMzcuMTI2VjEyLjMyNDFDMTM3LjEyNiAxMy43OTY1IDEzNy4xMjYgMTQuNzY4MyAxMzcuMTg1IDE1Ljg4SDEzNy4xMjZDMTM2LjUgMTQuODY0IDEzNS43MDUgMTMuNjI3MiAxMzQuNTkzIDEyLjA4MTJMMTI2LjEyNyAwLjA4ODM0ODRIMTIzLjY3NlYyMC40NTE5SDEyNi4yMDhMMTI2LjIyMyA3LjcyMjgyWiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNMTU5Ljg2NyAxMC4xNjdDMTU5Ljg2NyA0LjI3NzM3IDE1Ni41MSAwLjA4ODM0ODQgMTQ5LjgzMyAwLjA4ODM0ODRIMTQ0LjkxNVYyMC40NTE5SDE0OS42NDJDMTU2LjM3IDIwLjQ1MTkgMTU5Ljg2NyAxNi4xMDA5IDE1OS44NjcgMTAuMTY3Wk0xNDkuNjkzIDE4LjE5OTFIMTQ3LjQzM1YyLjM3Nzk1SDE0OS42NDJDMTU0Ljc5NSAyLjM3Nzk1IDE1Ny4yMDIgNS42MTcyNyAxNTcuMjAyIDEwLjEzMDJDMTU3LjE5NSAxNC40NTkxIDE1NS4yMzcgMTguMTk5MSAxNDkuNjkzIDE4LjE5OTFaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0zLjk5NzU4IDMyLjc1MzlDMy45OTc1OCAzMS4yODE1IDUuMTc1NTEgMzAuNzM2NyA2LjQxMjM0IDMwLjczNjdDNy44OTM4NiAzMC43NzQ3IDkuMzQyIDMxLjE4NDkgMTAuNjIzNCAzMS45MjkzVjI4LjgwMDVDOS4yNzUyMiAyOC4xNTcgNy43OTU1IDI3LjgzNjkgNi4zMDE4OSAyNy44NjU1QzIuNjIwODUgMjcuODY1NSAwLjU1OTQ4IDMwLjI4MDIgMC41NTk0OCAzMy4wMTg5QzAuNTU5NDggMzguNzMxOSA4LjIwODY5IDM4LjI3NTQgOC4yMDg2OSA0MS45NDE4QzguMjA4NjkgNDMuNTYxNCA2LjczNjI3IDQ0LjE1MDQgNS4yNjM4NiA0NC4xNTA0QzMuODE3NTggNDQuMTQyNSAyLjQxMzYgNDMuNjYxNiAxLjI2NjIzIDQyLjc4MUwwLjAwNzMyNDIyIDQ1LjM5NDZDMS41NzM1MSA0Ni40NzkgMy40NDAxMiA0Ny4wNDU0IDUuMzQ0ODMgNDcuMDE0MkM4Ljk2Njk3IDQ3LjAxNDIgMTEuNjQ2OCA0NC45Njc2IDExLjY0NjggNDEuNjQ3M0MxMS42Mzk0IDM1LjczNTUgMy45OTc1OCAzNi4xODQ2IDMuOTk3NTggMzIuNzUzOVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTEyLjY0MDYgMjguMDM0OFYzMC44MjVIMTcuNzg2N1Y0Ni43NTY1SDIxLjAxMTNWMzAuODI1SDI1Ljc1OThMMjYuNTkxOCAyOC4wMzQ4SDEyLjY0MDZaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0zNS40NDExIDI3Ljg2NTRDMzAuMjE0IDI3Ljg2NTQgMjYuNTMzIDMxLjc4MjEgMjYuNTMzIDM3LjQzNjFDMjYuNTMzIDQzLjA5MDIgMzAuMjE0IDQ3LjAwNjggMzUuNDQxMSA0Ny4wMDY4QzQwLjY2ODIgNDcuMDA2OCA0NC4zNDkyIDQzLjE3MTIgNDQuMzQ5MiAzNy40MzYxQzQ0LjM0OTIgMzEuNzAxMSA0MC42ODI5IDI3Ljg2NTQgMzUuNDQxMSAyNy44NjU0Wk0zNS40NDExIDQ0LjE3MjVDMzIuMTcyMyA0NC4xNzI1IDI5Ljk3MTEgNDEuNjk4OCAyOS45NzExIDM3LjQ2NTZDMjkuOTcxMSAzMy4yMzI0IDMyLjE3OTcgMzAuNzM2NyAzNS40NDExIDMwLjczNjdDMzguNzAyNSAzMC43MzY3IDQwLjkxMTEgMzMuMzIwOCA0MC45MTExIDM3LjQ2NTZDNDAuOTExMSA0MS42MTA1IDM4LjY4NzggNDQuMTcyNSAzNS40NDExIDQ0LjE3MjVaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik02MC4wMjI5IDM4LjAwM0M2MC4wMjI5IDM5LjAyNjQgNjAuMDIyOSA0MC4xNjc1IDYwLjA3NDQgNDEuMTU0SDYwLjAyMjlDNTkuNDg1NSA0MC4zMDc0IDU4Ljg0NSAzOS4zNjUgNTguMDM1MSAzOC4yNjA3TDUwLjUwMzcgMjguMDM0OEg0Ny4zMDg2VjQ2Ljc1NjVINTAuNTI1OFYzNi4xMzMxQzUwLjUyNTggMzUuMDgwMyA1MC41MjU4IDMzLjk5ODEgNTAuNDc0MyAzMy4yMzI0SDUwLjUyNThDNTEuMTE0OCAzNC4xMTU5IDUxLjczMzIgMzUuMDUwOCA1Mi41MTM2IDM2LjEwMzZMNjAuMzE3NCA0Ni43NTY1SDYzLjI2MjJWMjguMDM0OEg2MC4wMTU1TDYwLjAyMjkgMzguMDAzWiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNzAuMzUyIDM4LjYwNjdINzYuMDEzNFYzNS44MjM5SDcwLjM1MlYzMC44MjVINzYuMDQyOUw3Ni44OTY5IDI4LjAzNDhINjcuMTM0OFY0Ni43NTY1SDc2LjkyNjNWNDMuOTczN0g3MC4zNTJWMzguNjA2N1oiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTkxLjcyNCAzNS43NjVIODMuMTM5OFYyOC4wMzQ4SDc5LjkyMjZWNDYuNzU2NUg4My4xMzk4VjM4LjY1ODNIOTEuNzI0VjQ2Ljc1NjVIOTQuOTcwN1YyOC4wMzQ4SDkxLjcyNFYzNS43NjVaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMDYuODc1IDI3Ljg2NTRDMTAxLjY0OCAyNy44NjU0IDk3Ljk3NDYgMzEuNzgyMSA5Ny45NzQ2IDM3LjQzNjFDOTcuOTc0NiA0My4wOTAyIDEwMS42NTYgNDcuMDA2OCAxMDYuODc1IDQ3LjAwNjhDMTEyLjA5NSA0Ny4wMDY4IDExNS43ODMgNDMuMTcxMiAxMTUuNzgzIDM3LjQzNjFDMTE1Ljc4MyAzMS43MDExIDExMi4wOTUgMjcuODY1NCAxMDYuODc1IDI3Ljg2NTRaTTEwNi44NzUgNDQuMTcyNUMxMDMuNjA3IDQ0LjE3MjUgMTAxLjQwNSA0MS42OTg4IDEwMS40MDUgMzcuNDY1NkMxMDEuNDA1IDMzLjIzMjQgMTAzLjYxNCAzMC43MzY3IDEwNi44NzUgMzAuNzM2N0MxMTAuMTM3IDMwLjczNjcgMTEyLjM1MyAzMy4zMjA4IDExMi4zNTMgMzcuNDY1NkMxMTIuMzUzIDQxLjYxMDUgMTEwLjEyMiA0NC4xNzI1IDEwNi44NzUgNDQuMTcyNVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTEyOS45OTIgMzkuNTEyM0MxMzAuMDIxIDQwLjM4OTIgMTI5Ljg1NSA0MS4yNjE3IDEyOS41MDYgNDIuMDY2OUMxMjkuMTg4IDQyLjc0NDUgMTI4LjY3MSA0My4zMDkxIDEyOC4wMjQgNDMuNjg1M0MxMjcuMzc3IDQ0LjA2MTUgMTI2LjYzIDQ0LjIzMTQgMTI1Ljg4NCA0NC4xNzI0QzEyNS4xMzggNDQuMjMxNCAxMjQuMzkyIDQ0LjA2MTUgMTIzLjc0NCA0My42ODUzQzEyMy4wOTcgNDMuMzA5MSAxMjIuNTggNDIuNzQ0NSAxMjIuMjYyIDQyLjA2NjlDMTIxLjkyMiA0MS4yNjk1IDEyMS43NTkgNDAuNDA4MSAxMjEuNzg0IDM5LjU0MTdWMjguMDM0OEgxMTguNTY2VjM5Ljc2OTlDMTE4LjUyNSA0MS4wMTQgMTE4Ljc1MyA0Mi4yNTIyIDExOS4yMzYgNDMuMzk5NEMxMjAuMzA0IDQ1Ljg0MzYgMTIyLjYxNSA0Ny4wMzYzIDEyNS44NjIgNDcuMDM2M0MxMjkuMTA5IDQ3LjAzNjMgMTMxLjQyMSA0NS44NDM2IDEzMi40ODggNDMuNDI4OUMxMzIuOTc3IDQyLjI2NTMgMTMzLjIwNSA0MS4wMDkgMTMzLjE1OCAzOS43NDc4VjI4LjAxMjdIMTI5Ljk0MUwxMjkuOTkyIDM5LjUxMjNaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMzkuNjM2IDMyLjc1MzlDMTM5LjYzNiAzMS4yODE0IDE0MC44MTQgMzAuNzM2NyAxNDIuMDUxIDMwLjczNjdDMTQzLjUzMyAzMC43NzIyIDE0NC45ODIgMzEuMTgyNSAxNDYuMjYyIDMxLjkyOTNWMjguODAwNEMxNDQuOTE3IDI4LjE1NjkgMTQzLjQzOSAyNy44MzY3IDE0MS45NDggMjcuODY1NEMxMzguMjY3IDI3Ljg2NTQgMTM2LjIwNiAzMC4yODAyIDEzNi4yMDYgMzMuMDE4OUMxMzYuMjA2IDM4LjczMTkgMTQzLjg0OCAzOC4yNzU0IDE0My44NDggNDEuOTQxN0MxNDMuODQ4IDQzLjU2MTQgMTQyLjM3NSA0NC4xNTA0IDE0MC45MDMgNDQuMTUwNEMxMzkuNDU5IDQ0LjE0MDggMTM4LjA1OCA0My42NiAxMzYuOTEyIDQyLjc4MUwxMzUuNjU0IDQ1LjQxNjZDMTM3LjIyIDQ2LjUwMDIgMTM5LjA4NiA0Ny4wNjY1IDE0MC45OTEgNDcuMDM2M0MxNDQuNjEzIDQ3LjAzNjMgMTQ3LjMgNDQuOTg5NiAxNDcuMyA0MS42NjkzQzE0Ny4yODYgMzUuNzM1NSAxMzkuNjM2IDM2LjE4NDYgMTM5LjYzNiAzMi43NTM5WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNMTUzLjQyNiA0My45NzM3VjM4LjYwNjdIMTU5LjA4N1YzNS44MjM5SDE1My40MjZWMzAuODI1SDE1OS4xMDlMMTU5Ljk3MSAyOC4wMzQ4SDE1MC4yMDhWNDYuNzU2NUgxNjBWNDMuOTczN0gxNTMuNDI2WiIgZmlsbD0iIzFBMkE0OSIvPgo8L2c+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDBfMjE1NF8yNzkzIj4KPHJlY3Qgd2lkdGg9IjE2MCIgaGVpZ2h0PSI0Ny4wMzYzIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzIxNTRfMjc5MyI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iNDcuMDM2MyIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K" alt="Barker and Stonehouse"></div>
+</div>
+<div id="meta-bar">
+  <span id="meta-scraped">No data loaded</span>
+  <span id="meta-counts"></span>
+</div>
+
+<div id="load-panel">
+  <img class="load-logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTYwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMjE1NF8yNzkzKSI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMV8yMTU0XzI3OTMpIj4KPHBhdGggZD0iTTEwLjQxNzQgOS41MTkxNlY5LjQ1MjkxQzExLjE1MzEgOS4wMzI2NiAxMS43NTkyIDguNDE4MzEgMTIuMTY5NSA3LjY3Njk2QzEyLjU3OTggNi45MzU2MSAxMi43Nzg0IDYuMDk1NzYgMTIuNzQzNyA1LjI0OTE2QzEyLjc0MzcgMi41OTE0NSAxMC44ODg1IDAuMDk1NzAzMSA2Ljc4NzgzIDAuMDk1NzAzMUgxLjE4NTNWMjAuNDU5Mkg3LjMxMDU2QzExLjcyNzggMjAuNDU5MiAxNC4wMjQ4IDE3LjU4OCAxNC4wMjQ4IDE0LjQzN0MxNC4wNzY3IDEzLjMyODMgMTMuNzQ2OSAxMi4yMzUzIDEzLjA5MDUgMTEuMzQwNEMxMi40MzQgMTAuNDQ1NCAxMS40OTA1IDkuODAyNTkgMTAuNDE3NCA5LjUxOTE2Wk00LjY2NzU1IDMuMTUwOTdINi4yOTQ1OUM4LjM4NTQyIDMuMTUwOTcgOS4yOTA5MyA0LjM1ODM1IDkuMjkwOTMgNS44Njc1OEM5LjI5MDkzIDcuMzc2OCA4LjI2NzYxIDguNTkxNTUgNi4zNDYxIDguNTkxNTVINC42ODk2NEw0LjY2NzU1IDMuMTUwOTdaTTYuODc2MTcgMTcuMzk2Nkg0LjY2NzU1VjExLjY0NjhINy4yODExQzkuMjMyMDUgMTEuNjQ2OCAxMC40NzYyIDEyLjY5OTYgMTAuNDc2MiAxNC40Mjk3QzEwLjQ5ODMgMTYuNDk4NCA5LjIzMjA0IDE3LjM5NjYgNi45MDU2MyAxNy4zOTY2SDYuODc2MTdaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0yMC4zMTE5IDE1LjM1NzNIMjcuMTM2NkwyOC45OTkyIDIwLjQ1MThIMzIuNjgwMkwyNS4wMDg5IDBIMjIuMzM2NUwxNC45MTU1IDIwLjQ1MThIMTguNDkzNUwyMC4zMTE5IDE1LjM1NzNaTTIyLjcyNjcgOC4zMTE3OEMyMy4yNDk0IDYuNzM2MjkgMjMuNTM2NSA1LjgzODEzIDIzLjcxMzIgNS4xMzEzN0gyMy43NUMyMy45MjY3IDUuODA4NjggMjQuMTg0NCA2LjczNjMgMjQuNzA3MSA4LjI4MjM0TDI2LjA0NyAxMi4zMjQxSDIxLjMwNThMMjIuNzI2NyA4LjMxMTc4WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNDUuNzQwNiAxNC41MThDNDQuNzI0NyAxMi42NzAxIDQzLjk0NDMgMTEuNTczMiA0My4zNjI3IDExLjIxMjRWMTEuMTUzNUM0NC40ODE2IDEwLjgxNjYgNDUuNDU2OCAxMC4xMTc1IDQ2LjEzNTEgOS4xNjZDNDYuODEzNCA4LjIxNDUxIDQ3LjE1NjMgNy4wNjQ2MSA0Ny4xMSA1Ljg5NzAyQzQ3LjE3MjIgNC44ODA5NyA0Ni45MzU2IDMuODY4OTUgNDYuNDI5MiAyLjk4NTg1QzQ1LjkyMjkgMi4xMDI3NSA0NS4xNjkxIDEuMzg3MjQgNDQuMjYwOCAwLjkyNzYxNUM0Mi45ODU5IDAuMzE2NDI0IDQxLjU4MDEgMC4wMjgyMDAxIDQwLjE2NzUgMC4wODgzMzg3SDM0LjkzMzFWMjAuNDUxOEgzOC40MjI3VjEyLjUxNTVINDAuMDc5MkM0MC41NDMgMTIuNjMzMyA0MS4yNDI0IDEzLjQ3MjYgNDIuMTcgMTUuMjkxTDQ0LjkzMDggMjAuNDQ0NUg0OC45MzU4TDQ1Ljc0MDYgMTQuNTE4Wk00Mi4xMTExIDguOTU5NjRDNDEuNDY2OSA5LjMyODAxIDQwLjczMjUgOS41MDkwNSAzOS45OTA4IDkuNDgyMzRIMzguNDIyN1YzLjExNDE1SDQwLjAyMDNDNDAuNzgxNCAzLjA2NTgyIDQxLjUzNzEgMy4yNzAyOCA0Mi4xNyAzLjY5NTc1QzQyLjU4MzcgMy45Nzk5OSA0Mi45MTc4IDQuMzY1MjUgNDMuMTQwNyA0LjgxNDk0QzQzLjM2MzYgNS4yNjQ2MiA0My40Njc5IDUuNzYzODEgNDMuNDQzNyA2LjI2NTEyQzQzLjQ3OTMgNi43OTE5MiA0My4zNzQ4IDcuMzE4NzkgNDMuMTQwOCA3Ljc5MjA4QzQyLjkwNjcgOC4yNjUzOCA0Mi41NTE0IDguNjY4MjMgNDIuMTExMSA4Ljk1OTY0WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNjUuNTgxNCAwLjA5NTcwMzFINjEuNTE3NUw1NC45OCA4Ljc3NTU5SDU0Ljg5MTdWMC4wOTU3MDMxSDUxLjQwOTRWMjAuNDU5Mkg1NC44OTE3VjExLjUyOUg1NC45OEw2MS43NDU4IDIwLjQ1OTJINjYuMDE1OEw1Ny44ODggOS45ODI5N0w2NS41ODE0IDAuMDk1NzAzMVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTcxLjg0NjYgMTEuNTg3OUg3Ny45NzE4VjguNTYyMDlINzEuODQ2NlYzLjEyMTUySDc4LjAwMTNMNzguOTM2MiAwLjA5NTcwMzFINjguMzU2OVYyMC40NTkySDc4Ljk1ODNWMTcuNDI2SDcxLjg0NjZWMTEuNTg3OVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTkwLjg1NTMgMTEuMjEyNFYxMS4xNTM1QzkxLjk3NTYgMTAuODE4OSA5Mi45NTIzIDEwLjEyMDMgOTMuNjMxIDkuMTY4MjlDOTQuMzA5NiA4LjIxNjI3IDk0LjY1MTUgNy4wNjUxNiA5NC42MDI2IDUuODk3MDJDOTQuNjY2NSA0Ljg4MTYxIDk0LjQzMTMgMy44Njk3NiA5My45MjYzIDIuOTg2NTZDOTMuNDIxMiAyLjEwMzM2IDkyLjY2ODQgMS4zODc1NSA5MS43NjA5IDAuOTI3NjE3QzkwLjQ4MzMgMC4zMTYzOTEgODkuMDc1MiAwLjAyODE5NjYgODcuNjYwMiAwLjA4ODM0MDZIODIuNDMzMVYyMC40NTE4SDg1LjkxNTRWMTIuNTE1NUg4Ny41NzE4Qzg4LjA0MyAxMi42MzMzIDg4LjczNSAxMy40NzI2IDg5LjY2MjcgMTUuMjkxTDkyLjQyMzQgMjAuNDQ0NUg5Ni40MzU4TDkzLjI0MDcgMTQuNTEwNkM5Mi4yMTczIDEyLjY4NDggOTEuNDM2OSAxMS41NTg1IDkwLjg1NTMgMTEuMjEyNFpNODkuNjExMSA4Ljk1OTY0Qzg4Ljk2NjkgOS4zMjgwMSA4OC4yMzI1IDkuNTA5MDUgODcuNDkwOCA5LjQ4MjM0SDg1LjkxNTRWMy4xMTQxNUg4Ny41MTI5Qzg4LjI3NDEgMy4wNjQ3MSA4OS4wMzAyIDMuMjY5MjYgODkuNjYyNyAzLjY5NTc1QzkwLjA3NzcgMy45NzkxNCA5MC40MTMzIDQuMzY0MDIgOTAuNjM3NSA0LjgxMzc2QzkwLjg2MTcgNS4yNjM1IDkwLjk2NzEgNS43NjMxMyA5MC45NDM3IDYuMjY1MTJDOTAuOTc5MyA2Ljc5MTkzIDkwLjg3NDggNy4zMTg3OSA5MC42NDA4IDcuNzkyMDlDOTAuNDA2NyA4LjI2NTM5IDkwLjA1MTQgOC42NjgyMyA4OS42MTExIDguOTU5NjRaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMTMuMTkyIDAuMDI5NDQ5NUgxMTEuNDAzTDEwNC4yNCAyMC40NTE5SDEwNi44ODNMMTA4LjY3OSAxNS4xMDdIMTE1LjkyM0wxMTcuNzcxIDIwLjQ1MTlIMTIwLjQ3M0wxMTMuMTkyIDAuMDI5NDQ5NVpNMTA5LjQ0NCAxMi44NTQyTDExMS4yMDQgNy41NjgyMkMxMTEuNzcxIDUuODM4MTMgMTEyLjA4NyA0Ljg4MTA2IDExMi4yODYgNC4xMzc0OUgxMTIuMzQ1QzExMi41NjYgNC44NzM3IDExMi44NTMgNS44MDg2OCAxMTMuMzk4IDcuNTM4NzZMMTE1LjE1NyAxMi44NTQySDEwOS40NDRaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMjYuMjIzIDcuNzIyODJDMTI2LjIyMyA2LjI1MDQgMTI2LjIyMyA1LjI3ODYxIDEyNi4xNDIgNC4zMjE1NEgxMjYuMTkzQzEyNi44NDkgNS4zNDQ4NyAxMjcuNjE0IDYuNTMwMTYgMTI4LjY2NyA4LjAwMjU4TDEzNy40NTcgMjAuNDUxOUgxMzkuNjY2VjAuMDg4MzQ4NEgxMzcuMTI2VjEyLjMyNDFDMTM3LjEyNiAxMy43OTY1IDEzNy4xMjYgMTQuNzY4MyAxMzcuMTg1IDE1Ljg4SDEzNy4xMjZDMTM2LjUgMTQuODY0IDEzNS43MDUgMTMuNjI3MiAxMzQuNTkzIDEyLjA4MTJMMTI2LjEyNyAwLjA4ODM0ODRIMTIzLjY3NlYyMC40NTE5SDEyNi4yMDhMMTI2LjIyMyA3LjcyMjgyWiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNMTU5Ljg2NyAxMC4xNjdDMTU5Ljg2NyA0LjI3NzM3IDE1Ni41MSAwLjA4ODM0ODQgMTQ5LjgzMyAwLjA4ODM0ODRIMTQ0LjkxNVYyMC40NTE5SDE0OS42NDJDMTU2LjM3IDIwLjQ1MTkgMTU5Ljg2NyAxNi4xMDA5IDE1OS44NjcgMTAuMTY3Wk0xNDkuNjkzIDE4LjE5OTFIMTQ3LjQzM1YyLjM3Nzk1SDE0OS42NDJDMTU0Ljc5NSAyLjM3Nzk1IDE1Ny4yMDIgNS42MTcyNyAxNTcuMjAyIDEwLjEzMDJDMTU3LjE5NSAxNC40NTkxIDE1NS4yMzcgMTguMTk5MSAxNDkuNjkzIDE4LjE5OTFaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0zLjk5NzU4IDMyLjc1MzlDMy45OTc1OCAzMS4yODE1IDUuMTc1NTEgMzAuNzM2NyA2LjQxMjM0IDMwLjczNjdDNy44OTM4NiAzMC43NzQ3IDkuMzQyIDMxLjE4NDkgMTAuNjIzNCAzMS45MjkzVjI4LjgwMDVDOS4yNzUyMiAyOC4xNTcgNy43OTU1IDI3LjgzNjkgNi4zMDE4OSAyNy44NjU1QzIuNjIwODUgMjcuODY1NSAwLjU1OTQ4IDMwLjI4MDIgMC41NTk0OCAzMy4wMTg5QzAuNTU5NDggMzguNzMxOSA4LjIwODY5IDM4LjI3NTQgOC4yMDg2OSA0MS45NDE4QzguMjA4NjkgNDMuNTYxNCA2LjczNjI3IDQ0LjE1MDQgNS4yNjM4NiA0NC4xNTA0QzMuODE3NTggNDQuMTQyNSAyLjQxMzYgNDMuNjYxNiAxLjI2NjIzIDQyLjc4MUwwLjAwNzMyNDIyIDQ1LjM5NDZDMS41NzM1MSA0Ni40NzkgMy40NDAxMiA0Ny4wNDU0IDUuMzQ0ODMgNDcuMDE0MkM4Ljk2Njk3IDQ3LjAxNDIgMTEuNjQ2OCA0NC45Njc2IDExLjY0NjggNDEuNjQ3M0MxMS42Mzk0IDM1LjczNTUgMy45OTc1OCAzNi4xODQ2IDMuOTk3NTggMzIuNzUzOVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTEyLjY0MDYgMjguMDM0OFYzMC44MjVIMTcuNzg2N1Y0Ni43NTY1SDIxLjAxMTNWMzAuODI1SDI1Ljc1OThMMjYuNTkxOCAyOC4wMzQ4SDEyLjY0MDZaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0zNS40NDExIDI3Ljg2NTRDMzAuMjE0IDI3Ljg2NTQgMjYuNTMzIDMxLjc4MjEgMjYuNTMzIDM3LjQzNjFDMjYuNTMzIDQzLjA5MDIgMzAuMjE0IDQ3LjAwNjggMzUuNDQxMSA0Ny4wMDY4QzQwLjY2ODIgNDcuMDA2OCA0NC4zNDkyIDQzLjE3MTIgNDQuMzQ5MiAzNy40MzYxQzQ0LjM0OTIgMzEuNzAxMSA0MC42ODI5IDI3Ljg2NTQgMzUuNDQxMSAyNy44NjU0Wk0zNS40NDExIDQ0LjE3MjVDMzIuMTcyMyA0NC4xNzI1IDI5Ljk3MTEgNDEuNjk4OCAyOS45NzExIDM3LjQ2NTZDMjkuOTcxMSAzMy4yMzI0IDMyLjE3OTcgMzAuNzM2NyAzNS40NDExIDMwLjczNjdDMzguNzAyNSAzMC43MzY3IDQwLjkxMTEgMzMuMzIwOCA0MC45MTExIDM3LjQ2NTZDNDAuOTExMSA0MS42MTA1IDM4LjY4NzggNDQuMTcyNSAzNS40NDExIDQ0LjE3MjVaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik02MC4wMjI5IDM4LjAwM0M2MC4wMjI5IDM5LjAyNjQgNjAuMDIyOSA0MC4xNjc1IDYwLjA3NDQgNDEuMTU0SDYwLjAyMjlDNTkuNDg1NSA0MC4zMDc0IDU4Ljg0NSAzOS4zNjUgNTguMDM1MSAzOC4yNjA3TDUwLjUwMzcgMjguMDM0OEg0Ny4zMDg2VjQ2Ljc1NjVINTAuNTI1OFYzNi4xMzMxQzUwLjUyNTggMzUuMDgwMyA1MC41MjU4IDMzLjk5ODEgNTAuNDc0MyAzMy4yMzI0SDUwLjUyNThDNTEuMTE0OCAzNC4xMTU5IDUxLjczMzIgMzUuMDUwOCA1Mi41MTM2IDM2LjEwMzZMNjAuMzE3NCA0Ni43NTY1SDYzLjI2MjJWMjguMDM0OEg2MC4wMTU1TDYwLjAyMjkgMzguMDAzWiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNzAuMzUyIDM4LjYwNjdINzYuMDEzNFYzNS44MjM5SDcwLjM1MlYzMC44MjVINzYuMDQyOUw3Ni44OTY5IDI4LjAzNDhINjcuMTM0OFY0Ni43NTY1SDc2LjkyNjNWNDMuOTczN0g3MC4zNTJWMzguNjA2N1oiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTkxLjcyNCAzNS43NjVIODMuMTM5OFYyOC4wMzQ4SDc5LjkyMjZWNDYuNzU2NUg4My4xMzk4VjM4LjY1ODNIOTEuNzI0VjQ2Ljc1NjVIOTQuOTcwN1YyOC4wMzQ4SDkxLjcyNFYzNS43NjVaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMDYuODc1IDI3Ljg2NTRDMTAxLjY0OCAyNy44NjU0IDk3Ljk3NDYgMzEuNzgyMSA5Ny45NzQ2IDM3LjQzNjFDOTcuOTc0NiA0My4wOTAyIDEwMS42NTYgNDcuMDA2OCAxMDYuODc1IDQ3LjAwNjhDMTEyLjA5NSA0Ny4wMDY4IDExNS43ODMgNDMuMTcxMiAxMTUuNzgzIDM3LjQzNjFDMTE1Ljc4MyAzMS43MDExIDExMi4wOTUgMjcuODY1NCAxMDYuODc1IDI3Ljg2NTRaTTEwNi44NzUgNDQuMTcyNUMxMDMuNjA3IDQ0LjE3MjUgMTAxLjQwNSA0MS42OTg4IDEwMS40MDUgMzcuNDY1NkMxMDEuNDA1IDMzLjIzMjQgMTAzLjYxNCAzMC43MzY3IDEwNi44NzUgMzAuNzM2N0MxMTAuMTM3IDMwLjczNjcgMTEyLjM1MyAzMy4zMjA4IDExMi4zNTMgMzcuNDY1NkMxMTIuMzUzIDQxLjYxMDUgMTEwLjEyMiA0NC4xNzI1IDEwNi44NzUgNDQuMTcyNVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTEyOS45OTIgMzkuNTEyM0MxMzAuMDIxIDQwLjM4OTIgMTI5Ljg1NSA0MS4yNjE3IDEyOS41MDYgNDIuMDY2OUMxMjkuMTg4IDQyLjc0NDUgMTI4LjY3MSA0My4zMDkxIDEyOC4wMjQgNDMuNjg1M0MxMjcuMzc3IDQ0LjA2MTUgMTI2LjYzIDQ0LjIzMTQgMTI1Ljg4NCA0NC4xNzI0QzEyNS4xMzggNDQuMjMxNCAxMjQuMzkyIDQ0LjA2MTUgMTIzLjc0NCA0My42ODUzQzEyMy4wOTcgNDMuMzA5MSAxMjIuNTggNDIuNzQ0NSAxMjIuMjYyIDQyLjA2NjlDMTIxLjkyMiA0MS4yNjk1IDEyMS43NTkgNDAuNDA4MSAxMjEuNzg0IDM5LjU0MTdWMjguMDM0OEgxMTguNTY2VjM5Ljc2OTlDMTE4LjUyNSA0MS4wMTQgMTE4Ljc1MyA0Mi4yNTIyIDExOS4yMzYgNDMuMzk5NEMxMjAuMzA0IDQ1Ljg0MzYgMTIyLjYxNSA0Ny4wMzYzIDEyNS44NjIgNDcuMDM2M0MxMjkuMTA5IDQ3LjAzNjMgMTMxLjQyMSA0NS44NDM2IDEzMi40ODggNDMuNDI4OUMxMzIuOTc3IDQyLjI2NTMgMTMzLjIwNSA0MS4wMDkgMTMzLjE1OCAzOS43NDc4VjI4LjAxMjdIMTI5Ljk0MUwxMjkuOTkyIDM5LjUxMjNaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMzkuNjM2IDMyLjc1MzlDMTM5LjYzNiAzMS4yODE0IDE0MC44MTQgMzAuNzM2NyAxNDIuMDUxIDMwLjczNjdDMTQzLjUzMyAzMC43NzIyIDE0NC45ODIgMzEuMTgyNSAxNDYuMjYyIDMxLjkyOTNWMjguODAwNEMxNDQuOTE3IDI4LjE1NjkgMTQzLjQzOSAyNy44MzY3IDE0MS45NDggMjcuODY1NEMxMzguMjY3IDI3Ljg2NTQgMTM2LjIwNiAzMC4yODAyIDEzNi4yMDYgMzMuMDE4OUMxMzYuMjA2IDM4LjczMTkgMTQzLjg0OCAzOC4yNzU0IDE0My44NDggNDEuOTQxN0MxNDMuODQ4IDQzLjU2MTQgMTQyLjM3NSA0NC4xNTA0IDE0MC45MDMgNDQuMTUwNEMxMzkuNDU5IDQ0LjE0MDggMTM4LjA1OCA0My42NiAxMzYuOTEyIDQyLjc4MUwxMzUuNjU0IDQ1LjQxNjZDMTM3LjIyIDQ2LjUwMDIgMTM5LjA4NiA0Ny4wNjY1IDE0MC45OTEgNDcuMDM2M0MxNDQuNjEzIDQ3LjAzNjMgMTQ3LjMgNDQuOTg5NiAxNDcuMyA0MS42NjkzQzE0Ny4yODYgMzUuNzM1NSAxMzkuNjM2IDM2LjE4NDYgMTM5LjYzNiAzMi43NTM5WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNMTUzLjQyNiA0My45NzM3VjM4LjYwNjdIMTU5LjA4N1YzNS44MjM5SDE1My40MjZWMzAuODI1SDE1OS4xMDlMMTU5Ljk3MSAyOC4wMzQ4SDE1MC4yMDhWNDYuNzU2NUgxNjBWNDMuOTczN0gxNTMuNDI2WiIgZmlsbD0iIzFBMkE0OSIvPgo8L2c+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDBfMjE1NF8yNzkzIj4KPHJlY3Qgd2lkdGg9IjE2MCIgaGVpZ2h0PSI0Ny4wMzYzIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzIxNTRfMjc5MyI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iNDcuMDM2MyIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K" alt="Barker and Stonehouse">
+  <h2>Brand Price Comparison</h2>
+  <p>Run <code>scraper.py</code> to fetch the latest prices, then load <strong>products.json</strong> below.</p>
+  <label>Load products.json<input type="file" id="file-input" accept=".json"></label>
+</div>
+
+<div id="app" style="display:none">
+  <div class="main">
+
+    <div class="stats">
+      <div class="stat-card"><div class="label">Total products</div><div class="value" id="s-total">—</div></div>
+      <div class="stat-card"><div class="label">Brands tracked</div><div class="value" id="s-brands">—</div></div>
+      <div class="stat-card"><div class="label">Our in-stock</div><div class="value green" id="s-instock">—</div></div>
+      <div class="stat-card"><div class="label">Our out of stock</div><div class="value red" id="s-oos">—</div></div>
+      <div class="stat-card"><div class="label">On sale</div><div class="value" id="s-sale">—</div></div>
+      <div class="stat-card"><div class="label">Competitor products</div><div class="value" id="s-comp">—</div></div>
+    </div>
+
+    <!-- Brand tabs -->
+    <div class="brand-nav-outer">
+      <button class="scroll-btn-l" id="btn-l" onclick="scrollBrands(-240)">&#8249;</button>
+      <div class="brand-nav-inner" id="brand-tabs"></div>
+      <button class="scroll-btn-r" id="btn-r" onclick="scrollBrands(240)">&#8250;</button>
+    </div>
+
+    <!-- View tabs -->
+    <div class="view-tabs">
+      <div class="view-tab active" data-view="products">Products</div>
+      <div class="view-tab" data-view="ranges">By range</div>
+    </div>
+
+    <!-- Products view -->
+    <div id="products-view">
+      <div class="controls">
+        <input type="text" id="search" placeholder="Search products or ranges&#x2026;">
+        <select id="sort">
+          <option value="range-asc">Range A&#x2013;Z</option>
+          <option value="name-asc">Name A&#x2013;Z</option>
+          <option value="price-asc">Price &#x2191;</option>
+          <option value="price-desc">Price &#x2193;</option>
+          <option value="total-asc">Total cost &#x2191;</option>
+          <option value="total-desc">Total cost &#x2193;</option>
+        </select>
+        <select id="site-filter"><option value="all">All retailers</option></select>
+        <select id="range-filter"><option value="all">All ranges</option></select>
+        <select id="avail-filter">
+          <option value="all">All availability</option>
+          <option value="instock">In stock only</option>
+          <option value="oos">Out of stock only</option>
+        </select>
+        <span class="ctrl-count" id="count"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-col="range">Range</th>
+            <th data-col="name">Product</th>
+            <th data-col="site">Retailer</th>
+            <th data-col="price">Price</th>
+            <th data-col="delivery_cost">Delivery cost</th>
+            <th data-col="lead_time">Lead time</th>
+            <th data-col="total">Total</th>
+            <th data-col="vs_us">vs Us</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <div class="empty" id="empty" style="display:none">No matching products found.</div>
+      </div>
+    </div>
+
+    <!-- Range view -->
+    <div id="range-view">
+      <div class="controls">
+        <input type="text" id="range-search" placeholder="Search ranges&#x2026;">
+        <select id="range-site-filter"><option value="all">All retailers</option></select>
+        <label class="inline-check"><input type="checkbox" id="cross-only"> Multi-retailer only</label>
+        <span class="ctrl-count" id="range-count"></span>
+      </div>
+      <div id="range-groups"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let allProducts = [], activeBrand = 'all', currentView = 'products';
+let siteColors = {};
+
+const PALETTE = [
+  ['#3d8b85','rgba(61,139,133,0.12)'],['#1A2A49','rgba(26,42,73,0.1)'],
+  ['#8b5e3d','rgba(139,94,61,0.1)'],['#6b4c7a','rgba(107,76,122,0.1)'],
+  ['#c0392b','rgba(192,57,43,0.1)'],['#2e7d5e','rgba(46,125,94,0.1)'],
+  ['#d4890a','rgba(212,137,10,0.1)'],['#2980b9','rgba(41,128,185,0.1)'],
+];
+
+// Auto-fetch
+fetch('products.json')
+  .then(r => { if(!r.ok) throw new Error(); return r.json(); })
+  .then(loadData)
+  .catch(() => document.getElementById('load-panel').style.display = 'block');
+
+document.getElementById('file-input').addEventListener('change', e => {
+  const file = e.target.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = ev => { try { loadData(JSON.parse(ev.target.result)); } catch { alert('Could not parse JSON.'); } };
+  r.readAsText(file);
+});
+
+function loadData(data) {
+  allProducts = (data.products || []).map(p => ({
+    ...p,
+    price:         p.price ?? null,
+    was_price:     p.was_price ?? null,
+    delivery_cost: p.delivery_cost ?? null,
+    total:         (p.price ?? 0) + (p.delivery_cost ?? 0),
+    brand:         p.brand || 'Unknown',
+    availability:  p.availability || 'in stock',
+  }));
+
+  // Assign colours to sites
+  const siteIds = [...new Set(allProducts.map(p => p.site_id))];
+  siteIds.sort((a,b) => (allProducts.find(p=>p.site_id===a)?.is_us?-1:1) - (allProducts.find(p=>p.site_id===b)?.is_us?-1:1));
+  siteIds.forEach((s,i) => siteColors[s] = PALETTE[i % PALETTE.length]);
+
+  computeVsUs();
+  buildBrandTabs(data.brands || [...new Set(allProducts.map(p=>p.brand))].sort());
+
+  document.getElementById('load-panel').style.display = 'none';
+    window._scrapedAt = data.scraped_at || '';
+    setTimeout(() => { if (allProducts.length > 0) runAIAnalysis(); }, 800);
+  document.getElementById('app').style.display = 'block';
+
+  const ts = data.scraped_at ? new Date(data.scraped_at).toLocaleString('en-GB') : '—';
+  document.getElementById('meta-scraped').textContent = `Last updated: ${ts}`;
+  document.getElementById('meta-counts').textContent  = `${[...new Set(allProducts.map(p=>p.brand))].length} brands · ${allProducts.length} products`;
+
+  updateStats();
+  onBrandChange();
+}
+
+function buildBrandTabs(brands) {
+  const wrap = document.getElementById('brand-tabs');
+  wrap.innerHTML = '';
+
+  // All tab
+  const totalUs = allProducts.filter(p=>p.is_us).length;
+  const allTab = document.createElement('div');
+  allTab.className = 'brand-tab-all active';
+  allTab.dataset.brand = 'all';
+  allTab.innerHTML = `<span class="all-label">All brands</span><span class="all-count">${totalUs}</span>`;
+  allTab.addEventListener('click', () => switchBrand('all'));
+  wrap.appendChild(allTab);
+
+  brands.forEach(brand => {
+    const ourCount  = allProducts.filter(p => p.brand === brand && p.is_us).length;
+    const compCount = allProducts.filter(p => p.brand === brand && !p.is_us).length;
+    if (ourCount === 0 && compCount === 0) return;
+    const tab = document.createElement('div');
+    tab.className = 'brand-tab' + (compCount > 0 ? ' has-comp' : '');
+    tab.dataset.brand = brand;
+    tab.title = `${ourCount} our products · ${compCount} competitor products`;
+    tab.innerHTML = `<span class="comp-dot"></span><span class="tab-name">${esc(brand)}</span><span class="tab-count">${ourCount}</span>`;
+    tab.addEventListener('click', () => switchBrand(brand));
+    wrap.appendChild(tab);
+  });
+
+  wrap.addEventListener('scroll', updateScrollBtns);
+  setTimeout(updateScrollBtns, 100);
+}
+
+function scrollBrands(delta) {
+  document.getElementById('brand-tabs').scrollBy({left: delta, behavior: 'smooth'});
+  setTimeout(updateScrollBtns, 350);
+}
+
+function updateScrollBtns() {
+  const wrap = document.getElementById('brand-tabs');
+  const btnL = document.getElementById('btn-l');
+  const btnR = document.getElementById('btn-r');
+  if (!wrap || !btnL || !btnR) return;
+  btnL.classList.toggle('show', wrap.scrollLeft > 10);
+  btnR.classList.toggle('show', wrap.scrollLeft + wrap.clientWidth < wrap.scrollWidth - 10);
+}
+
+function switchBrand(brand) {
+  activeBrand = brand;
+  document.querySelectorAll('.brand-tab, .brand-tab-all').forEach(t => t.classList.toggle('active', t.dataset.brand === brand));
+  updateSiteFilter();
+  updateRangeFilter();
+  render();
+  renderRanges();
+}
+
+// View tabs
+document.querySelectorAll('.view-tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  currentView = tab.dataset.view;
+  document.getElementById('products-view').style.display = currentView === 'products' ? 'block' : 'none';
+  document.getElementById('range-view').style.display    = currentView === 'ranges'   ? 'block' : 'none';
+}));
+
+function brandProducts() {
+  if (activeBrand === 'all') return allProducts;
+  return allProducts.filter(p => p.brand === activeBrand);
+}
+
+function updateSiteFilter() {
+  const bp = brandProducts();
+  const siteIds = [...new Set(bp.map(p => p.site_id))];
+  ['site-filter','range-site-filter'].forEach(id => {
+    const sel = document.getElementById(id);
+    const cur = sel.value;
+    sel.innerHTML = '<option value="all">All retailers</option>';
+    siteIds.forEach(s => {
+      const name = allProducts.find(p=>p.site_id===s)?.site||s;
+      sel.innerHTML += `<option value="${esc(s)}">${esc(name)}</option>`;
+    });
+    sel.value = siteIds.includes(cur) ? cur : 'all';
+  });
+}
+
+function updateRangeFilter() {
+  const bp = brandProducts();
+  const ranges = [...new Set(bp.map(p=>p.range))].sort();
+  const sel = document.getElementById('range-filter');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="all">All ranges</option>';
+  ranges.forEach(r => sel.innerHTML += `<option value="${esc(r)}">${esc(r)}</option>`);
+  sel.value = ranges.includes(cur) ? cur : 'all';
+}
+
+function onBrandChange() {
+  updateSiteFilter();
+  updateRangeFilter();
+  render();
+  renderRanges();
+}
+
+const FW = new Set(['bed','chair','table','sofa','sideboard','wardrobe','chest','desk','stool','cabinet',
+  'shelf','bookcase','unit','frame','drawer','bedside','dining','extending','oak','ash','fabric',
+  'small','large','medium','king','queen','double','single','upholstered','wood','solid','bedroom',
+  'living','wide','tall','kingsize','super','size','door','seater','round','oval','square','bar',
+  'lounger','motion','electric','vintage','spindle','headboard','corner','storage','seat','arm',
+  'side','coffee','lamp','tv','display','mirror','dressing','ottoman','footstool','cushion','cover',
+  'base','light','clear','matt','stain','natural','dark','painted','wax','recliner','power','manual',
+  '2','3','4','5','6','7','8','9','10']);
+
+function computeVsUs() {
+  const ourByName = {};
+  allProducts.filter(p => p.is_us && p.price !== null).forEach(p => { ourByName[norm(p.name)] = p.price; });
+  allProducts.forEach(p => {
+    if (p.is_us || p.price === null) { p.vs_us = null; p.vs_us_pct = null; return; }
+    let us = ourByName[norm(p.name)] ?? null;
+    if (us === null) {
+      const key = coreWords(p.name);
+      for (const [k,v] of Object.entries(ourByName)) { if (coreWords(k) === key) { us = v; break; } }
+    }
+    if (us !== null) { p.vs_us = p.price - us; p.vs_us_pct = us > 0 ? (p.vs_us/us*100) : null; }
+    else { p.vs_us = null; p.vs_us_pct = null; }
+  });
+}
+
+function norm(s) { return s.toLowerCase().replace(/[^a-z0-9]/g,''); }
+function coreWords(s) {
+  return s.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/)
+    .filter(w => w.length > 3 && !FW.has(w)).sort().join(' ');
+}
+
+function updateStats() {
+  const ours = allProducts.filter(p => p.is_us);
+  document.getElementById('s-total').textContent   = allProducts.length;
+  document.getElementById('s-brands').textContent  = new Set(allProducts.map(p=>p.brand)).size;
+  document.getElementById('s-instock').textContent = ours.filter(p=>p.availability==='in stock').length;
+  document.getElementById('s-oos').textContent     = ours.filter(p=>p.availability!=='in stock').length;
+  document.getElementById('s-sale').textContent    = ours.filter(p=>p.was_price).length;
+  document.getElementById('s-comp').textContent    = allProducts.filter(p=>!p.is_us).length;
+}
+
+function render() {
+  const query    = document.getElementById('search').value.toLowerCase();
+  const sort     = document.getElementById('sort').value;
+  const siteFil  = document.getElementById('site-filter').value;
+  const rangeFil = document.getElementById('range-filter').value;
+  const availFil = document.getElementById('avail-filter').value;
+
+  let rows = brandProducts().filter(p => {
+    if (query && !p.name.toLowerCase().includes(query) && !(p.range||'').toLowerCase().includes(query)) return false;
+    if (siteFil !== 'all' && p.site_id !== siteFil) return false;
+    if (rangeFil !== 'all' && p.range !== rangeFil) return false;
+    if (availFil === 'instock' && p.availability !== 'in stock') return false;
+    if (availFil === 'oos' && p.availability === 'in stock') return false;
+    return true;
+  });
+
+  rows.sort((a,b) => {
+    if (sort==='price-asc')  return (a.price??Infinity)-(b.price??Infinity);
+    if (sort==='price-desc') return (b.price??-Infinity)-(a.price??-Infinity);
+    if (sort==='total-asc')  return a.total-b.total;
+    if (sort==='total-desc') return b.total-a.total;
+    if (sort==='range-asc')  return (a.range||'').localeCompare(b.range||'')||a.name.localeCompare(b.name);
+    return a.name.localeCompare(b.name);
+  });
+
+  const cheapByName = {};
+  rows.forEach(p => {
+    if (p.price===null) return;
+    const k = norm(p.name);
+    if (!cheapByName[k] || p.price < cheapByName[k]) cheapByName[k] = p.price;
+  });
+
+  document.getElementById('count').textContent = `${rows.length} products`;
+  document.getElementById('empty').style.display = rows.length ? 'none' : 'block';
+
+  document.getElementById('tbody').innerHTML = rows.map(p => {
+    const [col,bg] = siteColors[p.site_id] || ['#888','#eee'];
+    const siteBadge = `<span class="site-badge" style="color:${col};border-color:${col};background:${bg}">${esc(p.site)}</span>`;
+    const isOos  = p.is_us && p.availability !== 'in stock';
+    const nameHtml = p.url
+      ? `<a href="${p.url}" target="_blank" rel="noopener">${esc(p.name)}</a>${p.is_us?' <span class="us-star">\u2605</span>':''}`
+      : esc(p.name) + (p.is_us ? ' <span class="us-star">\u2605</span>' : '');
+    const isChp  = p.price !== null && p.price === cheapByName[norm(p.name)];
+    const wasHtml= p.was_price ? `<span class="was-price">${fmt(p.was_price)}</span>` : '';
+    const priceHtml = p.price !== null
+      ? `${wasHtml}<strong>${fmt(p.price)}</strong>${isChp?'<span class="cheapest-tag">Cheapest</span>':''}`
+      : '\u2014';
+    const delHtml = p.delivery_cost === 0
+      ? '<span class="free-badge">Free</span>'
+      : p.delivery_cost !== null ? fmt(p.delivery_cost) : '\u2014';
+    const delTimeHtml = p.delivery_time ? `<span style="font-size:0.72rem;color:var(--muted)">${esc(p.delivery_time)}</span>` : '\u2014';
+    const lt = p.lead_time ? p.lead_time
+      .replace('working days', 'w/days')
+      .replace('working day', 'w/day')
+      .replace(' weeks', 'wks')
+      .replace(' week', 'wk')
+      .replace('Made to order normally delivered in ', '')
+      .replace('delivery available from ', '')
+      .replace('Delivery to room of choice', '')
+      .trim() : null;
+    const leadTimeHtml = lt
+      ? `<span style="font-size:0.72rem;color:var(--navy);font-weight:500;white-space:nowrap">${esc(lt)}</span>`
+      : '<span style="color:var(--muted)">\u2014</span>';
+    const totalHtml = p.price !== null ? `<span class="total-pill">${fmt(p.total)}</span>` : '\u2014';
+    let vsHtml = '<span style="color:var(--muted)">\u2014</span>';
+    if (p.vs_us !== null) {
+      const sign = p.vs_us > 0 ? '+' : '';
+      const cls  = p.vs_us > 0 ? 'pricier' : p.vs_us < 0 ? 'cheaper' : 'same';
+      const pct  = p.vs_us_pct !== null ? ` (${sign}${p.vs_us_pct.toFixed(1)}%)` : '';
+      vsHtml = `<span class="${cls}">${sign}${fmt(p.vs_us)}${pct}</span>`;
+    }
+    const rowCls = [p.is_us?'us-row':'', isOos?'oos-row':''].filter(Boolean).join(' ');
+    return `<tr class="${rowCls}">
+      <td><span class="range-badge">${esc(p.range||'')}</span></td>
+      <td class="name-cell">${nameHtml}</td>
+      <td>${siteBadge}</td>
+      <td class="price-cell">${priceHtml}</td>
+      <td>${delHtml}</td>
+      <td>${leadTimeHtml}</td>
+      <td>${totalHtml}</td>
+      <td>${vsHtml}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderRanges() {
+  const query     = document.getElementById('range-search').value.toLowerCase();
+  const siteFil   = document.getElementById('range-site-filter').value;
+  const crossOnly = document.getElementById('cross-only').checked;
+
+  const byRange = {};
+  brandProducts().forEach(p => {
+    if (siteFil !== 'all' && p.site_id !== siteFil) return;
+    const r = p.range || 'Unknown';
+    if (!byRange[r]) byRange[r] = [];
+    byRange[r].push(p);
+  });
+
+  const ranges = Object.keys(byRange).filter(r => {
+    if (query && !r.toLowerCase().includes(query)) return false;
+    if (crossOnly && new Set(byRange[r].map(p=>p.site_id)).size < 2) return false;
+    return true;
+  }).sort();
+
+  document.getElementById('range-count').textContent = `${ranges.length} ranges`;
+
+  const container = document.getElementById('range-groups');
+  container.innerHTML = ranges.map(range => {
+    const products = byRange[range];
+    const sites    = [...new Set(products.map(p=>p.site_id))];
+    const prices   = products.filter(p=>p.price!==null).map(p=>p.price);
+    const minPrice = prices.length ? Math.min(...prices) : null;
+    const crossSite= sites.length > 1;
+
+    const siteRows = sites.map(sid => {
+      const [col] = siteColors[sid] || ['#888','#eee'];
+      const prods = products.filter(p=>p.site_id===sid);
+      const isUs  = prods[0]?.is_us;
+
+      const chips = prods.map(p => {
+        const isChp  = p.price!==null && p.price===minPrice && sites.length>1;
+        const isOos  = p.is_us && p.availability !== 'in stock';
+        const wasHtml= p.was_price ? `<span class="chip-was">${fmt(p.was_price)}</span>` : '';
+        const priceHtml = p.price!==null ? `<span class="chip-price">${fmt(p.price)}</span>` : '\u2014';
+        const chpTag = isChp ? '<span class="cheapest-tag">Cheapest</span>' : '';
+        const oosTag = '';
+        let vsHtml = '';
+        if (p.vs_us!==null) {
+          const sign=p.vs_us>0?'+':''; const cls=p.vs_us>0?'pricier':p.vs_us<0?'cheaper':'same';
+          vsHtml=`<span class="chip-vs ${cls}">${sign}${fmt(p.vs_us)}</span>`;
+        }
+        const nameHtml = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${esc(p.name)}</a>` : esc(p.name);
+        return `<div class="range-product-chip">${nameHtml}<span style="display:flex;align-items:center;gap:3px">${wasHtml}${priceHtml}${chpTag}${oosTag}${vsHtml}</span></div>`;
+      }).join('');
+
+      return `<div class="range-site-row">
+        <div class="range-site-label" style="color:${col}">${isUs?'\u2605 ':''}${esc(prods[0]?.site||sid)}</div>
+        <div class="range-products">${chips}</div>
+      </div>`;
+    }).join('');
+
+    const meta = `${products.length} product${products.length!==1?'s':''} \u00b7 ${sites.length} retailer${sites.length!==1?'s':''}${minPrice!==null?' \u00b7 from '+fmt(minPrice):''}`;
+    return `<div class="range-group">
+      <div class="range-header" onclick="this.parentElement.classList.toggle('collapsed')">
+        <span class="range-name">${esc(range)}</span>
+        <span class="range-meta">${meta}</span>
+        ${crossSite?'<span class="multi-badge">Multi-retailer</span>':''}
+        <span class="range-chevron">\u25be</span>
+      </div>
+      <div class="range-body">${siteRows}</div>
+    </div>`;
+  }).join('');
+
+  if (!ranges.length) container.innerHTML = '<div class="empty">No ranges found.</div>';
+}
+
+function fmt(n) {
+  if (n===null||n===undefined) return '\u2014';
+  const abs = Math.abs(n);
+  return (n<0?'-':'') + '\u00a3' + abs.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+}
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+['search','sort','site-filter','range-filter','avail-filter'].forEach(id =>
+  document.getElementById(id).addEventListener('input', render));
+['range-search','range-site-filter'].forEach(id =>
+  document.getElementById(id).addEventListener('input', renderRanges));
+document.getElementById('cross-only').addEventListener('change', renderRanges);
+
+
+// ── AI Overview ──────────────────────────────────────────────────────────────
+
+let aiPanelOpen   = false;
+let aiAnalysisDone = false;
+
+function toggleAIPanel() {
+  aiPanelOpen = !aiPanelOpen;
+  document.getElementById('ai-panel').classList.toggle('open', aiPanelOpen);
+  if (aiPanelOpen && !aiAnalysisDone && allProducts.length > 0) {
+    runAIAnalysis();
+  }
+}
+
+function buildAnalysisPayload() {
+  // Summarise the data — don't send every product, just the key stats
+  const bs   = allProducts.filter(p => p.is_us);
+  const comp = allProducts.filter(p => !p.is_us);
+
+  // Products where a competitor is strictly cheaper (total cost incl delivery)
+  const undercut = [];
+  const bsByName = {};
+  bs.forEach(p => { bsByName[p.name.toLowerCase()] = p; });
+
+  comp.forEach(c => {
+    const our = bs.find(p =>
+      p.brand === c.brand &&
+      (p.name.toLowerCase() === c.name.toLowerCase() ||
+       (p.range && c.range && p.range.toLowerCase() === c.range.toLowerCase() &&
+        p.name.toLowerCase().includes(c.range.toLowerCase())))
+    );
+    if (!our || our.price === null || c.price === null) return;
+    const ourTotal  = (our.price || 0)  + (our.delivery_cost || 0);
+    const compTotal = (c.price   || 0)  + (c.delivery_cost   || 0);
+    if (compTotal < ourTotal) {
+      undercut.push({
+        product:    our.name,
+        brand:      our.brand,
+        range:      our.range,
+        our_price:  ourTotal,
+        comp_price: compTotal,
+        comp_site:  c.site,
+        diff:       +(ourTotal - compTotal).toFixed(2),
+        pct:        +(((ourTotal - compTotal) / ourTotal) * 100).toFixed(1)
+      });
+    }
+  });
+  undercut.sort((a,b) => b.diff - a.diff);
+
+  // Delivery cost summary per site
+  const deliveryBySite = {};
+  allProducts.forEach(p => {
+    if (!deliveryBySite[p.site]) deliveryBySite[p.site] = { cost: p.delivery_cost, time: p.delivery_time, count: 0 };
+    deliveryBySite[p.site].count++;
+  });
+
+  // Lead time outliers — anything with a lead time mentioned
+  const leadTimes = allProducts
+    .filter(p => p.lead_time)
+    .map(p => ({ site: p.site, name: p.name, brand: p.brand, lead_time: p.lead_time }));
+
+  // Per-brand competitor coverage
+  const brands = [...new Set(allProducts.map(p => p.brand))].filter(Boolean);
+  const brandSummary = brands.map(brand => {
+    const ours  = allProducts.filter(p => p.brand === brand && p.is_us);
+    const comps = allProducts.filter(p => p.brand === brand && !p.is_us);
+    const compSites = [...new Set(comps.map(p => p.site))];
+    const ourPrices  = ours.map(p=>p.price).filter(x=>x!=null);
+    const compPrices = comps.map(p=>p.price).filter(x=>x!=null);
+    return {
+      brand, our_count: ours.length, comp_count: comps.length,
+      comp_sites: compSites,
+      our_avg_price:  ourPrices.length  ? +(ourPrices.reduce((a,b)=>a+b,0)/ourPrices.length).toFixed(2)   : null,
+      comp_avg_price: compPrices.length ? +(compPrices.reduce((a,b)=>a+b,0)/compPrices.length).toFixed(2) : null,
+    };
+  });
+
+  return {
+    summary: {
+      total_products:    allProducts.length,
+      bs_products:       bs.length,
+      comp_products:     comp.length,
+      brands_tracked:    brands.length,
+      products_undercut: undercut.length,
+      data_date:         window._scrapedAt || 'unknown'
+    },
+    top_undercut:     undercut.slice(0, 15),
+    delivery_by_site: deliveryBySite,
+    lead_time_sample: leadTimes.slice(0, 40),
+    brand_summary:    brandSummary
+  };
+}
+
+async function runAIAnalysis() {
+  if (!allProducts.length) return;
+
+  aiAnalysisDone = false;
+  document.getElementById('ai-loading').style.display  = 'flex';
+  document.getElementById('ai-content').style.display  = 'none';
+  document.getElementById('fab-badge').classList.remove('show');
+  document.getElementById('ai-footer-time').textContent = '';
+
+  const payload = buildAnalysisPayload();
+
+  const prompt = `You are a retail pricing analyst for Barker & Stonehouse, a premium UK furniture retailer.
+Analyse this competitive pricing data and produce a concise, actionable overview.
+
+DATA:
+${JSON.stringify(payload, null, 2)}
+
+Respond ONLY with a JSON object in this exact structure (no markdown, no preamble):
+{
+  "price_insights": [
+    { "text": "...", "flag": "good|warn|flag" }
+  ],
+  "delivery_insights": [
+    { "text": "...", "flag": "good|warn|flag" }
+  ],
+  "lead_time_insights": [
+    { "text": "...", "flag": "good|warn|flag" }
+  ],
+  "top_actions": [
+    { "text": "...", "flag": "good|warn|flag" }
+  ],
+  "summary_line": "One sentence overall verdict."
+}
+
+Rules:
+- price_insights: 3-5 bullets on where B&S is over/under-priced vs competitors, name specific brands/ranges
+- delivery_insights: 2-4 bullets comparing delivery costs and times across retailers
+- lead_time_insights: 2-4 bullets on notable lead times — flag anything unusually long or competitive advantages
+- top_actions: 3-5 specific recommended actions B&S should consider (price adjustments, promotions, etc.)
+- flag values: "flag" = red (problem/urgent), "warn" = amber (watch), "good" = green (positive)
+- Be specific — name products, ranges, sites, and £ figures where possible
+- Keep each bullet under 20 words`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await res.json();
+    const raw  = data.content?.find(b => b.type === 'text')?.text || '';
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    renderAIContent(parsed, payload.summary);
+
+  } catch(err) {
+    document.getElementById('ai-loading').style.display = 'none';
+    document.getElementById('ai-content').style.display = 'block';
+    document.getElementById('ai-content').innerHTML =
+      `<div class="ai-error">Analysis failed — check your network connection.<br><small>${err.message}</small></div>`;
+  }
+}
+
+function renderAIContent(data, summary) {
+  const sections = [
+    { key: 'price_insights',     label: 'Pricing',     icon: '£' },
+    { key: 'delivery_insights',  label: 'Delivery',    icon: '🚚' },
+    { key: 'lead_time_insights', label: 'Lead Times',  icon: '⏱' },
+    { key: 'top_actions',        label: 'Actions',     icon: '→' },
+  ];
+
+  let html = '';
+  if (data.summary_line) {
+    html += `<div style="background:var(--teal-l);border:1px solid var(--teal-m);border-radius:3px;padding:0.6rem 0.8rem;margin-bottom:1rem;font-size:0.8rem;color:var(--navy);font-style:italic;">${esc(data.summary_line)}</div>`;
+  }
+
+  sections.forEach(s => {
+    const items = data[s.key];
+    if (!items?.length) return;
+    html += `<div class="ai-section">`;
+    html += `<div class="ai-section-title"><span class="dot"></span>${s.label}</div>`;
+    items.forEach(item => {
+      const cls = item.flag === 'flag' ? 'flag' : item.flag === 'good' ? 'good' : item.flag === 'warn' ? 'warn' : '';
+      html += `<div class="ai-insight ${cls}">${esc(item.text)}</div>`;
+    });
+    html += `</div>`;
+  });
+
+  document.getElementById('ai-loading').style.display  = 'none';
+  document.getElementById('ai-content').innerHTML       = html;
+  document.getElementById('ai-content').style.display  = 'block';
+  document.getElementById('fab-badge').classList.add('show');
+  aiAnalysisDone = true;
+
+  const now = new Date();
+  document.getElementById('ai-footer-time').textContent =
+    now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+  document.getElementById('ai-footer-text').textContent =
+    `${summary.products_undercut} undercut · ${summary.total_products} products`;
+}
+
+</script>
+
+<!-- ── AI Overview ──────────────────────────────────────────────────────── -->
+<button id="ai-fab" title="AI Overview" onclick="toggleAIPanel()">
+  ✦<span class="fab-badge" id="fab-badge"></span>
+</button>
+
+<div id="ai-panel">
+  <div class="ai-panel-head">
+    <span class="ai-icon">✦</span>
+    <span class="ai-title">AI Price Overview</span>
+    <button class="ai-refresh" title="Refresh analysis" onclick="runAIAnalysis()">↻</button>
+    <button class="ai-close" onclick="toggleAIPanel()">✕</button>
+  </div>
+  <div id="ai-body">
+    <div class="ai-loading" id="ai-loading">
+      <div class="ai-spinner"></div>
+      <span>Analysing pricing data…</span>
+    </div>
+    <div id="ai-content" style="display:none"></div>
+  </div>
+  <div class="ai-footer">
+    <span id="ai-footer-text">Powered by Claude</span>
+    <span id="ai-footer-time"></span>
+  </div>
+</div>
+
+</body>
+</html>
