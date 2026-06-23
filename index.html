@@ -312,6 +312,35 @@
     background:var(--white);
   }
   .ai-error { color:var(--red); font-size:0.8rem; text-align:center; padding:1.5rem 1rem; }
+
+  /* API key setup */
+  #api-key-banner {
+    background:#fffbf0; border-bottom:1px solid #f0e0a0;
+    padding:0.55rem 1.1rem; font-size:0.75rem; color:#7a6010;
+    display:flex; align-items:center; gap:0.6rem; flex-shrink:0;
+  }
+  #api-key-banner.hidden { display:none; }
+  #api-key-banner input {
+    flex:1; background:var(--white); border:1px solid #d4b84a;
+    color:var(--text); font-family:var(--sans); font-size:0.73rem;
+    padding:0.3rem 0.6rem; border-radius:3px; outline:none;
+    font-family:monospace;
+  }
+  #api-key-banner input:focus { border-color:var(--teal); }
+  #api-key-banner button {
+    background:var(--navy); border:none; color:white;
+    font-size:0.7rem; padding:0.3rem 0.75rem; border-radius:3px;
+    cursor:pointer; white-space:nowrap;
+  }
+  #api-key-banner button:hover { background:var(--teal); }
+  #api-key-set-row {
+    display:none; align-items:center; gap:0.5rem; font-size:0.72rem;
+    color:var(--muted); padding:0.4rem 1.1rem; border-bottom:1px solid var(--border);
+    flex-shrink:0;
+  }
+  #api-key-set-row.show { display:flex; }
+  #api-key-set-row span { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  #api-key-set-row button { background:none; border:none; color:var(--red); cursor:pointer; font-size:0.7rem; padding:0; }
 </style>
 </head>
 <body>
@@ -420,6 +449,17 @@
   <div class="ai-tabs">
     <div class="ai-tab active" data-tab="overview" onclick="switchAITab('overview')">Overview</div>
     <div class="ai-tab" data-tab="chat" onclick="switchAITab('chat')">Ask a question</div>
+  </div>
+
+  <!-- API key setup -->
+  <div id="api-key-banner">
+    <span>🔑</span>
+    <input type="password" id="api-key-input" placeholder="Paste Anthropic API key (sk-ant-…)" autocomplete="off">
+    <button onclick="saveApiKey()">Save</button>
+  </div>
+  <div id="api-key-set-row">
+    <span id="api-key-label">API key set ✓</span>
+    <button onclick="clearApiKey()" title="Remove key">Remove</button>
   </div>
 
   <!-- Overview tab -->
@@ -880,8 +920,51 @@ ${oos.slice(0,10).map(p=>`- ${p.name} (${p.brand}, ${p.range})`).join('\n')||'No
 Be concise and direct. Use £ for prices. Focus on actionable insights for the B&S ecommerce team. Answer in plain text — no markdown headers or bullet dashes, just clear prose or short numbered lists where helpful.`;
 }
 
+// ── API Key management ────────────────────────────────────────────────────────
+
+function getApiKey() { return localStorage.getItem('bs_anthropic_key') || ''; }
+
+function saveApiKey() {
+  const val = document.getElementById('api-key-input').value.trim();
+  if (!val) return;
+  localStorage.setItem('bs_anthropic_key', val);
+  document.getElementById('api-key-input').value = '';
+  updateApiKeyUI();
+}
+
+function clearApiKey() {
+  localStorage.removeItem('bs_anthropic_key');
+  updateApiKeyUI();
+}
+
+function updateApiKeyUI() {
+  const key = getApiKey();
+  const banner = document.getElementById('api-key-banner');
+  const setRow = document.getElementById('api-key-set-row');
+  if (key) {
+    banner.classList.add('hidden');
+    setRow.classList.add('show');
+    document.getElementById('api-key-label').textContent = `API key set: ${key.slice(0,12)}…`;
+  } else {
+    banner.classList.remove('hidden');
+    setRow.classList.remove('show');
+  }
+}
+
+// Run on load
+updateApiKeyUI();
+document.getElementById('api-key-input').addEventListener('keydown', e => { if (e.key === 'Enter') saveApiKey(); });
+
 async function sendChat() {
   if (isStreaming) return;
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    document.getElementById('api-key-banner').classList.remove('hidden');
+    document.getElementById('api-key-input').focus();
+    addMessage('assistant', 'Please enter your Anthropic API key above first — it\'s saved locally in your browser and never sent anywhere except the Anthropic API.');
+    return;
+  }
+
   const input = document.getElementById('chat-input');
   const msg = input.value.trim();
   if (!msg) return;
@@ -896,20 +979,23 @@ async function sendChat() {
 
   chatHistory.push({ role: 'user', content: msg });
 
-  // Add streaming bubble
-  const bubble = addMessage('assistant', '', true);
+  const bubble = addMessage('assistant', '…', true);
 
   try {
     const systemPrompt = buildDataContext();
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1000,
         system: systemPrompt,
-        messages: chatHistory,
-        stream: true
+        messages: chatHistory
       })
     });
 
@@ -918,32 +1004,12 @@ async function sendChat() {
       bubble.textContent = `Error: ${err.error?.message || response.statusText}`;
       bubble.classList.remove('streaming');
       chatHistory.pop();
+      if (response.status === 401) { clearApiKey(); }
       return;
     }
 
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let fullText = '';
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      const chunk = decoder.decode(value);
-      const lines = chunk.split('\n');
-      for (const line of lines) {
-        if (!line.startsWith('data: ')) continue;
-        const data = line.slice(6);
-        if (data === '[DONE]') continue;
-        try {
-          const parsed = JSON.parse(data);
-          if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
-            fullText += parsed.delta.text;
-            bubble.innerHTML = simpleMarkdown(fullText) + '<span class="cursor" style="display:inline-block;width:2px;height:1em;background:var(--teal);margin-left:2px;animation:ai-spin 1s steps(2) infinite;vertical-align:text-bottom"></span>';
-            scrollChatBottom();
-          }
-        } catch {}
-      }
-    }
+    const data = await response.json();
+    const fullText = data.content?.find(b => b.type === 'text')?.text || '(no response)';
 
     bubble.innerHTML = simpleMarkdown(fullText);
     bubble.classList.remove('streaming');
