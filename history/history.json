@@ -2,24 +2,18 @@
   "snapshots": [
     {
       "date": "2026-08-06",
-      "scraped_at": "2026-08-06T10:09:19.149884+00:00",
-      "total_products": 3768,
+      "scraped_at": "2026-08-06T12:38:26.856979+00:00",
+      "total_products": 3748,
       "by_site": {
         "Barker & Stonehouse": {
-          "count": 1142,
-          "avg_price": 1645.98,
-          "in_stock": 827,
-          "out_of_stock": 315
-        },
-        "Heals": {
-          "count": 65,
-          "avg_price": 1042.09,
-          "in_stock": 65,
-          "out_of_stock": 0
+          "count": 1188,
+          "avg_price": 1610.82,
+          "in_stock": 878,
+          "out_of_stock": 310
         },
         "Lee Longlands": {
           "count": 350,
-          "avg_price": 2066.27,
+          "avg_price": 2068.1,
           "in_stock": 350,
           "out_of_stock": 0
         },
@@ -30,21 +24,27 @@
           "out_of_stock": 0
         },
         "John Lewis": {
-          "count": 24,
-          "avg_price": 926.67,
-          "in_stock": 24,
+          "count": 48,
+          "avg_price": 1265.25,
+          "in_stock": 48,
+          "out_of_stock": 0
+        },
+        "Bensons for Beds": {
+          "count": 11,
+          "avg_price": 1151.81,
+          "in_stock": 11,
           "out_of_stock": 0
         },
         "Land of Beds": {
           "count": 11,
-          "avg_price": 776.36,
+          "avg_price": 938.09,
           "in_stock": 11,
           "out_of_stock": 0
         },
-        "Simba (Direct)": {
-          "count": 5,
-          "avg_price": 1539.0,
-          "in_stock": 5,
+        "Argos": {
+          "count": 10,
+          "avg_price": 123.5,
+          "in_stock": 10,
           "out_of_stock": 0
         },
         "And So To Bed": {
@@ -66,15 +66,15 @@
           "out_of_stock": 0
         },
         "Fishpools": {
-          "count": 67,
-          "avg_price": 2628.37,
-          "in_stock": 67,
+          "count": 70,
+          "avg_price": 2627.83,
+          "in_stock": 70,
           "out_of_stock": 0
         },
         "Taskers": {
-          "count": 1653,
-          "avg_price": 1578.22,
-          "in_stock": 1638,
+          "count": 1609,
+          "avg_price": 1563.73,
+          "in_stock": 1594,
           "out_of_stock": 15
         },
         "Sterling Home": {
@@ -85,6 +85,10 @@
         }
       },
       "by_brand_site": {
+        "Ercol||Barker & Stonehouse": {
+          "count": 202,
+          "avg_price": 1144.34
+        },
         "Conform||Barker & Stonehouse": {
           "count": 19,
           "avg_price": 1085.42
@@ -98,20 +102,24 @@
           "avg_price": 2455.69
         },
         "Timothy Oulton||Barker & Stonehouse": {
-          "count": 246,
-          "avg_price": 2294.68
+          "count": 245,
+          "avg_price": 2298.89
         },
-        "Ercol||Barker & Stonehouse": {
-          "count": 203,
-          "avg_price": 1148.47
+        "G Plan||Barker & Stonehouse": {
+          "count": 28,
+          "avg_price": 768.0
         },
         "Simba||Barker & Stonehouse": {
           "count": 38,
           "avg_price": 885.74
         },
+        "Old Java||Barker & Stonehouse": {
+          "count": 18,
+          "avg_price": 850.33
+        },
         "Tempur||Barker & Stonehouse": {
-          "count": 114,
-          "avg_price": 1906.98
+          "count": 116,
+          "avg_price": 1877.44
         },
         "Stressless||Barker & Stonehouse": {
           "count": 67,
@@ -153,10 +161,6 @@
           "count": 2,
           "avg_price": 225.0
         },
-        "Ercol||Heals": {
-          "count": 65,
-          "avg_price": 1042.09
-        },
         "Ercol||Lee Longlands": {
           "count": 70,
           "avg_price": 1377.34
@@ -166,20 +170,24 @@
           "avg_price": 1658.07
         },
         "Ercol||John Lewis": {
-          "count": 24,
-          "avg_price": 926.67
+          "count": 48,
+          "avg_price": 1265.25
+        },
+        "Simba||Bensons for Beds": {
+          "count": 11,
+          "avg_price": 1151.81
         },
         "Simba||Land of Beds": {
           "count": 11,
-          "avg_price": 776.36
-        },
-        "Simba||Simba (Direct)": {
-          "count": 5,
-          "avg_price": 1539.0
+          "avg_price": 938.09
         },
         "Tempur||Lee Longlands": {
           "count": 70,
-          "avg_price": 2151.17
+          "avg_price": 2160.31
+        },
+        "Tempur||Argos": {
+          "count": 10,
+          "avg_price": 123.5
         },
         "Tempur||And So To Bed": {
           "count": 12,
@@ -210,8 +218,8 @@
           "avg_price": 2834.36
         },
         "Tetrad||Fishpools": {
-          "count": 17,
-          "avg_price": 2022.53
+          "count": 20,
+          "avg_price": 2111.5
         },
         "Alexander & James||Taskers": {
           "count": 213,
@@ -346,8 +354,8 @@
           "avg_price": null
         },
         "Tetrad||Taskers": {
-          "count": 137,
-          "avg_price": 2032.87
+          "count": 93,
+          "avg_price": 2013.09
         },
         "The Sleep Collection||Taskers": {
           "count": 30,
@@ -383,35 +391,20 @@
         }
       },
       "by_range": {
+        "Ercol||Aosta||Barker & Stonehouse": {
+          "count": 9,
+          "avg_price": 1985.67,
+          "min_price": 599.0
+        },
+        "Ercol||Aosta Snuggler||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 1195.0,
+          "min_price": 1195.0
+        },
         "Conform||Funco||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 279.0,
           "min_price": 279.0
-        },
-        "Tetrad||Dakota Curved Plain Stool, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 995.0,
-          "min_price": 995.0
-        },
-        "Vispring||Devonshire||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 3349.67,
-          "min_price": 2745.0
-        },
-        "Timothy Oulton||Mimi||Barker & Stonehouse": {
-          "count": 8,
-          "avg_price": 557.75,
-          "min_price": 499.0
-        },
-        "Tetrad||Cherokee Rug,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 499.0,
-          "min_price": 499.0
-        },
-        "Tetrad||Nappa Rectangular||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1049.0,
-          "min_price": 1049.0
         },
         "Ercol||Sandford||Barker & Stonehouse": {
           "count": 9,
@@ -493,6 +486,31 @@
           "avg_price": 1449.0,
           "min_price": 1449.0
         },
+        "Tetrad||Dakota Curved Plain Stool, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 995.0,
+          "min_price": 995.0
+        },
+        "Vispring||Devonshire||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 3349.67,
+          "min_price": 2745.0
+        },
+        "Timothy Oulton||Mimi||Barker & Stonehouse": {
+          "count": 8,
+          "avg_price": 568.5,
+          "min_price": 499.0
+        },
+        "Tetrad||Cherokee Rug,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 499.0,
+          "min_price": 499.0
+        },
+        "Tetrad||Nappa Rectangular||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1049.0,
+          "min_price": 1049.0
+        },
         "Ercol||Evergreen Easy||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 1849.0,
@@ -543,6 +561,11 @@
           "avg_price": 1379.0,
           "min_price": 1379.0
         },
+        "G Plan||Winchester||Barker & Stonehouse": {
+          "count": 16,
+          "avg_price": 821.25,
+          "min_price": 229.0
+        },
         "Ercol||Winslow Superking||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 1399.0,
@@ -557,41 +580,6 @@
           "count": 2,
           "avg_price": 699.0,
           "min_price": 249.0
-        },
-        "Ercol||Fairmile||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 1009.0,
-          "min_price": 299.0
-        },
-        "Ercol||Aosta||Barker & Stonehouse": {
-          "count": 11,
-          "avg_price": 1913.55,
-          "min_price": 599.0
-        },
-        "Ercol||Pebble||Barker & Stonehouse": {
-          "count": 6,
-          "avg_price": 599.0,
-          "min_price": 499.0
-        },
-        "Ercol||Teramo Superking Bed, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1399.0,
-          "min_price": 1399.0
-        },
-        "Ercol||Rimini Superking Bed,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1299.0,
-          "min_price": 1299.0
-        },
-        "Ercol||Rimini Compact||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 299.0,
-          "min_price": 299.0
-        },
-        "Ercol||Dining||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 749.0,
-          "min_price": 749.0
         },
         "Ercol||Utility Counter||Barker & Stonehouse": {
           "count": 1,
@@ -658,10 +646,10 @@
           "avg_price": 442.33,
           "min_price": 439.0
         },
-        "Ercol||Aosta Snuggler||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1195.0,
-          "min_price": 1195.0
+        "Ercol||Fairmile||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 1009.0,
+          "min_price": 299.0
         },
         "Ercol||Pebble Nest Of||Barker & Stonehouse": {
           "count": 1,
@@ -673,6 +661,31 @@
           "avg_price": 2115.67,
           "min_price": 1599.0
         },
+        "Ercol||Pebble||Barker & Stonehouse": {
+          "count": 6,
+          "avg_price": 599.0,
+          "min_price": 499.0
+        },
+        "Ercol||Teramo Superking Bed, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1399.0,
+          "min_price": 1399.0
+        },
+        "Ercol||Rimini Superking Bed,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1299.0,
+          "min_price": 1299.0
+        },
+        "Ercol||Rimini Compact||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 299.0,
+          "min_price": 299.0
+        },
+        "Ercol||Dining||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 749.0,
+          "min_price": 749.0
+        },
         "Ercol||Chairmakers Rocking||Barker & Stonehouse": {
           "count": 2,
           "avg_price": 799.0,
@@ -682,6 +695,11 @@
           "count": 23,
           "avg_price": 976.04,
           "min_price": 119.0
+        },
+        "Old Java||Panama||Barker & Stonehouse": {
+          "count": 6,
+          "avg_price": 771.0,
+          "min_price": 239.0
         },
         "Vispring||Regal Superb||Barker & Stonehouse": {
           "count": 3,
@@ -708,6 +726,11 @@
           "avg_price": 1589.0,
           "min_price": 1429.0
         },
+        "Vispring||Artemis||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 1758.33,
+          "min_price": 1585.0
+        },
         "Stressless||Buckingham||Barker & Stonehouse": {
           "count": 4,
           "avg_price": 3245.0,
@@ -733,45 +756,15 @@
           "avg_price": 2152.5,
           "min_price": 1979.0
         },
-        "Vispring||Artemis||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 1758.33,
-          "min_price": 1585.0
-        },
         "Stressless||David||Barker & Stonehouse": {
           "count": 6,
           "avg_price": 1946.0,
           "min_price": 1649.0
         },
-        "Stressless||Buckingham Armchair Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2379.0,
-          "min_price": 2379.0
-        },
-        "Orla Kiely||Callan Swivel Armchair||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 849.0,
-          "min_price": 849.0
-        },
-        "Orla Kiely||Lily Swivel Armchair||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 799.0,
-          "min_price": 799.0
-        },
-        "Timothy Oulton||Antwerp||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 4195.0,
-          "min_price": 4195.0
-        },
-        "Timothy Oulton||Fibi||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 465.67,
-          "min_price": 449.0
-        },
-        "Timothy Oulton||Ryeland Armchair, Brown Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2995.0,
-          "min_price": 2995.0
+        "G Plan||Maddison||Barker & Stonehouse": {
+          "count": 7,
+          "avg_price": 807.0,
+          "min_price": 249.0
         },
         "Tempur||Thermoreg Mattress Protector||Barker & Stonehouse": {
           "count": 8,
@@ -805,8 +798,8 @@
         },
         "Timothy Oulton||Angeles Barstool, Brown Leather||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 1349.0,
-          "min_price": 1349.0
+          "avg_price": 1249.0,
+          "min_price": 1249.0
         },
         "Timothy Oulton||Bridge||Barker & Stonehouse": {
           "count": 1,
@@ -853,7 +846,12 @@
           "avg_price": 2995.0,
           "min_price": 2995.0
         },
-        "Timothy Oulton||Trio Swivel Armchair, Neutral Leather||Barker & Stonehouse": {
+        "Timothy Oulton||Fibi||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 465.67,
+          "min_price": 449.0
+        },
+        "Timothy Oulton||Trio Swivel Armchair, Neutral||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 2199.0,
           "min_price": 2199.0
@@ -862,6 +860,11 @@
           "count": 1,
           "avg_price": 995.0,
           "min_price": 995.0
+        },
+        "Timothy Oulton||Antwerp||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 4195.0,
+          "min_price": 4195.0
         },
         "Timothy Oulton||Junction||Barker & Stonehouse": {
           "count": 2,
@@ -883,15 +886,25 @@
           "avg_price": 1669.0,
           "min_price": 1669.0
         },
-        "Ercol||Clara Armchair,||Barker & Stonehouse": {
+        "Stressless||Buckingham Armchair Leather||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 1399.0,
-          "min_price": 1399.0
+          "avg_price": 2379.0,
+          "min_price": 2379.0
         },
-        "Ercol||Clara||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 1419.0,
-          "min_price": 489.0
+        "Orla Kiely||Callan Swivel Armchair||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 849.0,
+          "min_price": 849.0
+        },
+        "Orla Kiely||Lily Swivel Armchair||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 799.0,
+          "min_price": 799.0
+        },
+        "Timothy Oulton||Ryeland Armchair, Brown Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2995.0,
+          "min_price": 2995.0
         },
         "Tempur||Original Travel Pillow,||Barker & Stonehouse": {
           "count": 1,
@@ -933,6 +946,16 @@
           "avg_price": 69.0,
           "min_price": 69.0
         },
+        "Ercol||Clara Armchair,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1399.0,
+          "min_price": 1399.0
+        },
+        "Ercol||Clara||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 1419.0,
+          "min_price": 489.0
+        },
         "Ercol||Romana||Barker & Stonehouse": {
           "count": 10,
           "avg_price": 2044.6,
@@ -942,6 +965,21 @@
           "count": 1,
           "avg_price": 1095.0,
           "min_price": 1095.0
+        },
+        "Ercol||Salina||Barker & Stonehouse": {
+          "count": 9,
+          "avg_price": 1044.78,
+          "min_price": 269.0
+        },
+        "Ercol||Salina Superking||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1399.0,
+          "min_price": 1399.0
+        },
+        "Ercol||Salina Two||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 379.0,
+          "min_price": 379.0
         },
         "Ercol||Monza||Barker & Stonehouse": {
           "count": 5,
@@ -977,21 +1015,6 @@
           "count": 3,
           "avg_price": 899.67,
           "min_price": 775.0
-        },
-        "Ercol||Salina||Barker & Stonehouse": {
-          "count": 9,
-          "avg_price": 1044.78,
-          "min_price": 269.0
-        },
-        "Ercol||Salina Superking||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1399.0,
-          "min_price": 1399.0
-        },
-        "Ercol||Salina Two||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 379.0,
-          "min_price": 379.0
         },
         "Vispring||Elba||Barker & Stonehouse": {
           "count": 3,
@@ -1043,90 +1066,10 @@
           "avg_price": 1120.0,
           "min_price": 329.0
         },
-        "Tempur||Harlington||Barker & Stonehouse": {
+        "Old Java||Jett||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 729.0,
-          "min_price": 729.0
-        },
-        "Tempur||Ease||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 1172.0,
-          "min_price": 995.0
-        },
-        "Orla Kiely||Ebben||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 1099.0,
-          "min_price": 399.0
-        },
-        "Orla Kiely||Ebben Snuggler||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 949.0,
-          "min_price": 949.0
-        },
-        "Conform||Timeout Swivel Armchair, Brown Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2209.0,
-          "min_price": 2209.0
-        },
-        "Conform||Timeout Button Stitched Swivel Armchair, Black Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1679.0,
-          "min_price": 1679.0
-        },
-        "Conform||Timeout Button Stitched X-Footstool, Black Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 399.0,
-          "min_price": 399.0
-        },
-        "Conform||Globe X- Foot Footstool,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 375.0,
-          "min_price": 375.0
-        },
-        "Conform||Globe Swivel Armchair,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1649.0,
-          "min_price": 1649.0
-        },
-        "Conform||Funco Table,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 279.0,
-          "min_price": 279.0
-        },
-        "Conform||Style Quattro X- Foot Footstool, Brown Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 489.0,
-          "min_price": 489.0
-        },
-        "Conform||Style Quattro Swivel Armchair, Brown Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2149.0,
-          "min_price": 2149.0
-        },
-        "Eichholtz||Casimir Mirror, Square, Mahogany||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1849.0,
-          "min_price": 1849.0
-        },
-        "Eichholtz||Catene Swivel Armchair, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1249.0,
-          "min_price": 1249.0
-        },
-        "Eichholtz||Corso Armchair,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1269.0,
-          "min_price": 1269.0
-        },
-        "Eichholtz||Corso Sofa,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 3395.0,
-          "min_price": 3395.0
-        },
-        "Eichholtz||Bjorn||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 5899.0,
-          "min_price": 5899.0
+          "avg_price": 895.0,
+          "min_price": 895.0
         },
         "Eichholtz||Dresser Napa,||Barker & Stonehouse": {
           "count": 1,
@@ -1218,6 +1161,96 @@
           "avg_price": 3395.0,
           "min_price": 3395.0
         },
+        "Tempur||Harlington||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 729.0,
+          "min_price": 729.0
+        },
+        "Tempur||Ease||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 1172.0,
+          "min_price": 995.0
+        },
+        "Orla Kiely||Ebben||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 1099.0,
+          "min_price": 399.0
+        },
+        "Orla Kiely||Ebben Snuggler||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 949.0,
+          "min_price": 949.0
+        },
+        "Conform||Timeout Swivel Armchair, Brown Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2209.0,
+          "min_price": 2209.0
+        },
+        "Conform||Timeout Button Stitched Swivel Armchair, Black Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1679.0,
+          "min_price": 1679.0
+        },
+        "Conform||Timeout Button Stitched X-Footstool, Black Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 399.0,
+          "min_price": 399.0
+        },
+        "Conform||Globe X- Foot Footstool,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 375.0,
+          "min_price": 375.0
+        },
+        "Conform||Globe Swivel Armchair,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1649.0,
+          "min_price": 1649.0
+        },
+        "Conform||Funco Table,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 279.0,
+          "min_price": 279.0
+        },
+        "Conform||Style Quattro X- Foot Footstool, Brown Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 489.0,
+          "min_price": 489.0
+        },
+        "Conform||Style Quattro Swivel Armchair, Brown Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2149.0,
+          "min_price": 2149.0
+        },
+        "Eichholtz||Casimir Mirror, Square, Mahogany||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1849.0,
+          "min_price": 1849.0
+        },
+        "Eichholtz||Catene Swivel Armchair, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1249.0,
+          "min_price": 1249.0
+        },
+        "Eichholtz||Corso Armchair,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1269.0,
+          "min_price": 1269.0
+        },
+        "Eichholtz||Corso Sofa,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 3395.0,
+          "min_price": 3395.0
+        },
+        "Eichholtz||Bjorn||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 5899.0,
+          "min_price": 5899.0
+        },
+        "Orla Kiely||Ebben Chaise||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1675.0,
+          "min_price": 1675.0
+        },
         "Orla Kiely||Arklow||Barker & Stonehouse": {
           "count": 3,
           "avg_price": 1114.33,
@@ -1238,10 +1271,10 @@
           "avg_price": 2479.0,
           "min_price": 2479.0
         },
-        "Orla Kiely||Ebben Chaise||Barker & Stonehouse": {
+        "Ercol||Monza Desk, Neutral||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 1675.0,
-          "min_price": 1675.0
+          "avg_price": 949.0,
+          "min_price": 949.0
         },
         "Orla Kiely||Ebben Armchair||Barker & Stonehouse": {
           "count": 1,
@@ -1258,20 +1291,20 @@
           "avg_price": 1599.0,
           "min_price": 1599.0
         },
-        "Ercol||Monza Desk, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 949.0,
-          "min_price": 949.0
+        "Tempur||Pro Pluscq||Barker & Stonehouse": {
+          "count": 9,
+          "avg_price": 2303.89,
+          "min_price": 1699.0
         },
-        "Tetrad||Heritage Maja Grand Sofa, Yellow||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 4399.0,
-          "min_price": 4399.0
+        "Tempur||Pro Pluscq Medi - Kv||Barker & Stonehouse": {
+          "count": 6,
+          "avg_price": 2631.33,
+          "min_price": 1699.0
         },
-        "Tempur||Pro Luxe Cq Medi||Barker & Stonehouse": {
+        "Tempur||Pro Pluscq Medi||Barker & Stonehouse": {
           "count": 4,
-          "avg_price": 2962.0,
-          "min_price": 2149.0
+          "avg_price": 2379.5,
+          "min_price": 1699.0
         },
         "Tempur||Pro Cq Medi||Barker & Stonehouse": {
           "count": 4,
@@ -1283,10 +1316,30 @@
           "avg_price": 2067.0,
           "min_price": 1449.0
         },
+        "Tempur||Pro Cq Medi - Kv||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 2067.0,
+          "min_price": 1449.0
+        },
+        "Tempur||Pro Luxe Cq Medi||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 2962.0,
+          "min_price": 2149.0
+        },
         "Tempur||Pro Luxe Cq Medi - Kv||Barker & Stonehouse": {
           "count": 4,
           "avg_price": 2962.0,
           "min_price": 2149.0
+        },
+        "Ercol||Siena High||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 269.0,
+          "min_price": 269.0
+        },
+        "Ercol||Siena Low||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 245.0,
+          "min_price": 245.0
         },
         "Simba||Single||Barker & Stonehouse": {
           "count": 1,
@@ -1313,20 +1366,30 @@
           "avg_price": 119.0,
           "min_price": 119.0
         },
-        "Tempur||Pro Pluscq||Barker & Stonehouse": {
-          "count": 9,
-          "avg_price": 2303.89,
-          "min_price": 1699.0
-        },
-        "Ercol||Siena High||Barker & Stonehouse": {
+        "Old Java||Trinidad Rectangular||Barker & Stonehouse": {
           "count": 2,
-          "avg_price": 269.0,
-          "min_price": 269.0
+          "avg_price": 949.0,
+          "min_price": 799.0
         },
-        "Ercol||Siena Low||Barker & Stonehouse": {
+        "Old Java||Trinidad||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 574.0,
+          "min_price": 199.0
+        },
+        "Old Java||Trinidad Pedestal||Barker & Stonehouse": {
           "count": 2,
-          "avg_price": 245.0,
-          "min_price": 245.0
+          "avg_price": 1299.0,
+          "min_price": 1199.0
+        },
+        "Old Java||Trinidad Rectangular Desk, Teak||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 899.0,
+          "min_price": 899.0
+        },
+        "Old Java||Trinidad Rectangular Sideboard, Teak||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1099.0,
+          "min_price": 1099.0
         },
         "Timothy Oulton||Rod Tiny Floor, Round, Grey Glass||Barker & Stonehouse": {
           "count": 1,
@@ -1428,6 +1491,11 @@
           "avg_price": 1317.75,
           "min_price": 1199.0
         },
+        "Ercol||Heritage Armchair, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 399.0,
+          "min_price": 399.0
+        },
         "Ercol||Winslow||Barker & Stonehouse": {
           "count": 8,
           "avg_price": 929.75,
@@ -1438,25 +1506,45 @@
           "avg_price": 2995.0,
           "min_price": 2995.0
         },
-        "Ercol||Heritage Armchair, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 399.0,
-          "min_price": 399.0
-        },
         "Tetrad||Harris Tweed Mackenzie Wing Chair,||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 2799.0,
           "min_price": 2799.0
         },
-        "Timothy Oulton||Mimi Barstool, Black Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 649.0,
-          "min_price": 649.0
-        },
         "Somnus||Viceroy Select||Barker & Stonehouse": {
           "count": 4,
           "avg_price": 1380.5,
           "min_price": 1175.0
+        },
+        "Timothy Oulton||Mimi Barstool, Brown Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 649.0,
+          "min_price": 649.0
+        },
+        "Somnus||Regent Select||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 1624.33,
+          "min_price": 1375.0
+        },
+        "Somnus||Legend Select||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 4582.33,
+          "min_price": 3949.0
+        },
+        "Somnus||Jewel Select||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 2182.33,
+          "min_price": 1849.0
+        },
+        "Tetrad||Harris Tweed Bowmore Stool, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 899.0,
+          "min_price": 899.0
+        },
+        "Somnus||Duchess Select||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 2757.67,
+          "min_price": 2349.0
         },
         "Timothy Oulton||Newton Rect Pendant||Barker & Stonehouse": {
           "count": 1,
@@ -1543,31 +1631,6 @@
           "avg_price": 1295.0,
           "min_price": 1295.0
         },
-        "Somnus||Regent Select||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 1624.33,
-          "min_price": 1375.0
-        },
-        "Somnus||Legend Select||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 4582.33,
-          "min_price": 3949.0
-        },
-        "Somnus||Jewel Select||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 2182.33,
-          "min_price": 1849.0
-        },
-        "Tetrad||Harris Tweed Bowmore Stool, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 899.0,
-          "min_price": 899.0
-        },
-        "Somnus||Duchess Select||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 2757.67,
-          "min_price": 2349.0
-        },
         "Tetrad||Warwick Footstool,||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 795.0,
@@ -1598,20 +1661,10 @@
           "avg_price": 1549.0,
           "min_price": 1549.0
         },
-        "Timothy Oulton||Slouchy Armchair, Grey Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2699.0,
-          "min_price": 2699.0
-        },
-        "Timothy Oulton||Globetrekker||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 2367.0,
-          "min_price": 1675.0
-        },
-        "Timothy Oulton||Alrae Armchair, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2299.0,
-          "min_price": 2299.0
+        "Tempur||Free||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 193.5,
+          "min_price": 129.0
         },
         "Timothy Oulton||Harrow Trunk,||Barker & Stonehouse": {
           "count": 2,
@@ -1698,11 +1751,6 @@
           "avg_price": 899.0,
           "min_price": 899.0
         },
-        "Timothy Oulton||Angeles Barstool, Black Leather||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1249.0,
-          "min_price": 1249.0
-        },
         "Timothy Oulton||Manx Armchair, Neutral||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 4579.0,
@@ -1727,6 +1775,21 @@
           "count": 1,
           "avg_price": 599.0,
           "min_price": 599.0
+        },
+        "Timothy Oulton||Slouchy Armchair, Grey Leather||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2699.0,
+          "min_price": 2699.0
+        },
+        "Timothy Oulton||Globetrekker||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 2367.0,
+          "min_price": 1675.0
+        },
+        "Timothy Oulton||Alrae Armchair, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2299.0,
+          "min_price": 2299.0
         },
         "Cattelan Italia||Norma||Barker & Stonehouse": {
           "count": 1,
@@ -1767,6 +1830,16 @@
           "count": 1,
           "avg_price": 3995.0,
           "min_price": 3995.0
+        },
+        "Ercol||Heritage||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 299.0,
+          "min_price": 299.0
+        },
+        "Ercol||Heritage Loveseat Sofa,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 749.0,
+          "min_price": 749.0
         },
         "Timothy Oulton||Abode Thin Top Stool, Pine||Barker & Stonehouse": {
           "count": 1,
@@ -1818,20 +1891,10 @@
           "avg_price": 1249.0,
           "min_price": 1249.0
         },
-        "Ercol||Heritage||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 299.0,
-          "min_price": 299.0
-        },
-        "Ercol||Ibstone Universal Cabinet,||Barker & Stonehouse": {
+        "Ercol||Marino Accent||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 1499.0,
           "min_price": 1499.0
-        },
-        "Ercol||Heritage Loveseat Sofa,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 749.0,
-          "min_price": 749.0
         },
         "Cattelan Italia||Westin Console||Barker & Stonehouse": {
           "count": 1,
@@ -1863,7 +1926,7 @@
           "avg_price": 4499.0,
           "min_price": 4499.0
         },
-        "Ercol||Marino Accent||Barker & Stonehouse": {
+        "Ercol||Ibstone Universal Cabinet,||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 1499.0,
           "min_price": 1499.0
@@ -1878,15 +1941,10 @@
           "avg_price": 1699.0,
           "min_price": 1699.0
         },
-        "Tetrad||Jacaranda Midi||Barker & Stonehouse": {
+        "Tetrad||Jacaranda Midi Sofa, Red||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 2149.0,
           "min_price": 2149.0
-        },
-        "Ercol||Evergreen Easy Armchair||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1849.0,
-          "min_price": 1849.0
         },
         "Tetrad||Constable Wing||Barker & Stonehouse": {
           "count": 1,
@@ -1912,6 +1970,11 @@
           "count": 1,
           "avg_price": 1195.0,
           "min_price": 1195.0
+        },
+        "Ercol||Evergreen Easy Armchair||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1849.0,
+          "min_price": 1849.0
         },
         "Ercol||Heritage Loveseat Sofa, Neutral||Barker & Stonehouse": {
           "count": 1,
@@ -2008,6 +2071,11 @@
           "avg_price": 1399.0,
           "min_price": 1399.0
         },
+        "Stressless||Elevator Ring Small/Medium,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 85.0,
+          "min_price": 85.0
+        },
         "Ercol||Monza Media Unit,||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 875.0,
@@ -2058,21 +2126,6 @@
           "avg_price": 799.0,
           "min_price": 799.0
         },
-        "Stressless||Elevator Ring Small/Medium,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 85.0,
-          "min_price": 85.0
-        },
-        "Ercol||Bosco Compact||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 269.0,
-          "min_price": 269.0
-        },
-        "Ercol||Ballatta Desk, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 775.0,
-          "min_price": 775.0
-        },
         "Kartell||Ai||Barker & Stonehouse": {
           "count": 4,
           "avg_price": 179.0,
@@ -2083,40 +2136,15 @@
           "avg_price": 3181.0,
           "min_price": 1749.0
         },
-        "Kartell||Smartwood Footstool, Neutral||Barker & Stonehouse": {
+        "Ercol||Bosco Compact||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 399.0,
-          "min_price": 399.0
+          "avg_price": 269.0,
+          "min_price": 269.0
         },
-        "Kartell||Smartwood Footstool,||Barker & Stonehouse": {
+        "Ercol||Ballatta Desk, Neutral||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 399.0,
-          "min_price": 399.0
-        },
-        "Kartell||Smartwood Lounge Chair, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1049.0,
-          "min_price": 1049.0
-        },
-        "Kartell||Smartwood Lounge Chair,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1049.0,
-          "min_price": 1049.0
-        },
-        "Kartell||Smartwood Armchair, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 549.0,
-          "min_price": 549.0
-        },
-        "Kartell||Smartwood Armchair,||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 549.0,
-          "min_price": 549.0
-        },
-        "Kartell||Smartwood||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 399.0,
-          "min_price": 399.0
+          "avg_price": 775.0,
+          "min_price": 775.0
         },
         "Timothy Oulton||Georgian Architectural||Barker & Stonehouse": {
           "count": 1,
@@ -2183,6 +2211,41 @@
           "avg_price": 1195.0,
           "min_price": 1195.0
         },
+        "Kartell||Smartwood Footstool, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 399.0,
+          "min_price": 399.0
+        },
+        "Kartell||Smartwood Footstool,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 399.0,
+          "min_price": 399.0
+        },
+        "Kartell||Smartwood Lounge Chair, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1049.0,
+          "min_price": 1049.0
+        },
+        "Kartell||Smartwood Lounge Chair,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1049.0,
+          "min_price": 1049.0
+        },
+        "Kartell||Smartwood Armchair, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 549.0,
+          "min_price": 549.0
+        },
+        "Kartell||Smartwood Armchair,||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 549.0,
+          "min_price": 549.0
+        },
+        "Kartell||Smartwood||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 399.0,
+          "min_price": 399.0
+        },
         "Kartell||P/Wood||Barker & Stonehouse": {
           "count": 2,
           "avg_price": 579.0,
@@ -2192,106 +2255,6 @@
           "count": 4,
           "avg_price": 199.0,
           "min_price": 199.0
-        },
-        "Ercol||Teramo Open Shelving Unit, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 995.0,
-          "min_price": 995.0
-        },
-        "Ercol||Teramo Compact||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 269.0,
-          "min_price": 269.0
-        },
-        "Bontempi||Tokio||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 875.0,
-          "min_price": 875.0
-        },
-        "Timothy Oulton||Globetrekker Trunk,||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1949.0,
-          "min_price": 1949.0
-        },
-        "Timothy Oulton||Cabin||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 675.0,
-          "min_price": 675.0
-        },
-        "Timothy Oulton||Cabana Yeti Armchair, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2279.0,
-          "min_price": 2279.0
-        },
-        "Timothy Oulton||Void Wallart Glass||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1695.0,
-          "min_price": 1695.0
-        },
-        "Timothy Oulton||Paradise Spiral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 5399.0,
-          "min_price": 5399.0
-        },
-        "Timothy Oulton||Odeon||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 4121.67,
-          "min_price": 1775.0
-        },
-        "Timothy Oulton||Maps New York Art||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1995.0,
-          "min_price": 1995.0
-        },
-        "Timothy Oulton||Spur Driftwood||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 3799.0,
-          "min_price": 3799.0
-        },
-        "Timothy Oulton||Spur Burntwood||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 3799.0,
-          "min_price": 3799.0
-        },
-        "Timothy Oulton||Rex||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 3947.0,
-          "min_price": 2995.0
-        },
-        "Timothy Oulton||Paradise||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 2956.33,
-          "min_price": 1775.0
-        },
-        "Timothy Oulton||Paradise Floor||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2449.0,
-          "min_price": 2449.0
-        },
-        "Timothy Oulton||Animal Hippo Right Art||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 749.0,
-          "min_price": 749.0
-        },
-        "Timothy Oulton||Animal Hippo Left Art||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 749.0,
-          "min_price": 749.0
-        },
-        "Timothy Oulton||Animal Hippo Center Art||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 749.0,
-          "min_price": 749.0
-        },
-        "Timothy Oulton||Maps Rome Art||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1995.0,
-          "min_price": 1995.0
-        },
-        "Timothy Oulton||Maps Berlin Art||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1095.0,
-          "min_price": 1095.0
         },
         "Timothy Oulton||Lannister||Barker & Stonehouse": {
           "count": 1,
@@ -2433,6 +2396,11 @@
           "avg_price": 899.0,
           "min_price": 899.0
         },
+        "Timothy Oulton||Odeon||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 4121.67,
+          "min_price": 1775.0
+        },
         "Timothy Oulton||Odeon Floor||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 2449.0,
@@ -2451,6 +2419,41 @@
         "Timothy Oulton||Aviator Blackhawk||Barker & Stonehouse": {
           "count": 2,
           "avg_price": 2035.0,
+          "min_price": 1695.0
+        },
+        "Ercol||Teramo Open Shelving Unit, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 995.0,
+          "min_price": 995.0
+        },
+        "Ercol||Teramo Compact||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 269.0,
+          "min_price": 269.0
+        },
+        "Bontempi||Tokio||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 875.0,
+          "min_price": 875.0
+        },
+        "Timothy Oulton||Globetrekker Trunk,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1949.0,
+          "min_price": 1949.0
+        },
+        "Timothy Oulton||Cabin||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 675.0,
+          "min_price": 675.0
+        },
+        "Timothy Oulton||Cabana Yeti Armchair, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2279.0,
+          "min_price": 2279.0
+        },
+        "Timothy Oulton||Void Wallart Glass||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1695.0,
           "min_price": 1695.0
         },
         "Timothy Oulton||Pudgie||Barker & Stonehouse": {
@@ -2633,6 +2636,66 @@
           "avg_price": 449.0,
           "min_price": 449.0
         },
+        "Timothy Oulton||Paradise Spiral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 5399.0,
+          "min_price": 5399.0
+        },
+        "Timothy Oulton||Maps New York Art||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1995.0,
+          "min_price": 1995.0
+        },
+        "Timothy Oulton||Spur Driftwood||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 3799.0,
+          "min_price": 3799.0
+        },
+        "Timothy Oulton||Spur Burntwood||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 3799.0,
+          "min_price": 3799.0
+        },
+        "Timothy Oulton||Rex||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 3947.0,
+          "min_price": 2995.0
+        },
+        "Timothy Oulton||Paradise||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 2956.33,
+          "min_price": 1775.0
+        },
+        "Timothy Oulton||Paradise Floor||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2449.0,
+          "min_price": 2449.0
+        },
+        "Timothy Oulton||Animal Hippo Right Art||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 749.0,
+          "min_price": 749.0
+        },
+        "Timothy Oulton||Animal Hippo Left Art||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 749.0,
+          "min_price": 749.0
+        },
+        "Timothy Oulton||Animal Hippo Center Art||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 749.0,
+          "min_price": 749.0
+        },
+        "Timothy Oulton||Maps Rome Art||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1995.0,
+          "min_price": 1995.0
+        },
+        "Timothy Oulton||Maps Berlin Art||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1095.0,
+          "min_price": 1095.0
+        },
         "Bontempi||Tondo||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 1499.0,
@@ -2643,15 +2706,15 @@
           "avg_price": 75.0,
           "min_price": 75.0
         },
-        "Bontempi||Podium||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 4479.0,
-          "min_price": 4479.0
-        },
         "Bontempi||Shape||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 589.0,
           "min_price": 589.0
+        },
+        "Bontempi||Ray||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 449.0,
+          "min_price": 449.0
         },
         "Ercol||Coffee||Barker & Stonehouse": {
           "count": 1,
@@ -2668,30 +2731,15 @@
           "avg_price": 649.0,
           "min_price": 649.0
         },
-        "Bontempi||Ray||Barker & Stonehouse": {
+        "Bontempi||Podium||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 449.0,
-          "min_price": 449.0
+          "avg_price": 4479.0,
+          "min_price": 4479.0
         },
         "Bontempi||Pica Sideboard,||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 3299.0,
           "min_price": 3299.0
-        },
-        "Kartell||Prince Aha Stool, White Plastic||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 75.0,
-          "min_price": 75.0
-        },
-        "Kartell||Prince Aha Stool, Grey Plastic||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 75.0,
-          "min_price": 75.0
-        },
-        "Kartell||Piuma||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 339.0,
-          "min_price": 339.0
         },
         "Ercol||Monza Shelving Unit, Neutral||Barker & Stonehouse": {
           "count": 1,
@@ -2708,10 +2756,35 @@
           "avg_price": 649.0,
           "min_price": 649.0
         },
+        "Kartell||Prince Aha Stool, White Plastic||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 75.0,
+          "min_price": 75.0
+        },
+        "Kartell||Prince Aha Stool, Grey Plastic||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 75.0,
+          "min_price": 75.0
+        },
+        "Kartell||Piuma||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 339.0,
+          "min_price": 339.0
+        },
         "Kartell||Louis Ghost Armchair, Neutral Plastic||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 269.0,
           "min_price": 269.0
+        },
+        "Tetrad||Jacaranda Petit Sofa,||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2149.0,
+          "min_price": 2149.0
+        },
+        "Tetrad||Jacaranda Armchair||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1649.0,
+          "min_price": 1649.0
         },
         "Kartell||Stone Stool, Yellow Plastic||Barker & Stonehouse": {
           "count": 1,
@@ -2738,15 +2811,15 @@
           "avg_price": 179.0,
           "min_price": 179.0
         },
-        "Tetrad||Jacaranda Petit||Barker & Stonehouse": {
+        "Bontempi||Hip Hop Nest Of Tables, Black Glass||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 2149.0,
-          "min_price": 2149.0
+          "avg_price": 975.0,
+          "min_price": 975.0
         },
-        "Tetrad||Jacaranda Armchair||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1649.0,
-          "min_price": 1649.0
+        "Kartell||Geen-A||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 549.0,
+          "min_price": 549.0
         },
         "Kartell||Invisible||Barker & Stonehouse": {
           "count": 1,
@@ -2772,101 +2845,6 @@
           "count": 1,
           "avg_price": 2299.0,
           "min_price": 2299.0
-        },
-        "Bontempi||Hip Hop Nest Of Tables, Black Glass||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 975.0,
-          "min_price": 975.0
-        },
-        "Kartell||Geen-A||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 549.0,
-          "min_price": 549.0
-        },
-        "Stressless||Ellipse Table,||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 199.0,
-          "min_price": 199.0
-        },
-        "Stressless||Ellipse Table, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 199.0,
-          "min_price": 199.0
-        },
-        "Eichholtz||Ruby Rectangular Chandelier||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2499.0,
-          "min_price": 2499.0
-        },
-        "Eichholtz||Nerone||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1695.0,
-          "min_price": 1695.0
-        },
-        "Eichholtz||Ottoman||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 675.0,
-          "min_price": 675.0
-        },
-        "Eichholtz||Cole||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 589.0,
-          "min_price": 589.0
-        },
-        "Eichholtz||Amanda Lyssa Swivel Armchair Off-White||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 995.0,
-          "min_price": 995.0
-        },
-        "Eichholtz||Taylor Mademoiselle||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 2249.0,
-          "min_price": 2249.0
-        },
-        "Eichholtz||Kelly||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 4195.0,
-          "min_price": 4195.0
-        },
-        "Eichholtz||Donato||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 995.0,
-          "min_price": 995.0
-        },
-        "Eichholtz||Palla||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 99.0,
-          "min_price": 79.0
-        },
-        "Eichholtz||Santiago Bowl||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 625.0,
-          "min_price": 625.0
-        },
-        "Eichholtz||La Belle Carpet||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 4195.0,
-          "min_price": 4195.0
-        },
-        "Eichholtz||Oxnard||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 995.0,
-          "min_price": 995.0
-        },
-        "Eichholtz||Terry||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 1499.0,
-          "min_price": 1499.0
-        },
-        "Eichholtz||Bismarck Bowl||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 249.0,
-          "min_price": 249.0
-        },
-        "Eichholtz||Jasper Planter S||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 995.0,
-          "min_price": 995.0
         },
         "Eichholtz||Artistic||Barker & Stonehouse": {
           "count": 1,
@@ -2973,10 +2951,90 @@
           "avg_price": 4549.0,
           "min_price": 4549.0
         },
-        "Bontempi||Delta||Barker & Stonehouse": {
+        "Stressless||Ellipse Table,||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 199.0,
+          "min_price": 199.0
+        },
+        "Stressless||Ellipse Table, Neutral||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 4399.0,
-          "min_price": 4399.0
+          "avg_price": 199.0,
+          "min_price": 199.0
+        },
+        "Eichholtz||Ruby Rectangular Chandelier||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2499.0,
+          "min_price": 2499.0
+        },
+        "Eichholtz||Nerone||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1695.0,
+          "min_price": 1695.0
+        },
+        "Eichholtz||Ottoman||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 675.0,
+          "min_price": 675.0
+        },
+        "Eichholtz||Cole||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 589.0,
+          "min_price": 589.0
+        },
+        "Eichholtz||Amanda Lyssa Swivel Armchair Off-White||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 995.0,
+          "min_price": 995.0
+        },
+        "Eichholtz||Taylor Mademoiselle||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 2249.0,
+          "min_price": 2249.0
+        },
+        "Eichholtz||Kelly||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 4195.0,
+          "min_price": 4195.0
+        },
+        "Eichholtz||Donato||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 995.0,
+          "min_price": 995.0
+        },
+        "Eichholtz||Palla||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 99.0,
+          "min_price": 79.0
+        },
+        "Eichholtz||Santiago Bowl||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 625.0,
+          "min_price": 625.0
+        },
+        "Eichholtz||La Belle Carpet||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 4195.0,
+          "min_price": 4195.0
+        },
+        "Eichholtz||Oxnard||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 995.0,
+          "min_price": 995.0
+        },
+        "Eichholtz||Terry||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1499.0,
+          "min_price": 1499.0
+        },
+        "Eichholtz||Bismarck Bowl||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 249.0,
+          "min_price": 249.0
+        },
+        "Eichholtz||Jasper Planter S||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 995.0,
+          "min_price": 995.0
         },
         "Tetrad||Harris Tweed Dalmore Petit||Barker & Stonehouse": {
           "count": 2,
@@ -2993,20 +3051,10 @@
           "avg_price": 1949.0,
           "min_price": 1949.0
         },
-        "Kartell||Componibili Bio||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 175.0,
-          "min_price": 175.0
-        },
-        "Bontempi||Bridge||Barker & Stonehouse": {
+        "Bontempi||Delta||Barker & Stonehouse": {
           "count": 1,
-          "avg_price": 3849.0,
-          "min_price": 3849.0
-        },
-        "Ercol||Ballatta Shelving Unit, Neutral||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 945.0,
-          "min_price": 945.0
+          "avg_price": 4399.0,
+          "min_price": 4399.0
         },
         "Tetrad||Constable Midi Sofa, Brown Leather||Barker & Stonehouse": {
           "count": 1,
@@ -3017,6 +3065,11 @@
           "count": 4,
           "avg_price": 115.0,
           "min_price": 95.0
+        },
+        "Kartell||Componibili Bio||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 175.0,
+          "min_price": 175.0
         },
         "Kartell||Componibili||Barker & Stonehouse": {
           "count": 10,
@@ -3032,6 +3085,26 @@
           "count": 1,
           "avg_price": 1579.0,
           "min_price": 1579.0
+        },
+        "Bontempi||Barone||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 3399.0,
+          "min_price": 3399.0
+        },
+        "Stressless||Bordeaux||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 995.0,
+          "min_price": 995.0
+        },
+        "Bontempi||Bridge||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 3849.0,
+          "min_price": 3849.0
+        },
+        "Ercol||Ballatta Shelving Unit, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 945.0,
+          "min_price": 945.0
         },
         "Bontempi||Blow Mini Pendant||Barker & Stonehouse": {
           "count": 1,
@@ -3053,25 +3126,10 @@
           "avg_price": 349.0,
           "min_price": 349.0
         },
-        "Bontempi||Barone||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 3399.0,
-          "min_price": 3399.0
-        },
-        "Stressless||Bordeaux||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 995.0,
-          "min_price": 995.0
-        },
         "Bontempi||Artistico||Barker & Stonehouse": {
           "count": 2,
           "avg_price": 2595.0,
           "min_price": 995.0
-        },
-        "Bontempi||Pandora Ceiling||Barker & Stonehouse": {
-          "count": 1,
-          "avg_price": 899.0,
-          "min_price": 899.0
         },
         "Bontempi||Spark Pendant||Barker & Stonehouse": {
           "count": 1,
@@ -3082,6 +3140,11 @@
           "count": 6,
           "avg_price": 189.0,
           "min_price": 189.0
+        },
+        "Bontempi||Pandora Ceiling||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 899.0,
+          "min_price": 899.0
         },
         "Kartell||Masters Low||Barker & Stonehouse": {
           "count": 3,
@@ -3097,6 +3160,16 @@
           "count": 1,
           "avg_price": 3995.0,
           "min_price": 3995.0
+        },
+        "Tetrad||Heritage Maja Grand Sofa, Yellow||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 4399.0,
+          "min_price": 4399.0
+        },
+        "Old Java||Capella||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 995.0,
+          "min_price": 995.0
         },
         "Tetrad||Bowmore Midi Sofa,||Barker & Stonehouse": {
           "count": 1,
@@ -3118,20 +3191,60 @@
           "avg_price": 2799.0,
           "min_price": 2799.0
         },
-        "Vispring||Baronet Superb||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 2784.5,
-          "min_price": 2289.0
-        },
         "Tempur||Arc Static Disc||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 2449.0,
           "min_price": 2449.0
         },
+        "Vispring||Baronet Superb||Barker & Stonehouse": {
+          "count": 4,
+          "avg_price": 2784.5,
+          "min_price": 2289.0
+        },
         "Enchanted House||Kingswear Mattress||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 6399.0,
           "min_price": 6399.0
+        },
+        "G Plan||Winchester Open Bookcase, Neutral||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 799.0,
+          "min_price": 799.0
+        },
+        "G Plan||Flora||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 229.0,
+          "min_price": 229.0
+        },
+        "G Plan||Marlow||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 1199.0,
+          "min_price": 1199.0
+        },
+        "G Plan||Darcy||Barker & Stonehouse": {
+          "count": 1,
+          "avg_price": 259.0,
+          "min_price": 259.0
+        },
+        "Kartell||Calice Vase||Barker & Stonehouse": {
+          "count": 5,
+          "avg_price": 225.0,
+          "min_price": 225.0
+        },
+        "Kartell||Bourgie Mat||Barker & Stonehouse": {
+          "count": 2,
+          "avg_price": 329.0,
+          "min_price": 329.0
+        },
+        "Kartell||Angelo Stone||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 739.0,
+          "min_price": 739.0
+        },
+        "Kartell||Angelo Stone Floor||Barker & Stonehouse": {
+          "count": 3,
+          "avg_price": 1249.0,
+          "min_price": 1249.0
         },
         "Kartell||U Shine||Barker & Stonehouse": {
           "count": 5,
@@ -3172,26 +3285,6 @@
           "count": 4,
           "avg_price": 129.0,
           "min_price": 129.0
-        },
-        "Kartell||Calice Vase||Barker & Stonehouse": {
-          "count": 5,
-          "avg_price": 225.0,
-          "min_price": 225.0
-        },
-        "Kartell||Bourgie Mat||Barker & Stonehouse": {
-          "count": 2,
-          "avg_price": 329.0,
-          "min_price": 329.0
-        },
-        "Kartell||Angelo Stone||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 739.0,
-          "min_price": 739.0
-        },
-        "Kartell||Angelo Stone Floor||Barker & Stonehouse": {
-          "count": 3,
-          "avg_price": 1249.0,
-          "min_price": 1249.0
         },
         "Kartell||Shibuya||Barker & Stonehouse": {
           "count": 3,
@@ -3248,6 +3341,16 @@
           "avg_price": 139.0,
           "min_price": 139.0
         },
+        "Tempur||Suffolk||Barker & Stonehouse": {
+          "count": 20,
+          "avg_price": 3412.0,
+          "min_price": 2249.0
+        },
+        "Tempur||Pro Luxe Cq||Barker & Stonehouse": {
+          "count": 8,
+          "avg_price": 2962.0,
+          "min_price": 2149.0
+        },
         "Tom Dixon||Melt Portable||Barker & Stonehouse": {
           "count": 1,
           "avg_price": 220.0,
@@ -3257,216 +3360,6 @@
           "count": 1,
           "avg_price": 230.0,
           "min_price": 230.0
-        },
-        "Tempur||Suffolk||Barker & Stonehouse": {
-          "count": 20,
-          "avg_price": 3412.0,
-          "min_price": 2249.0
-        },
-        "Tempur||Pro Pluscq Medi - Kv||Barker & Stonehouse": {
-          "count": 6,
-          "avg_price": 2631.33,
-          "min_price": 1699.0
-        },
-        "Tempur||Pro Pluscq Medi||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 2379.5,
-          "min_price": 1699.0
-        },
-        "Tempur||Pro Cq Medi - Kv||Barker & Stonehouse": {
-          "count": 4,
-          "avg_price": 2067.0,
-          "min_price": 1449.0
-        },
-        "Tempur||Pro Luxe Cq||Barker & Stonehouse": {
-          "count": 8,
-          "avg_price": 2962.0,
-          "min_price": 2149.0
-        },
-        "Ercol||Lugo||Heals": {
-          "count": 1,
-          "avg_price": 420.0,
-          "min_price": 420.0
-        },
-        "Ercol||Fairmile||Heals": {
-          "count": 1,
-          "avg_price": 1712.0,
-          "min_price": 1712.0
-        },
-        "Ercol||Assendon||Heals": {
-          "count": 1,
-          "avg_price": 1360.0,
-          "min_price": 1360.0
-        },
-        "Ercol||Chairmakers||Heals": {
-          "count": 1,
-          "avg_price": 768.0,
-          "min_price": 768.0
-        },
-        "Ercol||Lara||Heals": {
-          "count": 2,
-          "avg_price": 330.0,
-          "min_price": 304.0
-        },
-        "Ercol||Lara Counter||Heals": {
-          "count": 1,
-          "avg_price": 356.0,
-          "min_price": 356.0
-        },
-        "Ercol||Canvas Media||Heals": {
-          "count": 1,
-          "avg_price": 2336.0,
-          "min_price": 2336.0
-        },
-        "Ercol||Canvas||Heals": {
-          "count": 1,
-          "avg_price": 2424.0,
-          "min_price": 2424.0
-        },
-        "Ercol||Butterfly||Heals": {
-          "count": 2,
-          "avg_price": 470.0,
-          "min_price": 440.0
-        },
-        "Ercol||Winslow||Heals": {
-          "count": 1,
-          "avg_price": 276.0,
-          "min_price": 276.0
-        },
-        "Ercol||Pebble||Heals": {
-          "count": 1,
-          "avg_price": 512.0,
-          "min_price": 512.0
-        },
-        "Ercol||Pebble Nest of||Heals": {
-          "count": 1,
-          "avg_price": 656.0,
-          "min_price": 656.0
-        },
-        "Ercol||Pebble Pair of||Heals": {
-          "count": 1,
-          "avg_price": 716.0,
-          "min_price": 716.0
-        },
-        "Ercol||Romana||Heals": {
-          "count": 7,
-          "avg_price": 1967.43,
-          "min_price": 884.0
-        },
-        "Ercol||Amalfi||Heals": {
-          "count": 1,
-          "avg_price": 1196.0,
-          "min_price": 1196.0
-        },
-        "Ercol||Heritage Loveseat||Heals": {
-          "count": 1,
-          "avg_price": 764.0,
-          "min_price": 764.0
-        },
-        "Ercol||Heritage Armchair||Heals": {
-          "count": 1,
-          "avg_price": 408.0,
-          "min_price": 408.0
-        },
-        "Ercol||Heritage||Heals": {
-          "count": 1,
-          "avg_price": 308.0,
-          "min_price": 308.0
-        },
-        "Ercol||Romana Highboard||Heals": {
-          "count": 1,
-          "avg_price": 4020.0,
-          "min_price": 4020.0
-        },
-        "Ercol||Teramo||Heals": {
-          "count": 13,
-          "avg_price": 1131.08,
-          "min_price": 336.0
-        },
-        "Ercol||Monza||Heals": {
-          "count": 4,
-          "avg_price": 737.0,
-          "min_price": 316.0
-        },
-        "Ercol||Teramo Open Shelving||Heals": {
-          "count": 1,
-          "avg_price": 1028.0,
-          "min_price": 1028.0
-        },
-        "Ercol||Monza Shelving||Heals": {
-          "count": 1,
-          "avg_price": 884.0,
-          "min_price": 884.0
-        },
-        "Ercol||Monza Media||Heals": {
-          "count": 1,
-          "avg_price": 884.0,
-          "min_price": 884.0
-        },
-        "Ercol||Monza Universal||Heals": {
-          "count": 1,
-          "avg_price": 836.0,
-          "min_price": 836.0
-        },
-        "Ercol||Monza Bench||Heals": {
-          "count": 1,
-          "avg_price": 472.0,
-          "min_price": 472.0
-        },
-        "Ercol||Rimini Compact||Heals": {
-          "count": 1,
-          "avg_price": 312.0,
-          "min_price": 312.0
-        },
-        "Ercol||Rimini||Heals": {
-          "count": 6,
-          "avg_price": 1057.33,
-          "min_price": 384.0
-        },
-        "Ercol||Ballatta||Heals": {
-          "count": 1,
-          "avg_price": 784.0,
-          "min_price": 784.0
-        },
-        "Ercol||All Purpose||Heals": {
-          "count": 1,
-          "avg_price": 280.0,
-          "min_price": 280.0
-        },
-        "Ercol||Windsor||Heals": {
-          "count": 1,
-          "avg_price": 396.0,
-          "min_price": 396.0
-        },
-        "Ercol||Treviso||Heals": {
-          "count": 1,
-          "avg_price": 1392.0,
-          "min_price": 1392.0
-        },
-        "Ercol||Stacking||Heals": {
-          "count": 1,
-          "avg_price": 264.0,
-          "min_price": 264.0
-        },
-        "Ercol||Loveseat||Heals": {
-          "count": 1,
-          "avg_price": 736.0,
-          "min_price": 736.0
-        },
-        "Ercol||Chairmakers Rocking||Heals": {
-          "count": 1,
-          "avg_price": 808.0,
-          "min_price": 808.0
-        },
-        "Ercol||Counter||Heals": {
-          "count": 1,
-          "avg_price": 240.0,
-          "min_price": 240.0
-        },
-        "Ercol||Originals Plank||Heals": {
-          "count": 1,
-          "avg_price": 820.0,
-          "min_price": 820.0
         },
         "Ercol||Winslow||Lee Longlands": {
           "count": 8,
@@ -3638,43 +3531,48 @@
           "avg_price": 2354.0,
           "min_price": 2354.0
         },
-        "Ercol||for John Lewis Bellingdon||John Lewis": {
-          "count": 4,
-          "avg_price": 1034.0,
-          "min_price": 269.0
-        },
         "Ercol||for John Lewis Bellingdon Shelving||John Lewis": {
           "count": 1,
           "avg_price": 1199.0,
           "min_price": 1199.0
         },
-        "Ercol||for John Lewis Hambledon||John Lewis": {
-          "count": 6,
-          "avg_price": 904.33,
-          "min_price": 249.0
-        },
-        "Ercol||for John Lewis Hazlemere Armchair||John Lewis": {
-          "count": 2,
-          "avg_price": 1024.0,
-          "min_price": 999.0
-        },
-        "Ercol||for John Lewis Shalstone||John Lewis": {
-          "count": 4,
-          "avg_price": 694.0,
-          "min_price": 329.0
-        },
-        "Ercol||Ashridge||John Lewis": {
-          "count": 1,
-          "avg_price": 389.0,
-          "min_price": 389.0
+        "Ercol||for John Lewis Bellingdon||John Lewis": {
+          "count": 5,
+          "avg_price": 1267.0,
+          "min_price": 269.0
         },
         "Ercol||for John Lewis Windsor Easy||John Lewis": {
           "count": 2,
           "avg_price": 1149.0,
           "min_price": 1149.0
         },
-        "Ercol||Butterfly||John Lewis": {
+        "Ercol||for John Lewis Hazlemere Armchair||John Lewis": {
           "count": 2,
+          "avg_price": 1024.0,
+          "min_price": 999.0
+        },
+        "Ercol||for John Lewis Hexton Armchair||John Lewis": {
+          "count": 2,
+          "avg_price": 1899.0,
+          "min_price": 1899.0
+        },
+        "Ercol||for John Lewis Shalstone||John Lewis": {
+          "count": 7,
+          "avg_price": 681.86,
+          "min_price": 249.0
+        },
+        "Ercol||Ashridge||John Lewis": {
+          "count": 1,
+          "avg_price": 389.0,
+          "min_price": 389.0
+        },
+        "Ercol||for John Lewis Hambledon||John Lewis": {
+          "count": 7,
+          "avg_price": 1032.14,
+          "min_price": 249.0
+        },
+        "Ercol||Butterfly||John Lewis": {
+          "count": 3,
           "avg_price": 535.0,
           "min_price": 535.0
         },
@@ -3683,14 +3581,69 @@
           "avg_price": 399.0,
           "min_price": 399.0
         },
+        "Ercol||for John Lewis Ashridge||John Lewis": {
+          "count": 2,
+          "avg_price": 299.0,
+          "min_price": 299.0
+        },
         "Ercol||for John Lewis Hexton||John Lewis": {
-          "count": 1,
-          "avg_price": 2499.0,
+          "count": 4,
+          "avg_price": 2599.0,
           "min_price": 2499.0
+        },
+        "Ercol||for John Lewis Ellesborough||John Lewis": {
+          "count": 5,
+          "avg_price": 2319.0,
+          "min_price": 2199.0
+        },
+        "Ercol||for John Lewis Shalstone Shelving||John Lewis": {
+          "count": 1,
+          "avg_price": 899.0,
+          "min_price": 899.0
+        },
+        "Ercol||for John Lewis Shalstone Console||John Lewis": {
+          "count": 1,
+          "avg_price": 429.0,
+          "min_price": 429.0
+        },
+        "Ercol||Ilmer||John Lewis": {
+          "count": 2,
+          "avg_price": 1874.0,
+          "min_price": 1799.0
+        },
+        "Ercol||for John Lewis Ellesborough Snuggler||John Lewis": {
+          "count": 1,
+          "avg_price": 1749.0,
+          "min_price": 1749.0
+        },
+        "Ercol||Ilmer Snuggler||John Lewis": {
+          "count": 1,
+          "avg_price": 1249.0,
+          "min_price": 1249.0
+        },
+        "Simba||Sleep||Bensons for Beds": {
+          "count": 8,
+          "avg_price": 1537.49,
+          "min_price": 699.99
+        },
+        "Simba||Sleep Hybrid\u00e2\u201e\u00a2||Bensons for Beds": {
+          "count": 1,
+          "avg_price": 109.99,
+          "min_price": 109.99
+        },
+        "Simba||Sleep Hybrid\u00e2\u201e\u00a2 Duvet||Bensons for Beds": {
+          "count": 1,
+          "avg_price": 199.99,
+          "min_price": 199.99
+        },
+        "Simba||Sleep Stratos\u00c2\u00ae||Bensons for Beds": {
+          "count": 1,
+          "avg_price": 59.99,
+          "min_price": 59.99
         },
         "Simba||Hybrid||Land of Beds": {
           "count": 6,
-          "avg_price": 725.0,
+          "avg_price": 929.0,
           "min_price": 429.0
         },
         "Simba||Refurbished||Land of Beds": {
@@ -3700,22 +3653,12 @@
         },
         "Simba||Natural||Land of Beds": {
           "count": 3,
-          "avg_price": 1030.67,
-          "min_price": 719.0
-        },
-        "Simba||Hybrid||Simba (Direct)": {
-          "count": 4,
-          "avg_price": 1674.0,
-          "min_price": 799.0
-        },
-        "Simba||Mattress||Simba (Direct)": {
-          "count": 1,
-          "avg_price": 999.0,
-          "min_price": 999.0
+          "avg_price": 1215.67,
+          "min_price": 899.0
         },
         "Tempur||Pro Plus||Lee Longlands": {
-          "count": 18,
-          "avg_price": 1973.44,
+          "count": 17,
+          "avg_price": 2005.71,
           "min_price": 1339.0
         },
         "Tempur||Pro||Lee Longlands": {
@@ -3738,15 +3681,15 @@
           "avg_price": 974.0,
           "min_price": 949.0
         },
-        "Tempur||Ombracio SmartCool||Lee Longlands": {
-          "count": 1,
-          "avg_price": 195.0,
-          "min_price": 195.0
-        },
         "Tempur||Thermoregulating Mattress Protector-||Lee Longlands": {
           "count": 2,
           "avg_price": 134.0,
           "min_price": 129.0
+        },
+        "Tempur||Ombracio SmartCool||Lee Longlands": {
+          "count": 1,
+          "avg_price": 195.0,
+          "min_price": 195.0
         },
         "Tempur||Pro Luxe||Lee Longlands": {
           "count": 15,
@@ -3763,9 +3706,9 @@
           "avg_price": 3440.0,
           "min_price": 2785.0
         },
-        "Tempur||Suffolk||Lee Longlands": {
-          "count": 7,
-          "avg_price": 1975.0,
+        "Tempur||Suffolk Southwold||Lee Longlands": {
+          "count": 1,
+          "avg_price": 899.0,
           "min_price": 899.0
         },
         "Tempur||Ergo||Lee Longlands": {
@@ -3773,47 +3716,77 @@
           "avg_price": 6259.0,
           "min_price": 5599.0
         },
-        "Tempur||TEMUR Suffolk||Lee Longlands": {
-          "count": 1,
-          "avg_price": 669.0,
+        "Tempur||Suffolk||Lee Longlands": {
+          "count": 7,
+          "avg_price": 2023.0,
           "min_price": 669.0
         },
-        "Tempur||Pro\u00ae Luxe Smartcool\u2122 Mattress||And So To Bed": {
+        "Tempur||Suffolk Wickham||Lee Longlands": {
+          "count": 1,
+          "avg_price": 1499.0,
+          "min_price": 1499.0
+        },
+        "Tempur||Original||Argos": {
+          "count": 4,
+          "avg_price": 140.0,
+          "min_price": 140.0
+        },
+        "Tempur||Cloud||Argos": {
+          "count": 2,
+          "avg_price": 139.0,
+          "min_price": 139.0
+        },
+        "Tempur||Original X||Argos": {
+          "count": 1,
+          "avg_price": 140.0,
+          "min_price": 140.0
+        },
+        "Tempur||Prima Smartcool||Argos": {
+          "count": 1,
+          "avg_price": 108.0,
+          "min_price": 108.0
+        },
+        "Tempur||Home by Tempur||Argos": {
+          "count": 2,
+          "avg_price": 74.5,
+          "min_price": 24.0
+        },
+        "Tempur||Pro\u00c2\u00ae Luxe Smartcool\u00e2\u201e\u00a2 Mattress||And So To Bed": {
           "count": 1,
           "avg_price": 2925.0,
           "min_price": 2925.0
         },
-        "Tempur||Pro\u00ae Plus Smartcool\u2122 Mattress||And So To Bed": {
+        "Tempur||Pro\u00c2\u00ae Plus Smartcool\u00e2\u201e\u00a2 Mattress||And So To Bed": {
           "count": 1,
           "avg_price": 2340.0,
           "min_price": 2340.0
         },
-        "Tempur||Pro\u00ae Smartcool\u2122 Mattress||And So To Bed": {
+        "Tempur||Pro\u00c2\u00ae Smartcool\u00e2\u201e\u00a2 Mattress||And So To Bed": {
           "count": 1,
           "avg_price": 2045.0,
           "min_price": 2045.0
         },
-        "Tempur||TEMPUR\u00ae Arc\u2122 Horizon||And So To Bed": {
+        "Tempur||TEMPUR\u00c2\u00ae Arc\u00e2\u201e\u00a2 Horizon||And So To Bed": {
           "count": 1,
           "avg_price": 3330.0,
           "min_price": 3330.0
         },
-        "Tempur||TEMPUR\u00ae Arc\u2122||And So To Bed": {
+        "Tempur||TEMPUR\u00c2\u00ae Arc\u00e2\u201e\u00a2||And So To Bed": {
           "count": 5,
           "avg_price": 3842.8,
           "min_price": 3399.0
         },
-        "Tempur||TEMPUR\u00ae Buckingham||And So To Bed": {
+        "Tempur||TEMPUR\u00c2\u00ae Buckingham||And So To Bed": {
           "count": 1,
           "avg_price": 1610.0,
           "min_price": 1610.0
         },
-        "Tempur||TEMPUR\u00ae Holcot||And So To Bed": {
+        "Tempur||TEMPUR\u00c2\u00ae Holcot||And So To Bed": {
           "count": 1,
           "avg_price": 1815.0,
           "min_price": 1815.0
         },
-        "Tempur||TEMPUR\u00ae Horton||And So To Bed": {
+        "Tempur||TEMPUR\u00c2\u00ae Horton||And So To Bed": {
           "count": 1,
           "avg_price": 1815.0,
           "min_price": 1815.0
@@ -3833,6 +3806,11 @@
           "avg_price": 1311.0,
           "min_price": 1059.0
         },
+        "Stressless||Fiona||Lee Longlands": {
+          "count": 7,
+          "avg_price": 2331.29,
+          "min_price": 1799.0
+        },
         "Stressless||Windsor||Lee Longlands": {
           "count": 2,
           "avg_price": 2594.0,
@@ -3842,11 +3820,6 @@
           "count": 3,
           "avg_price": 2202.33,
           "min_price": 2029.0
-        },
-        "Stressless||Fiona||Lee Longlands": {
-          "count": 7,
-          "avg_price": 2331.29,
-          "min_price": 1799.0
         },
         "Stressless||Adam||Lee Longlands": {
           "count": 1,
@@ -4003,6 +3976,11 @@
           "avg_price": 313.62,
           "min_price": 189.0
         },
+        "Kartell||Louis Ghost by Philippe Starck Crystal||Lee Longlands": {
+          "count": 1,
+          "avg_price": 269.0,
+          "min_price": 269.0
+        },
         "Kartell||A.I.- Artificial Intelligence by Philippe Starck||Lee Longlands": {
           "count": 2,
           "avg_price": 185.0,
@@ -4027,11 +4005,6 @@
           "count": 1,
           "avg_price": 965.0,
           "min_price": 965.0
-        },
-        "Kartell||Louis Ghost by Philippe Starck Crystal||Lee Longlands": {
-          "count": 1,
-          "avg_price": 269.0,
-          "min_price": 269.0
         },
         "Kartell||Space by Adam Tihany Titanium||Lee Longlands": {
           "count": 1,
@@ -4643,6 +4616,11 @@
           "avg_price": 1639.0,
           "min_price": 1639.0
         },
+        "Tetrad||Dakota||Fishpools": {
+          "count": 3,
+          "avg_price": 2615.67,
+          "min_price": 2549.0
+        },
         "Tetrad||Arbroath Petite||Fishpools": {
           "count": 1,
           "avg_price": 2549.0,
@@ -4849,14 +4827,9 @@
           "min_price": 629.0
         },
         "Alexander & James||Newmarket||Taskers": {
-          "count": 4,
-          "avg_price": 679.0,
+          "count": 6,
+          "avg_price": 1002.33,
           "min_price": 269.0
-        },
-        "Alexander & James||Newmarket Chaise||Taskers": {
-          "count": 2,
-          "avg_price": 1649.0,
-          "min_price": 1649.0
         },
         "Alexander & James||Newmarket Maxi||Taskers": {
           "count": 1,
@@ -4919,14 +4892,9 @@
           "min_price": 1099.0
         },
         "Alexander & James||Saddler||Taskers": {
-          "count": 4,
-          "avg_price": 714.0,
+          "count": 6,
+          "avg_price": 1042.33,
           "min_price": 269.0
-        },
-        "Alexander & James||Saddler Chaise||Taskers": {
-          "count": 2,
-          "avg_price": 1699.0,
-          "min_price": 1699.0
         },
         "Alexander & James||Saddler Maxi||Taskers": {
           "count": 1,
@@ -5353,192 +5321,127 @@
           "avg_price": 304.0,
           "min_price": 259.0
         },
-        "Bontempi||Alfa Cushion||Taskers": {
-          "count": 1,
-          "avg_price": 659.0,
-          "min_price": 659.0
-        },
-        "Bontempi||Alfa Wooden||Taskers": {
-          "count": 1,
-          "avg_price": 454.0,
+        "Bontempi||Casa Alfa||Taskers": {
+          "count": 2,
+          "avg_price": 556.5,
           "min_price": 454.0
         },
-        "Bontempi||Alice High||Taskers": {
-          "count": 1,
-          "avg_price": 526.0,
-          "min_price": 526.0
-        },
-        "Bontempi||Alice Low||Taskers": {
-          "count": 1,
-          "avg_price": 490.0,
+        "Bontempi||Casa Alice||Taskers": {
+          "count": 2,
+          "avg_price": 508.0,
           "min_price": 490.0
         },
-        "Bontempi||Artistico Rectangular||Taskers": {
+        "Bontempi||Casa Artistico||Taskers": {
           "count": 2,
           "avg_price": 2827.0,
           "min_price": 2395.0
         },
-        "Bontempi||Barone Round||Taskers": {
+        "Bontempi||Casa Barone||Taskers": {
           "count": 1,
           "avg_price": 1702.0,
           "min_price": 1702.0
         },
-        "Bontempi||Bridge Barrel||Taskers": {
+        "Bontempi||Casa Bridge||Taskers": {
           "count": 1,
           "avg_price": 5281.0,
           "min_price": 5281.0
         },
-        "Bontempi||Chantal Dining||Taskers": {
-          "count": 1,
-          "avg_price": 437.0,
+        "Bontempi||Casa Chantal||Taskers": {
+          "count": 4,
+          "avg_price": 556.0,
           "min_price": 437.0
         },
-        "Bontempi||Chantal Solid||Taskers": {
-          "count": 1,
-          "avg_price": 571.0,
-          "min_price": 571.0
-        },
-        "Bontempi||Chantal Swivel||Taskers": {
-          "count": 2,
-          "avg_price": 608.0,
-          "min_price": 603.0
-        },
-        "Bontempi||Clara Lacquered||Taskers": {
+        "Bontempi||Casa Clara||Taskers": {
           "count": 1,
           "avg_price": 521.0,
           "min_price": 521.0
         },
-        "Bontempi||Dada Dining||Taskers": {
+        "Bontempi||Casa Dada||Taskers": {
           "count": 1,
           "avg_price": 679.0,
           "min_price": 679.0
         },
-        "Bontempi||Dalila High||Taskers": {
-          "count": 1,
-          "avg_price": 494.0,
-          "min_price": 494.0
-        },
-        "Bontempi||Dalila Low||Taskers": {
-          "count": 1,
-          "avg_price": 467.0,
+        "Bontempi||Casa Dalila||Taskers": {
+          "count": 2,
+          "avg_price": 480.5,
           "min_price": 467.0
         },
-        "Bontempi||Delta Barrel||Taskers": {
-          "count": 1,
-          "avg_price": 5131.0,
-          "min_price": 5131.0
-        },
-        "Bontempi||Delta Round||Taskers": {
-          "count": 1,
-          "avg_price": 2736.0,
+        "Bontempi||Casa Delta||Taskers": {
+          "count": 2,
+          "avg_price": 3933.5,
           "min_price": 2736.0
         },
-        "Bontempi||Diesis Rectangular||Taskers": {
-          "count": 1,
-          "avg_price": 607.0,
-          "min_price": 607.0
-        },
-        "Bontempi||Diesis Square||Taskers": {
-          "count": 1,
-          "avg_price": 498.0,
+        "Bontempi||Casa Diesis||Taskers": {
+          "count": 2,
+          "avg_price": 552.5,
           "min_price": 498.0
         },
-        "Bontempi||Drop Dining||Taskers": {
-          "count": 1,
-          "avg_price": 670.0,
+        "Bontempi||Casa Drop||Taskers": {
+          "count": 3,
+          "avg_price": 748.0,
           "min_price": 670.0
         },
-        "Bontempi||Drop Metal||Taskers": {
-          "count": 1,
-          "avg_price": 718.0,
-          "min_price": 718.0
-        },
-        "Bontempi||Drop Swivel||Taskers": {
-          "count": 1,
-          "avg_price": 856.0,
-          "min_price": 856.0
-        },
-        "Bontempi||Eva Dining||Taskers": {
+        "Bontempi||Casa Eva||Taskers": {
           "count": 1,
           "avg_price": 186.0,
           "min_price": 186.0
         },
-        "Bontempi||Freak Dining||Taskers": {
+        "Bontempi||Casa Freak||Taskers": {
           "count": 1,
           "avg_price": 275.0,
           "min_price": 275.0
         },
-        "Bontempi||Galaxy Dining||Taskers": {
+        "Bontempi||Casa Galaxy||Taskers": {
           "count": 2,
           "avg_price": 143.5,
           "min_price": 130.0
         },
-        "Bontempi||Gipsy Stackable||Taskers": {
+        "Bontempi||Casa Gipsy||Taskers": {
           "count": 2,
           "avg_price": 178.0,
           "min_price": 154.0
         },
-        "Bontempi||Hidra Dining||Taskers": {
+        "Bontempi||Casa Hidra||Taskers": {
           "count": 1,
           "avg_price": 146.0,
           "min_price": 146.0
         },
-        "Bontempi||Hisa Dining||Taskers": {
-          "count": 1,
-          "avg_price": 735.0,
-          "min_price": 735.0
-        },
-        "Bontempi||Hisa High||Taskers": {
-          "count": 1,
-          "avg_price": 603.0,
+        "Bontempi||Casa Hisa||Taskers": {
+          "count": 2,
+          "avg_price": 669.0,
           "min_price": 603.0
         },
-        "Bontempi||Ines Dining||Taskers": {
+        "Bontempi||Casa Ines||Taskers": {
           "count": 1,
           "avg_price": 370.0,
           "min_price": 370.0
         },
-        "Bontempi||Kelly Dining||Taskers": {
+        "Bontempi||Casa Kelly||Taskers": {
           "count": 1,
           "avg_price": 866.0,
           "min_price": 866.0
         },
-        "Bontempi||Kuga Metal||Taskers": {
-          "count": 1,
-          "avg_price": 751.0,
+        "Bontempi||Casa Kuga||Taskers": {
+          "count": 2,
+          "avg_price": 812.0,
           "min_price": 751.0
         },
-        "Bontempi||Kuga Wooden||Taskers": {
-          "count": 1,
-          "avg_price": 873.0,
-          "min_price": 873.0
-        },
-        "Bontempi||Linda High||Taskers": {
-          "count": 2,
-          "avg_price": 741.5,
-          "min_price": 610.0
-        },
-        "Bontempi||Linda Low||Taskers": {
-          "count": 1,
-          "avg_price": 528.0,
+        "Bontempi||Casa Linda||Taskers": {
+          "count": 3,
+          "avg_price": 670.33,
           "min_price": 528.0
         },
-        "Bontempi||Magnum 150cm||Taskers": {
-          "count": 1,
-          "avg_price": 3450.0,
+        "Bontempi||Casa Magnum||Taskers": {
+          "count": 2,
+          "avg_price": 3917.0,
           "min_price": 3450.0
         },
-        "Bontempi||Magnum 180cm||Taskers": {
-          "count": 1,
-          "avg_price": 4384.0,
-          "min_price": 4384.0
-        },
-        "Bontempi||Malik Dining||Taskers": {
+        "Bontempi||Casa Malik||Taskers": {
           "count": 1,
           "avg_price": 245.0,
           "min_price": 245.0
         },
-        "Bontempi||Mirage Square||Taskers": {
+        "Bontempi||Casa Mirage||Taskers": {
           "count": 1,
           "avg_price": 4050.0,
           "min_price": 4050.0
@@ -5978,14 +5881,9 @@
           "avg_price": 5493.0,
           "min_price": 5493.0
         },
-        "Cattelan Italia||Spyder Extra||Taskers": {
-          "count": 2,
-          "avg_price": 4849.5,
-          "min_price": 3960.0
-        },
         "Cattelan Italia||Spyder||Taskers": {
-          "count": 14,
-          "avg_price": 4691.36,
+          "count": 16,
+          "avg_price": 4711.12,
           "min_price": 3188.0
         },
         "Cattelan Italia||Sting Set||Taskers": {
@@ -6433,7 +6331,7 @@
           "avg_price": 1299.0,
           "min_price": 1299.0
         },
-        "Fama||Pauline Chaise||Taskers": {
+        "Fama||Pauline||Taskers": {
           "count": 1,
           "avg_price": 1629.0,
           "min_price": 1629.0
@@ -7878,14 +7776,9 @@
           "avg_price": 1689.0,
           "min_price": 1689.0
         },
-        "Tetrad||Ruffle Chaise||Taskers": {
-          "count": 1,
-          "avg_price": 3419.0,
-          "min_price": 3419.0
-        },
         "Tetrad||Ruffle||Taskers": {
-          "count": 4,
-          "avg_price": 1481.5,
+          "count": 5,
+          "avg_price": 1869.0,
           "min_price": 589.0
         },
         "Tetrad||Strand||Taskers": {
@@ -7947,106 +7840,6 @@
           "count": 3,
           "avg_price": 1662.33,
           "min_price": 1469.0
-        },
-        "Tetrad||Aberlour||Taskers": {
-          "count": 3,
-          "avg_price": 2232.33,
-          "min_price": 1749.0
-        },
-        "Tetrad||Arbroath Accent||Taskers": {
-          "count": 1,
-          "avg_price": 1649.0,
-          "min_price": 1649.0
-        },
-        "Tetrad||Arbroath||Taskers": {
-          "count": 4,
-          "avg_price": 2649.0,
-          "min_price": 2199.0
-        },
-        "Tetrad||Berneray Bedframe||Taskers": {
-          "count": 1,
-          "avg_price": 2099.0,
-          "min_price": 2099.0
-        },
-        "Tetrad||Bowmore||Taskers": {
-          "count": 5,
-          "avg_price": 1799.0,
-          "min_price": 899.0
-        },
-        "Tetrad||Bowmore Highback||Taskers": {
-          "count": 1,
-          "avg_price": 1649.0,
-          "min_price": 1649.0
-        },
-        "Tetrad||Braemar||Taskers": {
-          "count": 4,
-          "avg_price": 2039.0,
-          "min_price": 659.0
-        },
-        "Tetrad||Dalmore Accent||Taskers": {
-          "count": 1,
-          "avg_price": 1649.0,
-          "min_price": 1649.0
-        },
-        "Tetrad||Dalmore||Taskers": {
-          "count": 6,
-          "avg_price": 2574.0,
-          "min_price": 949.0
-        },
-        "Tetrad||Dunmore||Taskers": {
-          "count": 1,
-          "avg_price": 1599.0,
-          "min_price": 1599.0
-        },
-        "Tetrad||Ellington Plain||Taskers": {
-          "count": 1,
-          "avg_price": 1599.0,
-          "min_price": 1599.0
-        },
-        "Tetrad||Eriskay Bedding||Taskers": {
-          "count": 1,
-          "avg_price": 1149.0,
-          "min_price": 1149.0
-        },
-        "Tetrad||Eriskay Bedframe||Taskers": {
-          "count": 1,
-          "avg_price": 2199.0,
-          "min_price": 2199.0
-        },
-        "Tetrad||Mackenzie||Taskers": {
-          "count": 4,
-          "avg_price": 1711.5,
-          "min_price": 749.0
-        },
-        "Tetrad||Mackenzie Mixed||Taskers": {
-          "count": 1,
-          "avg_price": 2299.0,
-          "min_price": 2299.0
-        },
-        "Tetrad||Nairn||Taskers": {
-          "count": 2,
-          "avg_price": 1799.0,
-          "min_price": 1499.0
-        },
-        "Tetrad||Regent||Taskers": {
-          "count": 2,
-          "avg_price": 2199.0,
-          "min_price": 1649.0
-        },
-        "Tetrad||Taransay Gents||Taskers": {
-          "count": 1,
-          "avg_price": 1949.0,
-          "min_price": 1949.0
-        },
-        "Tetrad||Taransay Ladies||Taskers": {
-          "count": 1,
-          "avg_price": 1799.0,
-          "min_price": 1799.0
-        },
-        "Tetrad||Taransay||Taskers": {
-          "count": 3,
-          "avg_price": 2305.67,
-          "min_price": 869.0
         },
         "The Sleep Collection||Chesterfield Floor||Taskers": {
           "count": 1,
