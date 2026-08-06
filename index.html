@@ -19,7 +19,16 @@
   .page-title { font-family:var(--serif); font-size:1.1rem; font-weight:400; color:var(--navy); }
   .logo-wrap { margin-left:auto; }
   .logo-wrap img { height:28px; display:block; }
-  #meta-bar { background:var(--teal); color:rgba(255,255,255,0.9); font-size:0.72rem; padding:6px 2rem; display:flex; gap:2rem; }
+  #meta-bar { background:var(--teal); color:rgba(255,255,255,0.9); font-size:0.72rem; padding:6px 2rem; display:flex; gap:2rem; align-items:center; }
+  #coverage-toggle { margin-left:auto; cursor:pointer; text-decoration:underline; text-decoration-style:dotted; opacity:0.9; }
+  #coverage-toggle:hover { opacity:1; }
+  #coverage-panel { display:none; background:var(--white); border-bottom:1px solid var(--border); padding:0.7rem 2rem; }
+  #coverage-panel table { border-collapse:collapse; font-size:0.73rem; }
+  #coverage-panel th { text-align:center; padding:3px 10px; color:var(--muted); font-weight:500; text-transform:uppercase; font-size:0.6rem; letter-spacing:0.05em; }
+  #coverage-panel th:first-child { text-align:left; }
+  #coverage-panel td { padding:3px 10px; text-align:center; border-bottom:1px solid var(--border); }
+  #coverage-panel td:first-child { text-align:left; font-weight:600; color:var(--navy); }
+  #coverage-panel .cov-note { font-size:0.68rem; color:var(--muted); margin-top:0.5rem; }
 
   .main { padding:1.5rem 2rem; max-width:1500px; margin:0 auto; }
 
@@ -44,6 +53,8 @@
   .brand-tab .tab-count { font-size:0.62rem; background:var(--teal-l); color:var(--teal); border-radius:10px; padding:1px 6px; margin-left:4px; }
   .brand-tab.active .tab-count { background:var(--teal); color:white; }
   .comp-dot { width:6px; height:6px; border-radius:50%; background:var(--teal); flex-shrink:0; opacity:0; }
+  .brand-tab.competitor-only-tab { font-style:italic; border-left:1px solid var(--border); margin-left:6px; padding-left:1.2rem; }
+  .brand-tab.competitor-only-tab .tab-count { background:var(--sand); color:var(--muted); border:1px solid var(--border); }
   .brand-tab.has-comp .comp-dot { opacity:1; }
   .scroll-btn-l, .scroll-btn-r { position:absolute; top:0; bottom:0; width:36px; display:flex; align-items:center; justify-content:center; z-index:4; cursor:pointer; border:none; background:none; color:var(--navy); font-size:1.1rem; opacity:0; pointer-events:none; transition:opacity 0.15s; }
   .scroll-btn-l { left:0; background:linear-gradient(to right, var(--white) 50%, transparent); padding-left:4px; }
@@ -100,6 +111,22 @@
   .empty { text-align:center; padding:3rem; color:var(--muted); font-size:0.85rem; }
 
   #range-view { display:none; }
+  #trends-view { display:none; }
+  .trend-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0.8rem; padding:1rem; background:var(--white); border:1px solid var(--border); border-top:none; }
+  .trend-card { border:1px solid var(--border); border-radius:3px; padding:0.8rem 1rem; }
+  .trend-card .tc-site { font-size:0.78rem; font-weight:600; color:var(--navy); margin-bottom:0.3rem; }
+  .trend-card .tc-prices { font-size:0.85rem; color:var(--muted); margin-bottom:0.2rem; }
+  .trend-card .tc-prices strong { color:var(--navy); }
+  .trend-card .tc-pct { font-size:1rem; font-weight:700; }
+  .trend-card .tc-pct.up { color:var(--red); }
+  .trend-card .tc-pct.down { color:var(--green); }
+  .trend-card .tc-pct.flat { color:var(--muted); }
+  .trend-section-title { font-family:var(--serif); font-size:1rem; color:var(--navy); padding:1rem 1rem 0.5rem; background:var(--white); border-left:1px solid var(--border); border-right:1px solid var(--border); }
+  .movers-table { width:100%; border-collapse:collapse; background:var(--white); border:1px solid var(--border); border-top:none; font-size:0.79rem; }
+  .movers-table th { text-align:left; padding:0.5rem 0.9rem; font-size:0.63rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); border-bottom:1px solid var(--border); }
+  .movers-table td { padding:0.5rem 0.9rem; border-bottom:1px solid var(--border); }
+  .movers-table .pct-up { color:var(--red); font-weight:600; }
+  .movers-table .pct-down { color:var(--green); font-weight:600; }
   .range-group { background:var(--white); border:1px solid var(--border); border-top:none; overflow:hidden; }
   .range-header { padding:0.75rem 1rem; display:flex; align-items:center; gap:1rem; cursor:pointer; user-select:none; border-bottom:1px solid var(--border); background:var(--sand); transition:background 0.1s; }
   .range-header:hover { background:var(--teal-l); }
@@ -352,7 +379,9 @@
 <div id="meta-bar">
   <span id="meta-scraped">No data loaded</span>
   <span id="meta-counts"></span>
+  <span id="coverage-toggle" onclick="toggleCoverage()">Data coverage by retailer ▾</span>
 </div>
+<div id="coverage-panel"></div>
 
 <div id="load-panel">
   <img class="load-logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTYwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMjE1NF8yNzkzKSI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMV8yMTU0XzI3OTMpIj4KPHBhdGggZD0iTTEwLjQxNzQgOS41MTkxNlY5LjQ1MjkxQzExLjE1MzEgOS4wMzI2NiAxMS43NTkyIDguNDE4MzEgMTIuMTY5NSA3LjY3Njk2QzEyLjU3OTggNi45MzU2MSAxMi43Nzg0IDYuMDk1NzYgMTIuNzQzNyA1LjI0OTE2QzEyLjc0MzcgMi41OTE0NSAxMC44ODg1IDAuMDk1NzAzMSA2Ljc4NzgzIDAuMDk1NzAzMUgxLjE4NTNWMjAuNDU5Mkg3LjMxMDU2QzExLjcyNzggMjAuNDU5MiAxNC4wMjQ4IDE3LjU4OCAxNC4wMjQ4IDE0LjQzN0MxNC4wNzY3IDEzLjMyODMgMTMuNzQ2OSAxMi4yMzUzIDEzLjA5MDUgMTEuMzQwNEMxMi40MzQgMTAuNDQ1NCAxMS40OTA1IDkuODAyNTkgMTAuNDE3NCA5LjUxOTE2Wk00LjY2NzU1IDMuMTUwOTdINi4yOTQ1OUM4LjM4NTQyIDMuMTUwOTcgOS4yOTA5MyA0LjM1ODM1IDkuMjkwOTMgNS44Njc1OEM5LjI5MDkzIDcuMzc2OCA4LjI2NzYxIDguNTkxNTUgNi4zNDYxIDguNTkxNTVINC42ODk2NEw0LjY2NzU1IDMuMTUwOTdaTTYuODc2MTcgMTcuMzk2Nkg0LjY2NzU1VjExLjY0NjhINy4yODExQzkuMjMyMDUgMTEuNjQ2OCAxMC40NzYyIDEyLjY5OTYgMTAuNDc2MiAxNC40Mjk3QzEwLjQ5ODMgMTYuNDk4NCA5LjIzMjA0IDE3LjM5NjYgNi45MDU2MyAxNy4zOTY2SDYuODc2MTdaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0yMC4zMTE5IDE1LjM1NzNIMjcuMTM2NkwyOC45OTkyIDIwLjQ1MThIMzIuNjgwMkwyNS4wMDg5IDBIMjIuMzM2NUwxNC45MTU1IDIwLjQ1MThIMTguNDkzNUwyMC4zMTE5IDE1LjM1NzNaTTIyLjcyNjcgOC4zMTE3OEMyMy4yNDk0IDYuNzM2MjkgMjMuNTM2NSA1LjgzODEzIDIzLjcxMzIgNS4xMzEzN0gyMy43NUMyMy45MjY3IDUuODA4NjggMjQuMTg0NCA2LjczNjMgMjQuNzA3MSA4LjI4MjM0TDI2LjA0NyAxMi4zMjQxSDIxLjMwNThMMjIuNzI2NyA4LjMxMTc4WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNDUuNzQwNiAxNC41MThDNDQuNzI0NyAxMi42NzAxIDQzLjk0NDMgMTEuNTczMiA0My4zNjI3IDExLjIxMjRWMTEuMTUzNUM0NC40ODE2IDEwLjgxNjYgNDUuNDU2OCAxMC4xMTc1IDQ2LjEzNTEgOS4xNjZDNDYuODEzNCA4LjIxNDUxIDQ3LjE1NjMgNy4wNjQ2MSA0Ny4xMSA1Ljg5NzAyQzQ3LjE3MjIgNC44ODA5NyA0Ni45MzU2IDMuODY4OTUgNDYuNDI5MiAyLjk4NTg1QzQ1LjkyMjkgMi4xMDI3NSA0NS4xNjkxIDEuMzg3MjQgNDQuMjYwOCAwLjkyNzYxNUM0Mi45ODU5IDAuMzE2NDI0IDQxLjU4MDEgMC4wMjgyMDAxIDQwLjE2NzUgMC4wODgzMzg3SDM0LjkzMzFWMjAuNDUxOEgzOC40MjI3VjEyLjUxNTVINDAuMDc5MkM0MC41NDMgMTIuNjMzMyA0MS4yNDI0IDEzLjQ3MjYgNDIuMTcgMTUuMjkxTDQ0LjkzMDggMjAuNDQ0NUg0OC45MzU4TDQ1Ljc0MDYgMTQuNTE4Wk00Mi4xMTExIDguOTU5NjRDNDEuNDY2OSA5LjMyODAxIDQwLjczMjUgOS41MDkwNSAzOS45OTA4IDkuNDgyMzRIMzguNDIyN1YzLjExNDE1SDQwLjAyMDNDNDAuNzgxNCAzLjA2NTgyIDQxLjUzNzEgMy4yNzAyOCA0Mi4xNyAzLjY5NTc1QzQyLjU4MzcgMy45Nzk5OSA0Mi45MTc4IDQuMzY1MjUgNDMuMTQwNyA0LjgxNDk0QzQzLjM2MzYgNS4yNjQ2MiA0My40Njc5IDUuNzYzODEgNDMuNDQzNyA2LjI2NTEyQzQzLjQ3OTMgNi43OTE5MiA0My4zNzQ4IDcuMzE4NzkgNDMuMTQwOCA3Ljc5MjA4QzQyLjkwNjcgOC4yNjUzOCA0Mi41NTE0IDguNjY4MjMgNDIuMTExMSA4Ljk1OTY0WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNjUuNTgxNCAwLjA5NTcwMzFINjEuNTE3NUw1NC45OCA4Ljc3NTU5SDU0Ljg5MTdWMC4wOTU3MDMxSDUxLjQwOTRWMjAuNDU5Mkg1NC44OTE3VjExLjUyOUg1NC45OEw2MS43NDU4IDIwLjQ1OTJINjYuMDE1OEw1Ny44ODggOS45ODI5N0w2NS41ODE0IDAuMDk1NzAzMVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTcxLjg0NjYgMTEuNTg3OUg3Ny45NzE4VjguNTYyMDlINzEuODQ2NlYzLjEyMTUySDc4LjAwMTNMNzguOTM2MiAwLjA5NTcwMzFINjguMzU2OVYyMC40NTkySDc4Ljk1ODNWMTcuNDI2SDcxLjg0NjZWMTEuNTg3OVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTkwLjg1NTMgMTEuMjEyNFYxMS4xNTM1QzkxLjk3NTYgMTAuODE4OSA5Mi45NTIzIDEwLjEyMDMgOTMuNjMxIDkuMTY4MjlDOTQuMzA5NiA4LjIxNjI3IDk0LjY1MTUgNy4wNjUxNiA5NC42MDI2IDUuODk3MDJDOTQuNjY2NSA0Ljg4MTYxIDk0LjQzMTMgMy44Njk3NiA5My45MjYzIDIuOTg2NTZDOTMuNDIxMiAyLjEwMzM2IDkyLjY2ODQgMS4zODc1NSA5MS43NjA5IDAuOTI3NjE3QzkwLjQ4MzMgMC4zMTYzOTEgODkuMDc1MiAwLjAyODE5NjYgODcuNjYwMiAwLjA4ODM0MDZIODIuNDMzMVYyMC40NTE4SDg1LjkxNTRWMTIuNTE1NUg4Ny41NzE4Qzg4LjA0MyAxMi42MzMzIDg4LjczNSAxMy40NzI2IDg5LjY2MjcgMTUuMjkxTDkyLjQyMzQgMjAuNDQ0NUg5Ni40MzU4TDkzLjI0MDcgMTQuNTEwNkM5Mi4yMTczIDEyLjY4NDggOTEuNDM2OSAxMS41NTg1IDkwLjg1NTMgMTEuMjEyNFpNODkuNjExMSA4Ljk1OTY0Qzg4Ljk2NjkgOS4zMjgwMSA4OC4yMzI1IDkuNTA5MDUgODcuNDkwOCA5LjQ4MjM0SDg1LjkxNTRWMy4xMTQxNUg4Ny41MTI5Qzg4LjI3NDEgMy4wNjQ3MSA4OS4wMzAyIDMuMjY5MjYgODkuNjYyNyAzLjY5NTc1QzkwLjA3NzcgMy45NzkxNCA5MC40MTMzIDQuMzY0MDIgOTAuNjM3NSA0LjgxMzc2QzkwLjg2MTcgNS4yNjM1IDkwLjk2NzEgNS43NjMxMyA5MC45NDM3IDYuMjY1MTJDOTAuOTc5MyA2Ljc5MTkzIDkwLjg3NDggNy4zMTg3OSA5MC42NDA4IDcuNzkyMDlDOTAuNDA2NyA4LjI2NTM5IDkwLjA1MTQgOC42NjgyMyA4OS42MTExIDguOTU5NjRaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMTMuMTkyIDAuMDI5NDQ5NUgxMTEuNDAzTDEwNC4yNCAyMC40NTE5SDEwNi44ODNMMTA4LjY3OSAxNS4xMDdIMTE1LjkyM0wxMTcuNzcxIDIwLjQ1MTlIMTIwLjQ3M0wxMTMuMTkyIDAuMDI5NDQ5NVpNMTA5LjQ0NCAxMi44NTQyTDExMS4yMDQgNy41NjgyMkMxMTEuNzcxIDUuODM4MTMgMTEyLjA4NyA0Ljg4MTA2IDExMi4yODYgNC4xMzc0OUgxMTIuMzQ1QzExMi41NjYgNC44NzM3IDExMi44NTMgNS44MDg2OCAxMTMuMzk4IDcuNTM4NzZMMTE1LjE1NyAxMi44NTQySDEwOS40NDRaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMjYuMjIzIDcuNzIyODJDMTI2LjIyMyA2LjI1MDQgMTI2LjIyMyA1LjI3ODYxIDEyNi4xNDIgNC4zMjE1NEgxMjYuMTkzQzEyNi44NDkgNS4zNDQ4NyAxMjcuNjE0IDYuNTMwMTYgMTI4LjY2NyA4LjAwMjU4TDEzNy40NTcgMjAuNDUxOUgxMzkuNjY2VjAuMDg4MzQ4NEgxMzcuMTI2VjEyLjMyNDFDMTM3LjEyNiAxMy43OTY1IDEzNy4xMjYgMTQuNzY4MyAxMzcuMTg1IDE1Ljg4SDEzNy4xMjZDMTM2LjUgMTQuODY0IDEzNS43MDUgMTMuNjI3MiAxMzQuNTkzIDEyLjA4MTJMMTI2LjEyNyAwLjA4ODM0ODRIMTIzLjY3NlYyMC40NTE5SDEyNi4yMDhMMTI2LjIyMyA3LjcyMjgyWiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNMTU5Ljg2NyAxMC4xNjdDMTU5Ljg2NyA0LjI3NzM3IDE1Ni41MSAwLjA4ODM0ODQgMTQ5LjgzMyAwLjA4ODM0ODRIMTQ0LjkxNVYyMC40NTE5SDE0OS42NDJDMTU2LjM3IDIwLjQ1MTkgMTU5Ljg2NyAxNi4xMDA5IDE1OS44NjcgMTAuMTY3Wk0xNDkuNjkzIDE4LjE5OTFIMTQ3LjQzM1YyLjM3Nzk1SDE0OS42NDJDMTU0Ljc5NSAyLjM3Nzk1IDE1Ny4yMDIgNS42MTcyNyAxNTcuMjAyIDEwLjEzMDJDMTU3LjE5NSAxNC40NTkxIDE1NS4yMzcgMTguMTk5MSAxNDkuNjkzIDE4LjE5OTFaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0zLjk5NzU4IDMyLjc1MzlDMy45OTc1OCAzMS4yODE1IDUuMTc1NTEgMzAuNzM2NyA2LjQxMjM0IDMwLjczNjdDNy44OTM4NiAzMC43NzQ3IDkuMzQyIDMxLjE4NDkgMTAuNjIzNCAzMS45MjkzVjI4LjgwMDVDOS4yNzUyMiAyOC4xNTcgNy43OTU1IDI3LjgzNjkgNi4zMDE4OSAyNy44NjU1QzIuNjIwODUgMjcuODY1NSAwLjU1OTQ4IDMwLjI4MDIgMC41NTk0OCAzMy4wMTg5QzAuNTU5NDggMzguNzMxOSA4LjIwODY5IDM4LjI3NTQgOC4yMDg2OSA0MS45NDE4QzguMjA4NjkgNDMuNTYxNCA2LjczNjI3IDQ0LjE1MDQgNS4yNjM4NiA0NC4xNTA0QzMuODE3NTggNDQuMTQyNSAyLjQxMzYgNDMuNjYxNiAxLjI2NjIzIDQyLjc4MUwwLjAwNzMyNDIyIDQ1LjM5NDZDMS41NzM1MSA0Ni40NzkgMy40NDAxMiA0Ny4wNDU0IDUuMzQ0ODMgNDcuMDE0MkM4Ljk2Njk3IDQ3LjAxNDIgMTEuNjQ2OCA0NC45Njc2IDExLjY0NjggNDEuNjQ3M0MxMS42Mzk0IDM1LjczNTUgMy45OTc1OCAzNi4xODQ2IDMuOTk3NTggMzIuNzUzOVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTEyLjY0MDYgMjguMDM0OFYzMC44MjVIMTcuNzg2N1Y0Ni43NTY1SDIxLjAxMTNWMzAuODI1SDI1Ljc1OThMMjYuNTkxOCAyOC4wMzQ4SDEyLjY0MDZaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0zNS40NDExIDI3Ljg2NTRDMzAuMjE0IDI3Ljg2NTQgMjYuNTMzIDMxLjc4MjEgMjYuNTMzIDM3LjQzNjFDMjYuNTMzIDQzLjA5MDIgMzAuMjE0IDQ3LjAwNjggMzUuNDQxMSA0Ny4wMDY4QzQwLjY2ODIgNDcuMDA2OCA0NC4zNDkyIDQzLjE3MTIgNDQuMzQ5MiAzNy40MzYxQzQ0LjM0OTIgMzEuNzAxMSA0MC42ODI5IDI3Ljg2NTQgMzUuNDQxMSAyNy44NjU0Wk0zNS40NDExIDQ0LjE3MjVDMzIuMTcyMyA0NC4xNzI1IDI5Ljk3MTEgNDEuNjk4OCAyOS45NzExIDM3LjQ2NTZDMjkuOTcxMSAzMy4yMzI0IDMyLjE3OTcgMzAuNzM2NyAzNS40NDExIDMwLjczNjdDMzguNzAyNSAzMC43MzY3IDQwLjkxMTEgMzMuMzIwOCA0MC45MTExIDM3LjQ2NTZDNDAuOTExMSA0MS42MTA1IDM4LjY4NzggNDQuMTcyNSAzNS40NDExIDQ0LjE3MjVaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik02MC4wMjI5IDM4LjAwM0M2MC4wMjI5IDM5LjAyNjQgNjAuMDIyOSA0MC4xNjc1IDYwLjA3NDQgNDEuMTU0SDYwLjAyMjlDNTkuNDg1NSA0MC4zMDc0IDU4Ljg0NSAzOS4zNjUgNTguMDM1MSAzOC4yNjA3TDUwLjUwMzcgMjguMDM0OEg0Ny4zMDg2VjQ2Ljc1NjVINTAuNTI1OFYzNi4xMzMxQzUwLjUyNTggMzUuMDgwMyA1MC41MjU4IDMzLjk5ODEgNTAuNDc0MyAzMy4yMzI0SDUwLjUyNThDNTEuMTE0OCAzNC4xMTU5IDUxLjczMzIgMzUuMDUwOCA1Mi41MTM2IDM2LjEwMzZMNjAuMzE3NCA0Ni43NTY1SDYzLjI2MjJWMjguMDM0OEg2MC4wMTU1TDYwLjAyMjkgMzguMDAzWiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNNzAuMzUyIDM4LjYwNjdINzYuMDEzNFYzNS44MjM5SDcwLjM1MlYzMC44MjVINzYuMDQyOUw3Ni44OTY5IDI4LjAzNDhINjcuMTM0OFY0Ni43NTY1SDc2LjkyNjNWNDMuOTczN0g3MC4zNTJWMzguNjA2N1oiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTkxLjcyNCAzNS43NjVIODMuMTM5OFYyOC4wMzQ4SDc5LjkyMjZWNDYuNzU2NUg4My4xMzk4VjM4LjY1ODNIOTEuNzI0VjQ2Ljc1NjVIOTQuOTcwN1YyOC4wMzQ4SDkxLjcyNFYzNS43NjVaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMDYuODc1IDI3Ljg2NTRDMTAxLjY0OCAyNy44NjU0IDk3Ljk3NDYgMzEuNzgyMSA5Ny45NzQ2IDM3LjQzNjFDOTcuOTc0NiA0My4wOTAyIDEwMS42NTYgNDcuMDA2OCAxMDYuODc1IDQ3LjAwNjhDMTEyLjA5NSA0Ny4wMDY4IDExNS43ODMgNDMuMTcxMiAxMTUuNzgzIDM3LjQzNjFDMTE1Ljc4MyAzMS43MDExIDExMi4wOTUgMjcuODY1NCAxMDYuODc1IDI3Ljg2NTRaTTEwNi44NzUgNDQuMTcyNUMxMDMuNjA3IDQ0LjE3MjUgMTAxLjQwNSA0MS42OTg4IDEwMS40MDUgMzcuNDY1NkMxMDEuNDA1IDMzLjIzMjQgMTAzLjYxNCAzMC43MzY3IDEwNi44NzUgMzAuNzM2N0MxMTAuMTM3IDMwLjczNjcgMTEyLjM1MyAzMy4zMjA4IDExMi4zNTMgMzcuNDY1NkMxMTIuMzUzIDQxLjYxMDUgMTEwLjEyMiA0NC4xNzI1IDEwNi44NzUgNDQuMTcyNVoiIGZpbGw9IiMxQTJBNDkiLz4KPHBhdGggZD0iTTEyOS45OTIgMzkuNTEyM0MxMzAuMDIxIDQwLjM4OTIgMTI5Ljg1NSA0MS4yNjE3IDEyOS41MDYgNDIuMDY2OUMxMjkuMTg4IDQyLjc0NDUgMTI4LjY3MSA0My4zMDkxIDEyOC4wMjQgNDMuNjg1M0MxMjcuMzc3IDQ0LjA2MTUgMTI2LjYzIDQ0LjIzMTQgMTI1Ljg4NCA0NC4xNzI0QzEyNS4xMzggNDQuMjMxNCAxMjQuMzkyIDQ0LjA2MTUgMTIzLjc0NCA0My42ODUzQzEyMy4wOTcgNDMuMzA5MSAxMjIuNTggNDIuNzQ0NSAxMjIuMjYyIDQyLjA2NjlDMTIxLjkyMiA0MS4yNjk1IDEyMS43NTkgNDAuNDA4MSAxMjEuNzg0IDM5LjU0MTdWMjguMDM0OEgxMTguNTY2VjM5Ljc2OTlDMTE4LjUyNSA0MS4wMTQgMTE4Ljc1MyA0Mi4yNTIyIDExOS4yMzYgNDMuMzk5NEMxMjAuMzA0IDQ1Ljg0MzYgMTIyLjYxNSA0Ny4wMzYzIDEyNS44NjIgNDcuMDM2M0MxMjkuMTA5IDQ3LjAzNjMgMTMxLjQyMSA0NS44NDM2IDEzMi40ODggNDMuNDI4OUMxMzIuOTc3IDQyLjI2NTMgMTMzLjIwNSA0MS4wMDkgMTMzLjE1OCAzOS43NDc4VjI4LjAxMjdIMTI5Ljk0MUwxMjkuOTkyIDM5LjUxMjNaIiBmaWxsPSIjMUEyQTQ5Ii8+CjxwYXRoIGQ9Ik0xMzkuNjM2IDMyLjc1MzlDMTM5LjYzNiAzMS4yODE0IDE0MC44MTQgMzAuNzM2NyAxNDIuMDUxIDMwLjczNjdDMTQzLjUzMyAzMC43NzIyIDE0NC45ODIgMzEuMTgyNSAxNDYuMjYyIDMxLjkyOTNWMjguODAwNEMxNDQuOTE3IDI4LjE1NjkgMTQzLjQzOSAyNy44MzY3IDE0MS45NDggMjcuODY1NEMxMzguMjY3IDI3Ljg2NTQgMTM2LjIwNiAzMC4yODAyIDEzNi4yMDYgMzMuMDE4OUMxMzYuMjA2IDM4LjczMTkgMTQzLjg0OCAzOC4yNzU0IDE0My44NDggNDEuOTQxN0MxNDMuODQ4IDQzLjU2MTQgMTQyLjM3NSA0NC4xNTA0IDE0MC45MDMgNDQuMTUwNEMxMzkuNDU5IDQ0LjE0MDggMTM4LjA1OCA0My42NiAxMzYuOTEyIDQyLjc4MUwxMzUuNjU0IDQ1LjQxNjZDMTM3LjIyIDQ2LjUwMDIgMTM5LjA4NiA0Ny4wNjY1IDE0MC45OTEgNDcuMDM2M0MxNDQuNjEzIDQ3LjAzNjMgMTQ3LjMgNDQuOTg5NiAxNDcuMyA0MS42NjkzQzE0Ny4yODYgMzUuNzM1NSAxMzkuNjM2IDM2LjE4NDYgMTM5LjYzNiAzMi43NTM5WiIgZmlsbD0iIzFBMkE0OSIvPgo8cGF0aCBkPSJNMTUzLjQyNiA0My45NzM3VjM4LjYwNjdIMTU5LjA4N1YzNS44MjM5SDE1My40MjZWMzAuODI1SDE1OS4xMDlMMTU5Ljk3MSAyOC4wMzQ4SDE1MC4yMDhWNDYuNzU2NUgxNjBWNDMuOTczN0gxNTMuNDI2WiIgZmlsbD0iIzFBMkE0OSIvPgo8L2c+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDBfMjE1NF8yNzkzIj4KPHJlY3Qgd2lkdGg9IjE2MCIgaGVpZ2h0PSI0Ny4wMzYzIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzIxNTRfMjc5MyI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iNDcuMDM2MyIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K" alt="">
@@ -381,6 +410,7 @@
     <div class="view-tabs">
       <div class="view-tab active" data-view="products">Products</div>
       <div class="view-tab" data-view="ranges">By range</div>
+      <div class="view-tab" data-view="trends">Trends</div>
     </div>
 
     <div id="products-view">
@@ -429,6 +459,16 @@
         <span class="ctrl-count" id="range-count"></span>
       </div>
       <div id="range-groups"></div>
+    </div>
+
+    <div id="trends-view">
+      <div class="controls" id="trends-controls" style="display:none">
+        <span style="font-size:0.73rem;color:var(--muted)">Comparing</span>
+        <select id="trend-from"></select>
+        <span style="font-size:0.73rem;color:var(--muted)">to</span>
+        <select id="trend-to"></select>
+      </div>
+      <div id="trends-body"></div>
     </div>
   </div>
 </div>
@@ -500,6 +540,8 @@
 <script>
 let allProducts = [], activeBrand = 'all', currentView = 'products';
 let siteColors = {};
+let competitorOnlyBrands = new Set(); // brands B&S doesn't stock - grouped under one tab
+let historyData = null; // trend history digest, loaded independently of products.json
 let chatHistory = [];
 let isStreaming = false;
 
@@ -515,6 +557,13 @@ fetch('products.json')
   .then(loadData)
   .catch(() => document.getElementById('load-panel').style.display = 'block');
 
+// Trend history is optional - a fresh deploy or a manually-loaded file won't
+// have one yet, so this fails silently rather than blocking the main load.
+fetch('history/history.json')
+  .then(r => { if(!r.ok) throw new Error(); return r.json(); })
+  .then(h => { historyData = h; if (currentView === 'trends') renderTrends(); })
+  .catch(() => { historyData = null; });
+
 document.getElementById('file-input').addEventListener('change', e => {
   const file = e.target.files[0]; if(!file) return;
   const r = new FileReader();
@@ -525,12 +574,13 @@ document.getElementById('file-input').addEventListener('change', e => {
 function loadData(data) {
   allProducts = (data.products || []).map(p => ({
     ...p,
-    price:         p.price ?? null,
-    was_price:     p.was_price ?? null,
-    delivery_cost: p.delivery_cost ?? null,
-    total:         (p.price ?? 0) + (p.delivery_cost ?? 0),
-    brand:         p.brand || 'Unknown',
-    availability:  p.availability || 'in stock',
+    price:            p.price ?? null,
+    was_price:        p.was_price ?? null,
+    delivery_cost:    p.delivery_cost ?? null,
+    delivery_unknown: p.delivery_cost === null || p.delivery_cost === undefined,
+    total:            (p.price ?? 0) + (p.delivery_cost ?? 0),
+    brand:            p.brand || 'Unknown',
+    availability:     p.availability || 'in stock',
   }));
   const siteIds = [...new Set(allProducts.map(p => p.site_id))];
   siteIds.sort((a,b) => (allProducts.find(p=>p.site_id===a)?.is_us?-1:1) - (allProducts.find(p=>p.site_id===b)?.is_us?-1:1));
@@ -558,10 +608,19 @@ function buildBrandTabs(brands) {
   allTab.innerHTML = `<span class="all-label">All brands</span><span class="all-count">${totalUs}</span>`;
   allTab.addEventListener('click', () => switchBrand('all'));
   wrap.appendChild(allTab);
+  competitorOnlyBrands = new Set();
+  let competitorOnlyCount = 0;
   brands.forEach(brand => {
     const ourCount  = allProducts.filter(p => p.brand === brand && p.is_us).length;
     const compCount = allProducts.filter(p => p.brand === brand && !p.is_us).length;
     if (ourCount === 0 && compCount === 0) return;
+    // Brands B&S doesn't stock at all get grouped into one tab rather than
+    // cluttering the nav with a separate zero-count tab per brand.
+    if (ourCount === 0) {
+      competitorOnlyBrands.add(brand);
+      competitorOnlyCount += compCount;
+      return;
+    }
     const tab = document.createElement('div');
     tab.className = 'brand-tab' + (compCount > 0 ? ' has-comp' : '');
     tab.dataset.brand = brand;
@@ -569,6 +628,15 @@ function buildBrandTabs(brands) {
     tab.addEventListener('click', () => switchBrand(brand));
     wrap.appendChild(tab);
   });
+  if (competitorOnlyBrands.size > 0) {
+    const tab = document.createElement('div');
+    tab.className = 'brand-tab has-comp competitor-only-tab';
+    tab.dataset.brand = '__competitor_only__';
+    tab.title = [...competitorOnlyBrands].sort().join(', ');
+    tab.innerHTML = `<span class="comp-dot"></span><span class="tab-name">Competitor-only brands</span><span class="tab-count">${competitorOnlyCount}</span>`;
+    tab.addEventListener('click', () => switchBrand('__competitor_only__'));
+    wrap.appendChild(tab);
+  }
   wrap.addEventListener('scroll', updateScrollBtns);
   setTimeout(updateScrollBtns, 100);
 }
@@ -596,19 +664,25 @@ document.querySelectorAll('.view-tab').forEach(tab => tab.addEventListener('clic
   currentView = tab.dataset.view;
   document.getElementById('products-view').style.display = currentView === 'products' ? 'block' : 'none';
   document.getElementById('range-view').style.display    = currentView === 'ranges'   ? 'block' : 'none';
+  document.getElementById('trends-view').style.display   = currentView === 'trends'   ? 'block' : 'none';
+  if (currentView === 'trends') renderTrends();
 }));
 function brandProducts() {
   if (activeBrand === 'all') return allProducts;
+  if (activeBrand === '__competitor_only__') return allProducts.filter(p => competitorOnlyBrands.has(p.brand));
   return allProducts.filter(p => p.brand === activeBrand);
 }
 function updateSiteFilter() {
   const bp = brandProducts();
-  const siteIds = [...new Set(bp.map(p => p.site_id))];
+  // Filter by retailer display name, not site_id - a retailer can have many
+  // site_ids (one per brand scraped, e.g. taskers_stress/taskers_tetrad/...)
+  // and the dropdown should show each retailer once, not once per brand.
+  const siteNames = [...new Set(bp.map(p => p.site))].sort();
   ['site-filter','range-site-filter'].forEach(id => {
     const sel = document.getElementById(id); const cur = sel.value;
     sel.innerHTML = '<option value="all">All retailers</option>';
-    siteIds.forEach(s => { const name = allProducts.find(p=>p.site_id===s)?.site||s; sel.innerHTML += `<option value="${esc(s)}">${esc(name)}</option>`; });
-    sel.value = siteIds.includes(cur) ? cur : 'all';
+    siteNames.forEach(s => { sel.innerHTML += `<option value="${esc(s)}">${esc(s)}</option>`; });
+    sel.value = siteNames.includes(cur) ? cur : 'all';
   });
 }
 function updateRangeFilter() {
@@ -625,11 +699,16 @@ const FW = new Set(['bed','chair','table','sofa','sideboard','wardrobe','chest',
 
 function computeVsUs() {
   const ourByName = {};
-  allProducts.filter(p => p.is_us && p.price !== null).forEach(p => { ourByName[norm(p.name)] = p.price; });
+  const ourByCoreWords = {}; // built once - avoids recomputing coreWords() per fallback comparison
+  allProducts.filter(p => p.is_us && p.price !== null).forEach(p => {
+    ourByName[norm(p.name)] = p.price;
+    const key = coreWords(p.name);
+    if (!(key in ourByCoreWords)) ourByCoreWords[key] = p.price; // first match wins, same as the old scan order
+  });
   allProducts.forEach(p => {
     if (p.is_us || p.price === null) { p.vs_us = null; p.vs_us_pct = null; return; }
     let us = ourByName[norm(p.name)] ?? null;
-    if (us === null) { const key = coreWords(p.name); for (const [k,v] of Object.entries(ourByName)) { if (coreWords(k) === key) { us = v; break; } } }
+    if (us === null) { us = ourByCoreWords[coreWords(p.name)] ?? null; }
     if (us !== null) { p.vs_us = p.price - us; p.vs_us_pct = us > 0 ? (p.vs_us/us*100) : null; }
     else { p.vs_us = null; p.vs_us_pct = null; }
   });
@@ -647,13 +726,54 @@ function updateStats() {
   document.getElementById('s-comp').textContent    = allProducts.filter(p=>!p.is_us).length;
 }
 
+// ── Data coverage (how much of each retailer's data we can actually trust) ──
+
+function covColor(pct) { return pct>=90?'var(--green)':pct>=40?'var(--amber)':'var(--red)'; }
+
+function computeCoverage() {
+  const sites = [...new Set(allProducts.map(p=>p.site))];
+  const pct = (rows, field) => rows.length ? Math.round(100*rows.filter(p=>p[field]!==null && p[field]!==undefined).length/rows.length) : 0;
+  return sites.map(site => {
+    const rows = allProducts.filter(p=>p.site===site);
+    const isUs = rows[0]?.is_us || false;
+    return {
+      site, isUs, count: rows.length,
+      price: pct(rows,'price'), delivery: pct(rows,'delivery_cost'), leadTime: pct(rows,'lead_time'),
+    };
+  }).sort((a,b) => (b.isUs?1:0) - (a.isUs?1:0) || b.count - a.count);
+}
+
+function renderCoveragePanel() {
+  const rows = computeCoverage();
+  const panel = document.getElementById('coverage-panel');
+  panel.innerHTML = `<table>
+    <thead><tr><th>Retailer</th><th>Products</th><th>Price</th><th>Delivery cost</th><th>Lead time</th></tr></thead>
+    <tbody>${rows.map(d => `<tr>
+      <td>${d.isUs?'★ ':''}${esc(d.site)}</td>
+      <td>${d.count}</td>
+      <td style="color:${covColor(d.price)}">${d.price}%</td>
+      <td style="color:${covColor(d.delivery)}">${d.delivery}%</td>
+      <td style="color:${covColor(d.leadTime)}">${d.leadTime}%</td>
+    </tr>`).join('')}</tbody>
+  </table>
+  <div class="cov-note">Delivery cost / lead time gaps mean the Total column and AI undercut analysis can't fully verify those retailers - price comparisons are still reliable, total-cost ones less so.</div>`;
+}
+
+function toggleCoverage() {
+  const panel = document.getElementById('coverage-panel');
+  const opening = panel.style.display !== 'block';
+  if (opening) renderCoveragePanel();
+  panel.style.display = opening ? 'block' : 'none';
+  document.getElementById('coverage-toggle').textContent = opening ? 'Data coverage by retailer ▴' : 'Data coverage by retailer ▾';
+}
+
 function render() {
   const query=document.getElementById('search').value.toLowerCase(), sort=document.getElementById('sort').value;
   const siteFil=document.getElementById('site-filter').value, rangeFil=document.getElementById('range-filter').value;
   const availFil=document.getElementById('avail-filter').value;
   let rows = brandProducts().filter(p => {
     if (query && !p.name.toLowerCase().includes(query) && !(p.range||'').toLowerCase().includes(query)) return false;
-    if (siteFil !== 'all' && p.site_id !== siteFil) return false;
+    if (siteFil !== 'all' && p.site !== siteFil) return false;
     if (rangeFil !== 'all' && p.range !== rangeFil) return false;
     if (availFil === 'instock' && p.availability !== 'in stock') return false;
     if (availFil === 'oos' && p.availability === 'in stock') return false;
@@ -682,7 +802,7 @@ function render() {
     const delHtml = p.delivery_cost === 0 ? '<span class="free-badge">Free</span>' : p.delivery_cost !== null ? fmt(p.delivery_cost) : '—';
     const lt = p.lead_time ? p.lead_time.replace('working days','w/days').replace('working day','w/day').replace(' weeks','wks').replace(' week','wk').replace('Made to order normally delivered in ','').replace('delivery available from ','').replace('Delivery to room of choice','').trim() : null;
     const leadTimeHtml = lt ? `<span style="font-size:0.72rem;color:var(--navy);font-weight:500;white-space:nowrap">${esc(lt)}</span>` : '<span style="color:var(--muted)">—</span>';
-    const totalHtml = p.price !== null ? `<span class="total-pill">${fmt(p.total)}</span>` : '—';
+    const totalHtml = p.price !== null ? `<span class="total-pill" title="${p.delivery_unknown ? 'Delivery cost not available for this retailer - price only, not a confirmed total' : 'Includes delivery'}">${fmt(p.total)}${p.delivery_unknown ? '&nbsp;<span style="opacity:0.6">(excl. delivery)</span>' : ''}</span>` : '—';
     let vsHtml = '<span style="color:var(--muted)">—</span>';
     if (p.vs_us !== null) { const sign=p.vs_us>0?'+':''; const cls=p.vs_us>0?'pricier':p.vs_us<0?'cheaper':'same'; const pct=p.vs_us_pct!==null?` (${sign}${p.vs_us_pct.toFixed(1)}%)`:''; vsHtml=`<span class="${cls}">${sign}${fmt(p.vs_us)}${pct}</span>`; }
     const rowCls = [p.is_us?'us-row':'', isOos?'oos-row':''].filter(Boolean).join(' ');
@@ -696,7 +816,7 @@ function renderRanges() {
   const crossOnly=document.getElementById('cross-only').checked;
   const byRange = {};
   brandProducts().forEach(p => {
-    if (siteFil !== 'all' && p.site_id !== siteFil) return;
+    if (siteFil !== 'all' && p.site !== siteFil) return;
     const r = p.range || 'Unknown';
     if (!byRange[r]) byRange[r] = [];
     byRange[r].push(p);
@@ -729,6 +849,96 @@ function renderRanges() {
     return `<div class="range-group"><div class="range-header" onclick="this.parentElement.classList.toggle('collapsed')"><span class="range-name">${esc(range)}</span><span class="range-meta">${meta}</span>${crossSite?'<span class="multi-badge">Multi-retailer</span>':''}<span class="range-chevron">▾</span></div><div class="range-body">${siteRows}</div></div>`;
   }).join('');
   if (!ranges.length) container.innerHTML = '<div class="empty">No ranges found.</div>';
+}
+
+// ── Trends (period-over-period movement) ────────────────────────────────────
+
+function trendPct(from, to) {
+  if (from === null || from === undefined || to === null || to === undefined || from === 0) return null;
+  return (to - from) / from * 100;
+}
+
+function renderTrends() {
+  const controls = document.getElementById('trends-controls');
+  const body = document.getElementById('trends-body');
+
+  if (!historyData || !historyData.snapshots || historyData.snapshots.length < 2) {
+    controls.style.display = 'none';
+    const have = historyData?.snapshots?.length || 0;
+    body.innerHTML = `<div class="empty">${have === 0 ? 'No snapshot history yet.' : 'Only one snapshot so far.'}
+      Run <code>snapshot.py</code> again next time you update products.json - once there are two or more
+      dated snapshots, this view will show price movement between them automatically.</div>`;
+    return;
+  }
+
+  controls.style.display = 'flex';
+  const snaps = historyData.snapshots; // sorted ascending by date
+  const fromSel = document.getElementById('trend-from');
+  const toSel = document.getElementById('trend-to');
+
+  if (!fromSel.options.length) {
+    snaps.forEach((s, i) => {
+      fromSel.innerHTML += `<option value="${i}">${esc(s.date)}</option>`;
+      toSel.innerHTML   += `<option value="${i}">${esc(s.date)}</option>`;
+    });
+    fromSel.value = snaps.length - 2; // previous snapshot
+    toSel.value   = snaps.length - 1; // latest snapshot
+    fromSel.addEventListener('change', renderTrends);
+    toSel.addEventListener('change', renderTrends);
+  }
+
+  const fromSnap = snaps[+fromSel.value];
+  const toSnap = snaps[+toSel.value];
+  if (!fromSnap || !toSnap) return;
+
+  // Per-retailer average price movement
+  const sites = [...new Set([...Object.keys(fromSnap.by_site||{}), ...Object.keys(toSnap.by_site||{})])];
+  const siteDiffs = sites.map(site => {
+    const f = fromSnap.by_site?.[site], t = toSnap.by_site?.[site];
+    const pct = trendPct(f?.avg_price, t?.avg_price);
+    const isUs = allProducts.find(p=>p.site===site)?.is_us || false;
+    return {site, isUs, fromAvg: f?.avg_price ?? null, toAvg: t?.avg_price ?? null, pct, fromCount: f?.count||0, toCount: t?.count||0};
+  }).sort((a,b) => (b.isUs?1:0) - (a.isUs?1:0) || (a.pct===null?999:a.pct) - (b.pct===null?999:b.pct));
+
+  const cardsHtml = siteDiffs.map(d => {
+    const cls = d.pct===null?'flat':d.pct>0.5?'up':d.pct<-0.5?'down':'flat';
+    const arrow = cls==='up'?'▲':cls==='down'?'▼':'—';
+    const pctText = d.pct===null ? 'no comparable data' : `${arrow} ${Math.abs(d.pct).toFixed(1)}%`;
+    return `<div class="trend-card">
+      <div class="tc-site">${d.isUs?'★ ':''}${esc(d.site)}</div>
+      <div class="tc-prices">${fmt(d.fromAvg)} <strong>&rarr;</strong> <strong>${fmt(d.toAvg)}</strong></div>
+      <div class="tc-pct ${cls}">${pctText}</div>
+      <div style="font-size:0.65rem;color:var(--muted);margin-top:0.2rem">${d.fromCount} &rarr; ${d.toCount} products</div>
+    </div>`;
+  }).join('');
+
+  // Biggest movers by range (brand+range+site), where present in both snapshots
+  const rangeKeys = new Set([...Object.keys(fromSnap.by_range||{}), ...Object.keys(toSnap.by_range||{})]);
+  const movers = [];
+  rangeKeys.forEach(k => {
+    const f = fromSnap.by_range?.[k], t = toSnap.by_range?.[k];
+    if (!f || !t || f.avg_price===null || t.avg_price===null) return;
+    const pct = trendPct(f.avg_price, t.avg_price);
+    if (pct === null || Math.abs(pct) < 0.1) return;
+    const [brand, range, site] = k.split('||');
+    movers.push({brand, range, site, from: f.avg_price, to: t.avg_price, pct});
+  });
+  movers.sort((a,b) => Math.abs(b.pct) - Math.abs(a.pct));
+  const top = movers.slice(0, 12);
+
+  const moversHtml = top.length ? `
+    <div class="trend-section-title">Biggest movers (${esc(fromSnap.date)} &rarr; ${esc(toSnap.date)})</div>
+    <table class="movers-table"><thead><tr>
+      <th>Brand</th><th>Range</th><th>Retailer</th><th>Then</th><th>Now</th><th>Change</th>
+    </tr></thead><tbody>
+      ${top.map(m => `<tr>
+        <td>${esc(m.brand)}</td><td>${esc(m.range||'')}</td><td>${esc(m.site)}</td>
+        <td>${fmt(m.from)}</td><td>${fmt(m.to)}</td>
+        <td class="${m.pct>0?'pct-up':'pct-down'}">${m.pct>0?'+':''}${m.pct.toFixed(1)}%</td>
+      </tr>`).join('')}
+    </tbody></table>` : `<div class="trend-section-title">No comparable range-level price changes between these two snapshots.</div>`;
+
+  body.innerHTML = `<div class="trend-cards">${cardsHtml}</div>${moversHtml}`;
 }
 
 function fmt(n) {
@@ -791,7 +1001,8 @@ function analyseLocally() {
     const match=bs.find(p=>p.brand===c.brand&&p.name.toLowerCase()===c.name.toLowerCase())||bs.find(p=>p.brand===c.brand&&p.range&&c.range&&p.range.toLowerCase()===c.range.toLowerCase()&&Math.abs((p.price||0)-(c.price||0))/Math.max(p.price||1,1)<0.25);
     if (!match||match.price===null) return;
     const ourTotal=(match.price||0)+(match.delivery_cost||0), compTotal=(c.price||0)+(c.delivery_cost||0);
-    if (compTotal<ourTotal-0.5) undercut.push({product:match.name,brand:match.brand,range:match.range||'',our_total:ourTotal,comp_total:compTotal,comp_site:c.site,diff:ourTotal-compTotal,pct:((ourTotal-compTotal)/ourTotal*100)});
+    const compDeliveryKnown = c.delivery_cost !== null && c.delivery_cost !== undefined;
+    if (compTotal<ourTotal-0.5 && compDeliveryKnown) undercut.push({product:match.name,brand:match.brand,range:match.range||'',our_total:ourTotal,comp_total:compTotal,comp_site:c.site,diff:ourTotal-compTotal,pct:((ourTotal-compTotal)/ourTotal*100)});
   });
   undercut.sort((a,b)=>b.diff-a.diff);
 
@@ -875,7 +1086,8 @@ function buildDataContext() {
     const match=bs.find(p=>p.brand===c.brand&&p.name.toLowerCase()===c.name.toLowerCase());
     if(!match||match.price===null) return;
     const ourTotal=(match.price||0)+(match.delivery_cost||0), compTotal=(c.price||0)+(c.delivery_cost||0);
-    if(compTotal<ourTotal-0.5) undercut.push({product:match.name,range:match.range,brand:match.brand,our_total:ourTotal,comp_total:compTotal,comp_site:c.site,diff:ourTotal-compTotal});
+    const compDeliveryKnown = c.delivery_cost !== null && c.delivery_cost !== undefined;
+    if(compTotal<ourTotal-0.5 && compDeliveryKnown) undercut.push({product:match.name,range:match.range,brand:match.brand,our_total:ourTotal,comp_total:compTotal,comp_site:c.site,diff:ourTotal-compTotal});
   });
   undercut.sort((a,b)=>b.diff-a.diff);
 
